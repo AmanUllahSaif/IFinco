@@ -1,0 +1,90 @@
+﻿@model iFinco.DAL.Product
+
+<div class="row">
+    <div class="col-md-9">
+        <div class="col-md-6">
+            <div class="form-group label-floating">
+                @Html.LabelFor(x => x.Title, new { @class = "contor-label" })
+                @Html.HiddenFor(x => x.Id)
+                @Html.TextBoxFor(x => x.Title, new { @class = "form-control", disabled = "disabled" })
+                @Html.ValidationMessageFor(x => x.Title)
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group label-floating">
+                @Html.LabelFor(x => x.Tags, new { @class = "contor-label" })
+                @Html.TextBoxFor(x => x.Tags, new { @class = "form-control", disabled = "disabled", data_role = "tagsinput" })
+                @Html.ValidationMessageFor(x => x.Tags)
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group label-floating">
+                @Html.LabelFor(x => x.Description, new { @class = "contor-label" })
+                @Html.TextBoxFor(x => x.Description, new { @class = "form-control", disabled = "disabled" })
+                @Html.ValidationMessageFor(x => x.Description)
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="text-center">
+            <h4 style="margin-bottom:30px">Image</h4>
+            @if (Model.ImageUrl != null)
+            {
+                <img class="logo-preview" src="@Model.ImageUrl" style="height:100px;width:100px" />
+            }
+            else
+            {
+                <img class="logo-preview" src="~/PanalAssets/img/noImage.png" style="height:130px;width:130px" />
+            }
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group label-floating">
+            @Html.LabelFor(x => x.CategoryId, new { @class = "contor-label" })
+            @Html.DropDownListFor(x => x.CategoryId, new SelectList(ViewBag.Categories, "Id", "Title"), "Select Category", new { @class = "form-control", disabled = "disabled" })
+            @Html.ValidationMessageFor(x => x.CategoryId)
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group label-floating">
+            @Html.LabelFor(x => x.HaveVarients, new { @class = "contor-label" })<br />
+            @Html.CheckBoxFor(x => x.HaveVarients, new { disabled = "disabled" })
+            @Html.ValidationMessageFor(x => x.HaveVarients)
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group label-floating">
+            @Html.LabelFor(x => x.HasExpiry, new { @class = "contor-label" })<br />
+            @Html.CheckBoxFor(x => x.HasExpiry, new { disabled = "disabled" })
+            @Html.ValidationMessageFor(x => x.HasExpiry)
+        </div>
+    </div>
+</div>
+
+    <div class="row var-holdr" @(Model.HaveVarients ? "" : "style=display:none")>
+        <div class="col-md-12" id="lblVar">
+            <h5>Variants</h5>
+            @foreach (var item in Model.ProductVariants)
+            {
+                if (item.IsActive)
+                {
+                    <div class="col-md-2 Var">
+                        <label> @item.Variant.Title</label>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,203 @@
+﻿
+@model iFinco.UI.Models.TransactionSearchModel
+@using VNS.Accounts.DAL
+@{
+    ViewBag.Title = "Transaction";
+}
+@{
+    int @count = 1;
+}
+@{
+
+    bool isSearched = Model != null && ((Model.To != null) || (Model.From != null));
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <div class="col-md-9">
+                            <h4 class="title">Ledger</h4>
+                            <p class="category">General Ledger</p>
+                        </div>
+                        <div class="col-md-3 text-right">
+                            @Html.ActionLink("Add", "Create", "Transaction", new { @class = "btn btn-info btn-sm" })
+                            @Ajax.ActionLink(" ", "Print", "Transaction", new { area = "CompanyManager" }, new AjaxOptions { HttpMethod = "GET", OnSuccess = "ShowPrint" }, new { data_toggle = "tooltip", title = "Print", @class = "fa fa-print" })
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="card-content table-responsive">
+                        @using (Html.BeginForm("Index", "Transaction", FormMethod.Get))
+                        {
+                            <table class="table table-bordered" id="table">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th>Sr#</th>
+                                        <th>Date</th>
+                                        <th>Datail</th>
+                                        <th>Dr</th>
+                                        <th>
+                                            Cr<span class="pull-right">
+                                                <a href="#">
+                                                    <i class="material-icons" id="btnSearch">keyboard_arrow_down</i>
+                                                </a>
+                                            </span>
+                                        </th>
+                                        <th>Action</th>
+                                    </tr>
+                                    <tr @(isSearched ? "" : "style=display:none") id="trSearch">
+                                        <td></td>
+                                        <td></td>
+                                        <td>@Html.TextBoxFor(x => x.To, "{0:dd/MM/yyyy}", new { @class = "form-control form_datetime", placeholder = "To" })</td>
+                                        <td>@Html.TextBoxFor(x => x.From, "{0:dd/MM/yyyy}", new { @class = "form-control form_datetime", placeholder = "From" })</td>
+                                        <td>
+                                            <button class="btn btn-info btn-sm " type="submit">
+                                                <i class="material-icons">search</i>
+                                                <div class="ripple-container"></div>
+                                            </button>
+                                            <a href="@Url.Action("Index","Transaction")" class="btn btn-info btn-sm">
+                                                <i class="material-icons">refresh</i>
+                                            </a>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model == null || Model.Transactions.Count() < 1)
+                                    {
+                                        <tr>
+                                            <td colspan="5" class="text-center">No record found</td>
+                                        </tr>
+                                    }
+
+                                    @foreach (var item in Model.Transactions)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <a href="#" onclick="PrintReport(@item.Type,@item.ReceiptId);"> @count</a>
+                                            </td>
+                                            <td> @item.Date.ToString("dd/MM/yyyy") </td>
+                                            <td>
+                                                @foreach (var det in item.AccountDetails)
+                                                {
+                                                    if (det.Cr != null && det.Account.ShowInTransaction == true)
+                                                    {
+                                                        <label> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</label>
+                                                    }
+                                                    if (det.Account.ShowInTransaction == true)
+                                                    {
+                                                        @:  @det.Account.Name <br />
+                                                    }
+                                                }
+                                                @item.Narration
+                                            </td>
+                                            <td>
+                                                @foreach (var det in item.AccountDetails)
+                                                {
+                                                    if (det.Account.ShowInTransaction == true)
+                                                    {
+                                                        @:  @det.Dr  <br />
+                                                    }
+                                                }
+                                            </td>
+                                            <td>
+                                                @foreach (var det in item.AccountDetails)
+                                                {
+                                                    if (det.Account.ShowInTransaction == true)
+                                                    {
+                                                        @det.Cr  <br />
+                                                    }
+                                                }
+                                            </td>
+                                            <td>
+                                                <a href="#" onclick="PrintReport(@item.Type,@item.ReceiptId);" class="fa fa-print" data_toggle="tooltip" , title="View Detail"></a>
+                                                @* @Ajax.ActionLink(" ", "Detail", "Category", new { area = "CompanyManager", id = item.Id }, new AjaxOptions { HttpMethod = "GET", OnSuccess = "ShowModal" }, new { data_toggle = "tooltip", title = "View Detail", @class = "fa fa-info" })*@
+                                            </td>
+                                        </tr>
+                                        count++;
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script type="text/javascript">
+        function ShowModal(data) {
+            $('#content').html(data);
+            $('#companyModal').modal();
+        }
+        function ShowPrint(data) {
+            var w = window.open("", "", "width=900,height=700");
+            w.document.write(data);
+            w.document.close();
+            w.focus();
+            setTimeout(function () {
+                w.print();
+                w.close();
+            }, 1000)
+
+        }
+
+        $('#btnSearch').click(function () {
+            $('#trSearch').slideToggle('slow');
+        })
+
+
+        function PrintReport(typ, recieptId) {
+            var type = typ;
+            var id = recieptId;
+            var lnk = '';
+            if (type == 1) {
+                lnk = '/CompanyManager/Sale/Print/' + id;
+            }
+            else if (type == 2) {
+                lnk = '/CompanyManager/Purchase/Print/' + id;
+            }
+            else if (type == 3) {
+                lnk = '/CompanyManager/SaleReturn/Print/' + id;
+            }
+            else if (type == 4) {
+                lnk = '/CompanyManager/PurchaseReturn/Print/' + id;
+            }
+            else if (type == 5) {
+                lnk = '/CompanyManager/Generalinvoice/Print/' + id;
+            }
+            else if (type == 6) {
+                lnk = '/CompanyManager/Generalinvoice/Print/' + id;
+            }
+            //var id = $(this).attr("data-id");
+            $.ajax({
+                type: "GET",
+                url: lnk,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: ShowPrint
+            });
+        }
+    </script>
+}
+
+
+
+
+
+
+@*<script type="text/javascript">
+        $('.btn').click(function () {
+            var print = document.getElementById('table');
+            var cssFiles = $('link');
+            var w = window.open("", "", "width=900,height=700");
+            w.document.write(print.outerHTML);
+            w.document.close();
+            w.focus();
+            w.print();
+            w.close();
+        })
+    </script>*@

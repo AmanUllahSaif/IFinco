@@ -1,0 +1,40 @@
+﻿@model IEnumerable<iFinco.DAL.Stock>
+
+<table class="table table-hover">
+    <thead class="text-warning">
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Expire</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <b>@item.Product.Title</b><br />
+                    @if (item.ProductAttributeCombination != null)
+                    {
+                        foreach (var pdetail in item.ProductAttributeCombination.PACDetails)
+                        {
+                            if (pdetail.IsActive)
+                            {
+                                <label>@pdetail.VariantValue.Title ,</label>
+                            }
+                        }
+                    }
+                </td>
+                <td>@item.Quantity</td>
+                <td>
+                    @if (item.ExpiryDate != null)
+                    {
+                        @: @item.ExpiryDate.Value.ToString("dd/MM/yyyy")
+                    }
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+

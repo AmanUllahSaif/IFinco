@@ -1,0 +1,14 @@
+H:\IFinco\iFinco.DAL\bin\Release\iFinco.DAL.dll.config
+H:\IFinco\iFinco.DAL\bin\Release\iFinco.DAL.dll
+H:\IFinco\iFinco.DAL\bin\Release\iFinco.DAL.pdb
+H:\IFinco\iFinco.DAL\bin\Release\EntityFramework.dll
+H:\IFinco\iFinco.DAL\bin\Release\EntityFramework.SqlServer.dll
+H:\IFinco\iFinco.DAL\bin\Release\System.Web.Mvc.dll
+H:\IFinco\iFinco.DAL\bin\Release\EntityFramework.xml
+H:\IFinco\iFinco.DAL\bin\Release\EntityFramework.SqlServer.xml
+H:\IFinco\iFinco.DAL\bin\Release\System.Web.Mvc.xml
+H:\IFinco\iFinco.DAL\obj\Release\iFinco.DAL.csprojResolveAssemblyReference.cache
+H:\IFinco\iFinco.DAL\obj\Release\iFinco.DAL.MetaDataResource.resources
+H:\IFinco\iFinco.DAL\obj\Release\iFinco.DAL.csproj.GenerateResource.Cache
+H:\IFinco\iFinco.DAL\obj\Release\iFinco.DAL.dll
+H:\IFinco\iFinco.DAL\obj\Release\iFinco.DAL.pdb

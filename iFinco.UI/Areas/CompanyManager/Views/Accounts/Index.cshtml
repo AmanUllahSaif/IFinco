@@ -1,0 +1,76 @@
+﻿@model IEnumerable<VNS.Accounts.DAL.Account>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <div class="col-md-9">
+                            <h4 class="title">Accounts</h4>
+                            <p class="category">Manage Accounts, you can add,edit or delete any Account.</p>
+                        </div>
+                        <div class="col-md-3 text-right">
+                            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#companyModal">add</button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    @using (Html.BeginForm("index", "Accounts", FormMethod.Get))
+                    {
+                        <div class="card-content table-responsive">
+                            <table class="table ">
+
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th>Account Name</th>
+                                        <th>Balance</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.Name</td>
+                                            <td>
+                                                @if (item.Balance < 0)
+                                                {
+                                                    item.Balance = -1 * item.Balance;
+
+                                                    <label>( @item.Balance)</label>
+                                                }
+                                                else
+                                                {
+                                                    <label>@item.Balance</label>
+                                                }
+                                            </td>
+                                            @*<td>
+
+                                                    <a href="@Url.Action("Edit", "GoDown", new { area="CompanyManager", id=item.Id})" data-toggle="tooltip" title="Edit Company"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                                    <a href="@Url.Action("Delete", "GoDown", new { area="CompanyManager", id=item.Id})" data-toggle="tooltip" title="Delete Company"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                                    @Ajax.ActionLink(" ", "Detail", "GoDown", new { area = "CompanyManager", id = item.Id }, new AjaxOptions { HttpMethod = "GET", OnSuccess = "ShowModal" }, new { data_toggle = "tooltip", title = "View Detail", @class = "fa fa-info" })
+                                                </td>*@
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Action("CreatePartial", "Accounts")
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/common/fileuploader.js"></script>
+    <script type="text/javascript">
+        $('.vns-file').VNSFileUploder();
+
+    </script>
+}

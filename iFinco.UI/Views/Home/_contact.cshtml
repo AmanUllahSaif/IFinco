@@ -1,0 +1,56 @@
+﻿@model iFinco.UI.Models.ContactVM
+
+<div class="col-md-6">
+    <div class="sub_title">
+        <h3 id="contact">Reqeust a Call Back</h3>
+        <p>if you have any query you can freely contact us. we'll respond you as soon as possible.</p>
+
+    </div>
+
+    @using (Html.BeginForm("Contact", "Home", FormMethod.Post))
+    {
+
+        <div class="row contact-custom-row">
+            <div class="col-md-6">
+                <div class="form-box">
+                    @Html.TextBoxFor(x => x.Name, new { placeholder = "Name" })
+                    @Html.ValidationMessageFor(x => x.Name)
+                    @*<input type="text" name="name" placeholder="Name" required>*@
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-box">
+                    @Html.TextBoxFor(x => x.Email, new { placeholder = "Email" })
+                    @Html.ValidationMessageFor(x => x.Email)
+                    @*<input type="kemail" name="email" placeholder="Email" required>*@
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-box">
+                    @Html.TextBoxFor(x => x.Subject, new { placeholder = "Subject" })
+                    @Html.ValidationMessageFor(x => x.Subject)
+                    @*<input type="text" name="subject" placeholder="Subject">*@
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-box">
+                    @Html.TextBoxFor(x => x.Phone, new { placeholder = "Phone" })
+                    @Html.ValidationMessageFor(x => x.Phone)
+                    @*<input type="text" name="phone" placeholder="Phone">*@
+                </div>
+            </div>
+        </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-box">
+                        @Html.TextAreaFor(x => x.Message, new { placeholder = "Message" })
+                        @Html.ValidationMessageFor(x => x.Message)
+                        @*<textarea name="message" placeholder="Message"></textarea>*@
+                        <button type="submit" class="default-button submit-btn">Submit Now</button>
+                    </div>
+                    <p class="form-messege"></p>
+                </div>
+            </div>
+    }
+
+</div>

@@ -1,0 +1,127 @@
+﻿@model iFinco.DAL.Menu
+@using iFinco.DAL.Enum
+@{
+    ViewBag.Title = "Menu Managment";
+    var MenuType = Enum.GetValues(typeof(MenuType));
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Create Menu</h4>
+                        <p class="category"></p>
+                    </div>
+                    <div class="card-content">
+                        @using (Html.BeginForm("Create", "Menu", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                @Html.LabelFor(x => x.Title, new { @class = "contor-label" })
+                                                @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(x => x.Title)
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                @Html.LabelFor(x => x.Type, new { @class = "contor-label" })
+                                                @Html.DropDownListFor(x => x.Type, EnumHelper.GetSelectList(typeof(MenuType)), "Select Menu Type", new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(x => x.Type)
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4" style="display:none" id="module">
+                                            <div class="form-group label-floating">
+                                                @Html.LabelFor(x => x.ParentId, new { @class = "contor-label" })
+                                                @Html.DropDownListFor(x => x.ParentId, new SelectList(ViewBag.ParentType, "Id", "Title"), "Select Module", new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(x => x.ParentId)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group label-floating">
+                                                @Html.LabelFor(x => x.Description, new { @class = "contor-label" })
+                                                @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(x => x.Description)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group label-floating">
+                                                @Html.LabelFor(x => x.Area, new { @class = "contor-label" })
+                                                @Html.TextBoxFor(x => x.Area, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(x => x.Area)
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group label-floating">
+                                                @Html.LabelFor(x => x.Controller, new { @class = "contor-label" })
+                                                @Html.TextBoxFor(x => x.Controller, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(x => x.Controller)
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group label-floating">
+                                                @Html.LabelFor(x => x.Action, new { @class = "contor-label" })
+                                                @Html.TextBoxFor(x => x.Action, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(x => x.Action)
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group label-floating">
+                                                @Html.LabelFor(x => x.ClassName, new { @class = "contor-label" })
+                                                @Html.TextBoxFor(x => x.ClassName, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(x => x.ClassName)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group label-floating">
+                                                @Html.Label("Show In Nav", new { @class = "contor-label" })
+                                                @Html.CheckBoxFor(x => x.InNav, new { @class = "form-control switch" })
+                                                @Html.ValidationMessageFor(x => x.InNav)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <a href="@Url.Action("Index","Menu")" class="btn btn-default pull-right btn-md">Cancle</a>
+                                <button type="submit" class="btn btn-primary pull-right">Save</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" class="active-nav" value="#Menu" />
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/common/fileuploader.js"></script>
+    <script type="text/javascript">
+        $('.vns-file').VNSFileUploder();
+
+        $("#Type").change(function () {
+            var val = $(this).val();
+            //var txt = $('#Type option:selected').text();
+            if (val == 1) {
+                $('#module').show();
+            } else {
+                $('#ParentId').val('');
+                $('#module').hide();
+            }
+        });
+    </script>
+}

@@ -1,0 +1,213 @@
+﻿@model iFinco.UI.Models.StockVM
+
+@{
+    ViewBag.Title = "Stock Managment";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Deduct Stock</h4>
+                        <p class="category"></p>
+                    </div>
+                    <div class="card-content">
+                        @using (Html.BeginForm("DeductStock", "Stock", FormMethod.Post, new { id = "contact-for" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group label-floating">
+                                        @Html.LabelFor(x => x.Stock.ProductId, new { @class = "contor-label" })
+                                        @Html.HiddenFor(x => x.Stock.ProductId)
+                                        @Html.HiddenFor(x => x.Stock.PACId)
+                                        @Html.HiddenFor(x => x.Stock.BarCodeImgUrl, new { id = "bardcodimg" })
+                                        @Html.HiddenFor(x => x.Stock.Id)
+                                        @Html.DropDownListFor(x => x.Stock.ProductId, new SelectList(ViewBag.Product, "Id", "Title"), "Select Product", new { @class = "form-control", disabled = "disabled" })
+                                        @Html.ValidationMessageFor(x => x.Stock.ProductId)
+                                    </div>
+                                </div>
+                                @*<div class="col-md-3">
+                                        <div class="form-group label-floating">
+                                            @Html.LabelFor(x => x.Stock.GodownId, new { @class = "contor-label" })
+                                            @Html.DropDownListFor(x => x.Stock.GodownId, new SelectList(ViewBag.Godown, "Id", "Title"), "Select Godown", new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(x => x.Stock.GodownId)
+                                        </div>
+                                    </div>*@
+                                <div class="col-md-3">
+                                    <div class="form-group label-floating">
+                                        @Html.LabelFor(x => x.Stock.Quantity, new { @class = "contor-label" })
+                                        @Html.TextBoxFor(x => x.Stock.Quantity, new { @class = "form-control", Value = 0 })
+                                        @Html.ValidationMessageFor(x => x.Stock.Quantity)
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group label-floating">
+                                        @Html.LabelFor(x => x.Stock.PurchasingPrice, new { @class = "contor-label" })
+                                        @Html.TextBoxFor(x => x.Stock.PurchasingPrice, new { @class = "form-control", disabled = "disabled" })
+                                        @Html.ValidationMessageFor(x => x.Stock.PurchasingPrice)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group label-floating">
+                                        @Html.LabelFor(x => x.Stock.SellingPrice, new { @class = "contor-label" })
+                                        @Html.TextBoxFor(x => x.Stock.SellingPrice, new { @class = "form-control", disabled = "disabled" })
+                                        @Html.ValidationMessageFor(x => x.Stock.SellingPrice)
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group label-floating">
+                                        @Html.LabelFor(x => x.Stock.Code, new { @class = "contor-label" })
+                                        @Html.TextBoxFor(x => x.Stock.Code, new { @class = "form-control", disabled = "disabled" })
+                                        @Html.ValidationMessageFor(x => x.Stock.Code)
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group label-floating">
+                                        @Html.LabelFor(x => x.Stock.BarCode, new { @class = "contor-label" })
+                                        @Html.TextBoxFor(x => x.Stock.BarCode, new { @class = "form-control", id = "Barcode", disabled = "disabled" })
+                                        @Html.ValidationMessageFor(x => x.Stock.BarCode)
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group label-floating" @(Model.Stock.ExpiryDate == null ? "style=display:none" : "") id="ExpDate">
+                                        @Html.LabelFor(x => x.Stock.ExpiryDate, new { @class = "contor-label" })
+                                        <div class="input-group date">
+                                            @Html.TextBoxFor(x => x.Stock.ExpiryDate, "{0:dd/MM/yyyy}", new { @class = "form-control form_datetime", disabled = "disabled" })
+                                            <div class="input-group-addon">
+                                                <span class="material-icons">date_range</span>
+                                            </div>
+                                        </div>
+                                        @Html.ValidationMessageFor(x => x.Stock.ExpiryDate)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" id="varintHldr">
+                                @if (Model.PACDetail != null)
+                                {
+                                    for (int i = 0; i < Model.PACDetail.Count; i++)
+                                    {
+                                        var values = Model.PACDetail[i].Variant.VariantValues.Where(x => x.IsActive);
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                @Html.Label(Model.PACDetail[i].Variant.Title, new { @class = "contor-label" })
+                                                @Html.HiddenFor(x => x.PACDetail[i].VariantId, new { @class = "contor-label" })
+                                                @Html.HiddenFor(x => x.PACDetail[i].Id, new { @class = "contor-label" })
+                                                @Html.DropDownListFor(x => x.PACDetail[i].VariantValueId, new SelectList(values, "Id", "Title", Model.PACDetail[i].VariantValueId), "Select " + Model.PACDetail[i].Variant.Title, new { @class = "form-control", disabled = "disabled" })
+                                                @Html.ValidationMessageFor(x => x.PACDetail[i].VariantValueId)
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                            <div class="row" id="BarcodeImgHoldr">
+
+                                @if (!string.IsNullOrEmpty(Model.Stock.BarCodeImgUrl))
+                                {
+                                    <div class="col-md-4">
+                                        <div class="text-center">
+                                            <img class="logo-preview" src="@Url.Content(Model.Stock.BarCodeImgUrl)" />
+                                        </div>
+                                    </div>
+
+                                }
+                            </div>
+                            <div class="text-right">
+                                <a href="@Url.Action("Index","Stock")" class="btn btn-default pull-right btn-md">Cancle</a>
+                                <button type="submit" class="btn btn-primary pull-right">Update</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" class="active-nav" value="#Stock" />
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/common/fileuploader.js"></script>
+    <script type="text/javascript">
+        $('.vns-file').VNSFileUploder();
+        //call event on dropdown_index_changed
+        $('#Stock_ProductId').change(function () {
+            var id = $(this).val();
+            if (id) {
+                $.ajax({
+                    type: "POST",
+                    url: "/CompanyManager/Product/GetVariants/" + id,
+                    success: function (response) {
+                        var varints = ""
+                        if (response) {
+                            if (response.HasExpri) {
+                                $('#ExpDate').show();
+                            } else {
+                                $('#ExpDate').hide();
+                            }
+                            if (response.varints.length > 0) {
+                                for (var i = 0; i < response.varints.length; i++) {
+                                    varints += '<div class="col-md-4"> <div class="form-group label-floating is-empty">' +
+                                                               '<label class="label-control">' + response.varints[i].Title + '</label>'
+                                    + '<input data-val="true" data-val-number="The field VariantId must be a number." data-val-required="The VariantId field is required." id="PACDetail_' + i + '__VariantId" name="PACDetail[' + i + '].VariantId" type="hidden" value="' + response.varints[i].Id + '" />';
+                                    var selectList = '<select class="form-control" data-val="true" data-val-number="The field VariantValueId must be a number." data-val-required="This field is required." id="PACDetail_' + i + '__VariantValueId" name="PACDetail[' + i + '].VariantValueId"><option value="">Select ' + response.varints[i].Title + '</option>';
+                                    var options = "";
+                                    for (var j = 0; j < response.varints[i].Values.length; j++) {
+                                        selectList += '<option value="' + response.varints[i].Values[j].Id + '">' + response.varints[i].Values[j].Title + '</option>'
+                                    }
+                                    selectList += '</select><span class="field-validation-valid" data-valmsg-for="PACDetail[' + i + '].VariantValueId" data-valmsg-replace="true"></span>';
+                                    varints += selectList + '</div></div>'
+                                }
+                            }
+                        }
+                        $('#varintHldr').html(varints);
+                        ReSetValidation();
+                    }
+                });
+            } else {
+                $('#varintHldr').html('');
+                $('#ExpDate').hide();
+            }
+        })
+
+        $("#Barcode").change(function () {
+            var id = $(this).val().trim();
+            if (id) {
+                $.ajax({
+                    type: "GET",
+                    url: "/CompanyManager/BarCode/GenerateBarCode/" + id,
+                    success: function (response) {
+                        if (response) {
+                            $('#bardcodimg').val(response)
+                            var barcodeimg = '<div class="col-md-4"><div class="text-center">' +
+                            ' <img class="logo-preview" src=' + response + '>' +
+                   '  </div>  </div>'
+                            $('#BarcodeImgHoldr').html(barcodeimg);
+                        }
+                    }
+                });
+            } else {
+                $('#BarcodeImgHoldr').html('');
+            }
+        });
+
+        function ReSetValidation() {
+            var form = $('form').removeData('validator').removeData('unobtrusiveValidation');
+            $.validator.unobtrusive.parse(form);
+        }
+    </script>
+}
+
+
+
+
+
+
+
+

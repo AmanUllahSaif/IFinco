@@ -1,0 +1,404 @@
+﻿@using iFinco.UI.Util
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Material Dashboard by Creative Tim</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+    <!-- Bootstrap core CSS     -->
+
+    <link href="@Url.Content("~/")PanalAssets/css/bootstrap.min.css" rel="stylesheet" />
+    <!--  Material Dashboard CSS    -->
+    <link href="@Url.Content("~/")PanalAssets/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="@Url.Content("~/")PanalAssets/css/demo.css" rel="stylesheet" />
+    <!--     Fonts and icons     -->
+
+    <link href="~/PanalAssets/vendor/datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <link href="~/PanalAssets/vendor/Tags/css/bootstrap-tagsinput.css" rel="stylesheet" />
+    <link href="~/PanalAssets/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/PanalAssets/css/material-icons.min.css" rel="stylesheet" />
+    <link href="~/PanalAssets/css/roboto.min.css" rel="stylesheet" />
+    <link href="~/PanalAssets/vendor/bootstrapswitch/css/bootstrap-switch.css" rel="stylesheet" />
+    <link href="~/PanalAssets/vendor/bootstrapswitch/css/highlight.css" rel="stylesheet" />
+    <link href="~/PanalAssets/vendor/TypeHead/jquery.typeahead.css" rel="stylesheet" />
+    @*<link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>*@
+    <style>
+        /* Absolute Center Spinner */
+        .loading {
+            position: fixed;
+            z-index: 999;
+            height: 2em;
+            width: 2em;
+            overflow: show;
+            margin: auto;
+            top: 0;
+            left: 0;
+            bottom: 226px;
+            right: 218px;
+        }
+
+            /* Transparent Overlay */
+            .loading:before {
+                content: '';
+                display: block;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.3);
+            }
+
+            /* :not(:required) hides these rules from IE9 and below */
+            .loading:not(:required) {
+                /* hide "loading..." text */
+                font: 0/0 a;
+                color: transparent;
+                text-shadow: none;
+                background-color: transparent;
+                border: 0;
+            }
+
+    </style>
+</head>
+<body>
+    <div class="loading">
+        <img src="~/PanalAssets/img/loader.svg" alt="No Image" />
+    </div>
+    <div class="wrapper">
+        <div class="sidebar" data-color="purple" data-image="@Url.Content("~/")PanalAssets/img/sidebar-1.jpg">
+            <!--
+                Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+
+                Tip 2: you can also add an image using data-image tag
+            -->
+            <div class="logo">
+                <a href="@Url.Action("Index", "Home", new { area="CompanyManager"})" class="simple-text">
+                    @User.Identity.GetCompanyName()
+                </a>
+                <a href="@Url.Action("SwitchBranch", "Account", new { area=""})" class="simple-text" style="font-size:12px">
+                    @User.Identity.GetBranchName()
+                </a>
+            </div>
+            <div class="sidebar-wrapper" style="padding-bottom:50px;">
+                <ul class="nav">
+                    <li id="Dashboard">
+                        <a href="@Url.Action("Index", "Home", new { area="CompanyManager"})">
+                            <i class="material-icons">dashboard</i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+
+                    <li class="has-child">
+                        <a href="javascript:void(0);">
+                            <i class="material-icons">add_shopping_cart</i><p>Sale Management</p>
+                        </a>
+                        <ul class="nav child-nav">
+                            <li id="Sale">
+                                <a href="@Url.Action("Index", "Sale", new { area="CompanyManager"})">
+                                    <i class="material-icons">shopping_basket</i>
+                                    <p>Sale</p>
+                                </a>
+                            </li>
+                            <li id="SaleReturn">
+                                <a href="@Url.Action("Index", "SaleReturn", new { area="CompanyManager"})">
+                                    <i class="material-icons">compare_arrows</i>
+                                    <p>Sale Return</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="has-child">
+                        <a href="javascript:void(0);">
+                            <i class="material-icons">redeem</i><p>Product Management</p>
+                        </a>
+                        <ul class="nav child-nav">
+                            <li id="Product">
+                                <a href="@Url.Action("Index","Product", new { area = "CompanyManager"})">
+                                    <i class="material-icons">star_rate</i>
+                                    Product
+                                </a>
+                            </li>
+                            <li id="Stock">
+                                <a href="@Url.Action("Index","Stock", new { area = "CompanyManager"})">
+                                    <i class="material-icons">reorder</i>
+                                    Stock
+                                </a>
+                            </li>
+                            <li id="Purchase">
+                                <a href="@Url.Action("Index", "Purchase", new { area="CompanyManager"})">
+                                    <i class="material-icons">shopping_cart</i>
+                                    <p>Purchase</p>
+                                </a>
+                            </li>
+                            <li id="PurchaseReturn">
+                                <a href="@Url.Action("Index", "PurchaseReturn", new { area="CompanyManager"})">
+                                    <i class="material-icons">redo</i>
+                                    <p>Purchase Return</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="has-child">
+                        <a href="javascript:void(0);">
+                            <i class="material-icons">account_circle</i><p>Account Management</p>
+                        </a>
+                        <ul class="nav child-nav">
+                            <li id="Account">
+                                <a href="@Url.Action("Index","Accounts", new { area = "CompanyManager"})">
+                                    <i class="material-icons">account_box</i>
+                                    Account
+                                </a>
+                            </li>
+                            <li id="Stock">
+                                <a href="@Url.Action("Index","Transaction", new { area = "CompanyManager"})">
+                                    <i class="material-icons">assessment</i>
+                                    Transaction
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="has-child">
+                        <a href="javascript:void(0);">
+                            <i class="material-icons">library_books</i>
+                            <p>Reports</p>
+                        </a>
+                        <ul class="nav child-nav">
+                            <li id="PartyLedgre">
+                                <a href="@Url.Action("PartyLedgre","Reports", new { area = "CompanyManager"})">
+                                    <i class="material-icons">assessment</i>
+                                    Party Ledger
+                                </a>
+                            </li>
+                            <li id="SaleReport">
+                                <a href="@Url.Action("Sale","Reports", new { area = "CompanyManager"})">
+                                    <i class="material-icons">content_paste</i>
+                                    Sale Report
+                                </a>
+                            </li>
+                            <li id="SaleReturnReport">
+                                <a href="@Url.Action("SaleReturn","Reports", new { area = "CompanyManager"})">
+                                    <i class="fa fa-mail-forward"></i>
+                                    Sale Return Report
+                                </a>
+                            </li>
+                            <li id="PurchaseReport">
+                                <a href="@Url.Action("Purchase","Reports", new { area = "CompanyManager"})">
+                                    <i class="material-icons">insert_drive_file</i>
+                                    Purchase Report
+                                </a>
+                            </li>
+                            <li id="PurchaseReturnReport">
+                                <a href="@Url.Action("PurchaseReturn","Reports", new { area = "CompanyManager"})">
+                                    <i class="fa fa-mail-reply"></i>
+                                    Purchase Return Report
+                                </a>
+                            </li>
+                            <li id="Income">
+                                <a href="@Url.Action("ProfitAndLossStatement","generalinvoice", new { area = "CompanyManager"})">
+                                    <i class="material-icons">assessment</i>
+                                    Profit & Loss Statement
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="has-child">
+                        <a href="javascript:void(0);">
+                            <i class="fa fa-money" aria-hidden="true"></i><p>Payments</p>
+                        </a>
+                        <ul class="nav child-nav">
+
+                            <li id="PartyLedgre">
+                                <a href="@Url.Action("Index","Generalinvoice", new { area = "CompanyManager"})">
+                                    <i class="material-icons">assessment</i>
+                                    General Invoice
+                                </a>
+                            </li>
+                            <li id="PartyLedgre">
+                                <a href="@Url.Action("PaidToParty","Generalinvoice", new { area = "CompanyManager"})">
+                                    <i class="material-icons">attach_money</i>
+                                    Paid to Party
+                                </a>
+                            </li>
+                            <li id="PartyLedgre">
+                                <a href="@Url.Action("RecivedFromParty","Generalinvoice", new { area = "CompanyManager"})">
+                                    <i class="material-icons">attach_money</i>
+                                    Recived From Party
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="has-child">
+                        <a href="javascript:void(0);">
+                            <i class="material-icons">
+                                settings applications
+                            </i>
+                            <p>Setup</p>
+                        </a>
+                        <ul class="nav child-nav">
+                            <li id="Category">
+                                <a href="@Url.Action("Index", "Category", new { area="Companymanager"})">
+                                    <i class="material-icons">group_work</i>
+                                    Category Management
+                                </a>
+                            </li>
+                            @*<li id="Category" class="has-child">
+                                </li>*@
+
+                            <li id="Godown">
+                                <a href="@Url.Action("Index","GoDown", new { area = "CompanyManager"})">
+                                    <i class="material-icons">store</i>
+                                    Godown Managment
+                                </a>
+                            </li>
+
+                            <li id="Variant">
+                                <a href="@Url.Action("Index","Variant", new { area = "CompanyManager"})">
+                                    <i class="material-icons">label</i>
+                                    Variants Managment
+                                </a>
+                            </li>
+                            <li id="Branch">
+                                <a href="@Url.Action("Index","Branch", new { area = "CompanyManager"})">
+                                    <i class="material-icons">call_split</i>
+                                    Branch Management
+                                </a>
+                            </li>
+                            <li id="Brand">
+                                <a href="@Url.Action("Index","Brand", new { area = "CompanyManager"})">
+                                    <i class="material-icons">loyalty</i>
+                                    Brand Management
+                                </a>
+                            </li>
+                            <li id="InvoiceDesigner">
+                                <a href="@Url.Action("Index","TemplateDesigner", new { area = "CompanyManager"})">
+                                    <i class="material-icons">content_paste</i>
+                                    Invoice Designer
+                                </a>
+                            </li>
+                            <li id="Party">
+                                <a href="@Url.Action("Index","Party", new { area = "CompanyManager"})">
+                                    <i class="material-icons">person_pin</i>
+                                    Parties Management
+                                </a>
+                            </li>
+                            <li id="User">
+                                <a href="@Url.Action("Index","User", new { area = "CompanyManager"})">
+                                    <i class="material-icons">people_outline</i>
+                                    Employee Management
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-panel">
+            <nav class="navbar navbar-transparent navbar-absolute">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"> @ViewBag.Title </a>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        @Html.Partial("~/Views/Shared/_PanelLoginPartial.cshtml")
+                        <form class="navbar-form navbar-right" role="search">
+                            <div class="form-group  is-empty">
+                                <input type="text" class="form-control" placeholder="Search">
+                                <span class="material-input"></span>
+                            </div>
+                            <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                <i class="material-icons">search</i>
+                                <div class="ripple-container"></div>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+            @RenderBody()
+            <footer class="footer">
+                <div class="container-fluid">
+                    <p class="copyright text-center">
+                        &copy;
+                        <script>
+                            document.write(new Date().getFullYear())
+                        </script>
+                        <a href="http://vnextsolution.com/">Vnext Solution</a>
+                    </p>
+                </div>
+            </footer>
+
+            <div id="changePasswordModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content" id="chngpswrdcnt">
+                        @Html.Action("ChangePassword", "Manage", new { area = "" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--   Core JS Files   -->
+    <script src="@Url.Content("~/")PanalAssets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="@Url.Content("~/")PanalAssets/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="@Url.Content("~/")PanalAssets/js/material.min.js" type="text/javascript"></script>
+    <script src="~/PanalAssets/vendor/Tags/js/bootstrap-tagsinput.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+
+    <!--  Dynamic Elements plugin -->
+    <script src="@Url.Content("~/")PanalAssets/js/arrive.min.js"></script>
+    <!--  PerfectScrollbar Library -->
+    <script src="@Url.Content("~/")PanalAssets/js/perfect-scrollbar.jquery.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="@Url.Content("~/")PanalAssets/js/bootstrap-notify.js"></script>
+    <!--  Google Maps Plugin    -->
+    <script src="@Url.Content("~/")PanalAssets/js/material-dashboard.js"></script>
+    @Scripts.Render("~/bundles/ckeditor")
+    @*<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>*@
+
+    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+    <script src="~/Scripts/common/Nav.js"></script>
+    <script src="~/PanalAssets/vendor/bootstrapswitch/js/bootstrap-switch.js"></script>
+    <script src="~/PanalAssets/vendor/bootstrapswitch/js/highlight.js"></script>
+
+    <script src="~/PanalAssets/vendor/datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/Scripts/common/CustomDatePicker.js"></script>
+    <script src="~/PanalAssets/vendor/TypeHead/bootstrap3-typeahead.min.js"></script>
+    <script src="~/Scripts/common/NotificationManager.js"></script>
+    @*<script type="text/javascript" src="http://cdn.rawgit.com/bassjobsen/Bootstrap-3-Typeahead/master/bootstrap3-typeahead.min.js"></script>*@
+    <script type="text/javascript">
+        window.onload = function () {
+            $('.loading').hide();
+        }
+        $(document).ready(function () {
+            // Javascript method's body can be found in assets/js/demos.js
+            $('.switch[type="checkbox"], .switch[type="radio"]')
+    .not('[data-switch-no-init]')
+    .bootstrapSwitch()
+            $('[data-toggle="tooltip"]').tooltip();
+            //$.validator.methods.date = function (value, element) {
+            //    return this.optional(element) || moment(value, "DD.MM.YYYY", true).isValid();
+            //}
+        });
+    </script>
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

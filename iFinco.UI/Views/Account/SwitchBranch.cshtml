@@ -1,0 +1,60 @@
+﻿@model IEnumerable<iFinco.DAL.Branch>
+@{
+    ViewBag.Title = "SwitchComapny";
+    Layout = "~/Views/Shared/_PanalLayoutBlank.cshtml";
+}
+
+<style>
+    .outer {
+        display: table;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+    }
+
+    .middle {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .inner {
+        margin-left: auto;
+        margin-right: auto;
+        width: 400px; /*whatever width you want*/
+    }
+</style>
+
+<div class="content">
+    <div class="outer">
+        <div class="middle">
+            <div class="inner">
+
+                @foreach (var item in Model)
+                {
+                    using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@item.Id" />
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="green">
+                                <i class="material-icons">store</i>
+                            </div>
+                            <div class="card-content">
+                                <h3 class="title">@item.Title</h3>
+                                <button class="btn btn-sm">Login</button>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">date_range</i> @item.Adress
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                }
+
+            </div>
+        </div>
+    </div>
+    <div class="clear-fix"></div>
+</div>

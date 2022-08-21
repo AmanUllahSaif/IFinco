@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1A976871-6C50-4DAE-B82C-05E1646F1717}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>iFinco.BLL</RootNamespace>
+    <AssemblyName>iFinco.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GenericRepository.cs" />
+    <Compile Include="Handler\BranchAccessHandler.cs" />
+    <Compile Include="Handler\BranchHandler.cs" />
+    <Compile Include="Handler\BrandHandler.cs" />
+    <Compile Include="Handler\CategoryHandler.cs" />
+    <Compile Include="Handler\CompanyHandler.cs" />
+    <Compile Include="Handler\CompanyMenuAccessHandler.cs" />
+    <Compile Include="Handler\GeneralinvoiceHandler.cs" />
+    <Compile Include="Handler\GoDownHandler.cs" />
+    <Compile Include="Handler\MenuHandler.cs" />
+    <Compile Include="Handler\PACHandler.cs" />
+    <Compile Include="Handler\PartyHandler.cs" />
+    <Compile Include="Handler\PlaceholderHandler.cs" />
+    <Compile Include="Handler\ProductHandler.cs" />
+    <Compile Include="Handler\ProductVariantHandler.cs" />
+    <Compile Include="Handler\PurchaseHandler.cs" />
+    <Compile Include="Handler\PurchaseReturnHandler.cs" />
+    <Compile Include="Handler\SaleHandler.cs" />
+    <Compile Include="Handler\SaleReturnHandler.cs" />
+    <Compile Include="Handler\StockHandler.cs" />
+    <Compile Include="Handler\TemplateHandler.cs" />
+    <Compile Include="Handler\VariantHandler.cs" />
+    <Compile Include="IGenericRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\iFinco.DAL\iFinco.DAL.csproj">
+      <Project>{546f1c80-3a45-4f9e-9e7c-193edf4e32db}</Project>
+      <Name>iFinco.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VNS.Accounts\VNS.Accounts.csproj">
+      <Project>{1DEC30AD-856A-4BF3-A9CA-AD2122773F19}</Project>
+      <Name>VNS.Accounts</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

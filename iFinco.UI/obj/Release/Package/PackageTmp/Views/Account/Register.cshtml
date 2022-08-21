@@ -1,0 +1,91 @@
+﻿@model iFinco.UI.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<!-- Breadcrumb Area Start-->
+<div class="breadcrumb-area bg-overlay-dark bg-6">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-text text-left">
+                    <h2>Register Owner</h2>
+                    <div class="breadcrumb-bar">
+                        <ul class="breadcrumb">
+                            <li><a href="@Url.Action("Index","Home")">HOME</a></li>
+                            <li>Register </li>
+                            <li>@ViewBag.Company.Title</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Area End -->
+<div class="contact-form-area fix pb-120 pt-120">
+    <div class="container">
+        <div class="contact-form-left">
+           
+            <h4 class="details-title">Register Owner</h4>
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { id = "contact-for", enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(false)
+                @*<div>
+                    
+                </div>*@
+                <div>
+                    @Html.TextBoxFor(x => x.Name, new { placeholder = "Full Name" })
+                    @Html.ValidationMessageFor(x => x.Name)
+                    @Html.HiddenFor(x => x.CompanyId, new {Value=ViewBag.Company.Id })
+                    <input type="hidden" value="@ViewBag.i" name="i" />
+                    <input type="hidden" value="@ViewBag.e" name="e" />
+                </div>
+                <div>
+                    @Html.TextBoxFor(x => x.Email, new { placeholder = "Email" })
+                    @Html.ValidationMessageFor(x => x.Email)
+                </div>
+                <div>
+                    @Html.PasswordFor(x => x.Password, new { placeholder = "Password" })
+                    @Html.ValidationMessageFor(x => x.Password)
+                </div>
+                <div>
+                    @Html.PasswordFor(x => x.ConfirmPassword, new { placeholder = "Confirm Password" })
+                    @Html.ValidationMessageFor(x => x.ConfirmPassword)
+                </div>
+                <div class="col-10 fix text-right">
+                    <input type="file" name="logo" style="display:none" id="flLogo" data-btn=".btn-logo" data-name="#logoName" data-preview=".logo-preview" class="vns-file" />
+                    <span id="logoName"></span>
+                    <button type="button" class="default-button submit-btn btn-logo">Upload Prifile Pic</button>
+                    <button type="submit" class="default-button submit-btn">SUBMIT</button>
+                </div>
+                <p class="form-messege"></p>
+            }
+
+
+        </div>
+        <div class="contact-form-right">
+            <h4 style="margin-bottom:30px">Profile Pic</h4>
+            <img class="logo-preview" src="~/ClientAssets/img/logo/logo.png" style="height:100px;width:100px">
+        </div>
+
+        <div class="contact-form-right">
+            <div class="sidebar-contact-info">
+                <h4>Need Any Help?</h4>
+                <p>Financo consectetur adipiscing elitsed do eiud tempor incididnt in the nto sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim </p>
+                <a href="@Url.Action("index", "home")#contact" class="default-button" style="background-color:white">Contact</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/common/fileuploader.js"></script>
+    <script type="text/javascript">
+        $('.vns-file').VNSFileUploder();
+
+    </script>
+}

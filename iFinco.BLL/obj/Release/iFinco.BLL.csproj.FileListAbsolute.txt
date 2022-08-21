@@ -1,0 +1,16 @@
+H:\IFinco\iFinco.BLL\bin\Release\iFinco.BLL.dll.config
+H:\IFinco\iFinco.BLL\bin\Release\iFinco.BLL.dll
+H:\IFinco\iFinco.BLL\bin\Release\iFinco.BLL.pdb
+H:\IFinco\iFinco.BLL\bin\Release\EntityFramework.dll
+H:\IFinco\iFinco.BLL\bin\Release\EntityFramework.SqlServer.dll
+H:\IFinco\iFinco.BLL\bin\Release\iFinco.DAL.dll
+H:\IFinco\iFinco.BLL\bin\Release\VNS.Accounts.dll
+H:\IFinco\iFinco.BLL\bin\Release\System.Web.Mvc.dll
+H:\IFinco\iFinco.BLL\bin\Release\iFinco.DAL.pdb
+H:\IFinco\iFinco.BLL\bin\Release\VNS.Accounts.pdb
+H:\IFinco\iFinco.BLL\bin\Release\EntityFramework.xml
+H:\IFinco\iFinco.BLL\bin\Release\EntityFramework.SqlServer.xml
+H:\IFinco\iFinco.BLL\bin\Release\System.Web.Mvc.xml
+H:\IFinco\iFinco.BLL\obj\Release\iFinco.BLL.csprojResolveAssemblyReference.cache
+H:\IFinco\iFinco.BLL\obj\Release\iFinco.BLL.dll
+H:\IFinco\iFinco.BLL\obj\Release\iFinco.BLL.pdb

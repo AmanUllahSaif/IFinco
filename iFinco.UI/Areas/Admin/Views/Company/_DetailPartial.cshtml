@@ -1,0 +1,114 @@
+﻿@model iFinco.DAL.Company
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="form-group label-floating">
+                    @Html.LabelFor(x => x.Title, new { @class = "contor-label" })
+                    @Html.TextBoxFor(x => x.Title, new { @class = "form-control", disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.Title)
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group label-floating">
+                    @Html.LabelFor(x => x.Email, new { @class = "contor-label" })
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.Email)
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group label-floating">
+                    @Html.LabelFor(x => x.NTN_STN, new { @class = "contor-label" })
+                    @Html.TextBoxFor(x => x.NTN_STN, new { @class = "form-control", disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.NTN_STN)
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group label-floating">
+                    @Html.LabelFor(x => x.Contact, new { @class = "contor-label" })
+                    @Html.TextBoxFor(x => x.Contact, new { @class = "form-control", disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.Contact)
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="col-md-4">
+
+        <div class="text-center">
+            <h4 style="margin-bottom:30px">Logo</h4>
+            @if (string.IsNullOrEmpty(Model.LogoUrl))
+            {
+                <img class="logo-preview" src="~/PanalAssets/img/noImage.png" style="height:100px;width:100px" />
+            }
+            else
+            {
+                <img class="logo-preview" src="@Url.Content(Model.LogoUrl)" style="height:100px;width:100px" />
+            }
+        </div>
+
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="form-group label-floating">
+            @Html.LabelFor(x => x.Adress, new { @class = "contor-label" })
+            @Html.TextBoxFor(x => x.Adress, new { @class = "form-control", disabled = "disabled" })
+            @Html.ValidationMessageFor(x => x.Adress)
+
+        </div>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="col-md-6">
+            <div class="form-group label-floating">
+                @Html.Label("Branches")
+                @Html.TextBox("Branch", Model.Branches.Where(x => x.IsActive).Count(), new { @class = "form-control", disabled = "disabled" })
+                @Html.ValidationMessageFor(x => x.Branches)
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group label-floating">
+                @Html.Label("Godam")
+                @Html.TextBox("Godam", 0, new { @class = "form-control", disabled = "disabled" })
+                @Html.ValidationMessageFor(x => x.Branches)
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group label-floating">
+            @Html.LabelFor(x => x.IsApproved, new { @class = "contor-label" })
+            @Html.CheckBoxFor(x => x.IsApproved, new { disabled = "disabled" })
+            @Html.ValidationMessageFor(x => x.IsApproved)
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group label-floating">
+            @Html.LabelFor(x => x.IsContactConfirmed, new { @class = "contor-label" })
+            @Html.CheckBoxFor(x => x.IsContactConfirmed, new { disabled = "disabled" })
+            @Html.ValidationMessageFor(x => x.IsContactConfirmed)
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group label-floating">
+            @Html.LabelFor(x => x.IsEmailConfirmed, new { @class = "contor-label" })
+            @Html.CheckBoxFor(x => x.IsEmailConfirmed, new { disabled = "disabled" })
+            @Html.ValidationMessageFor(x => x.IsEmailConfirmed)
+        </div>
+    </div>
+</div>

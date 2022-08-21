@@ -1,0 +1,149 @@
+﻿@model iFinco.DAL.Company
+@{
+    ViewBag.Title = "Edit Company";
+}
+
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Edit Profile</h4>
+                        <p class="category">Update your profile</p>
+                    </div>
+                    <div class="card-content">
+                        @using (Html.BeginForm("Edit", "Company", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                @Html.LabelFor(x => x.Title, new { @class = "contor-label" })
+                                                @Html.HiddenFor(x => x.Id)
+                                                @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(x => x.Title)
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                @Html.LabelFor(x => x.Email, new { @class = "contor-label" })
+                                                @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(x => x.Email)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                @Html.LabelFor(x => x.NTN_STN, new { @class = "contor-label" })
+                                                @Html.TextBoxFor(x => x.NTN_STN, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(x => x.NTN_STN)
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                @Html.LabelFor(x => x.Contact, new { @class = "contor-label" })
+                                                @Html.TextBoxFor(x => x.Contact, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(x => x.Contact)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="text-center">
+                                        <h4 style="margin-bottom:30px">Logo</h4>
+                                        @if (string.IsNullOrEmpty(Model.LogoUrl))
+                                        {
+                                            <img class="logo-preview" src="~/PanalAssets/img/noImage.png" style="height:100px;width:100px" />
+                                        }
+                                        else
+                                        {
+                                            <img class="logo-preview" src="@Url.Content(Model.LogoUrl)" style="height:100px;width:100px" />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group label-floating">
+                                        @Html.LabelFor(x => x.Adress, new { @class = "contor-label" })
+                                        @Html.TextBoxFor(x => x.Adress, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.Adress)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating">
+                                        @Html.LabelFor(x => x.IsApproved, new { @class = "contor-label" })
+                                        @Html.CheckBoxFor(x => x.IsApproved)
+                                        @Html.ValidationMessageFor(x => x.IsApproved)
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating">
+                                        @Html.LabelFor(x => x.IsContactConfirmed, new { @class = "contor-label" })
+                                        @Html.CheckBoxFor(x => x.IsContactConfirmed)
+                                        @Html.ValidationMessageFor(x => x.IsContactConfirmed)
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating">
+                                        @Html.LabelFor(x => x.IsEmailConfirmed, new { @class = "contor-label" })
+                                        @Html.CheckBoxFor(x => x.IsEmailConfirmed)
+                                        @Html.ValidationMessageFor(x => x.IsEmailConfirmed)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <input type="file" name="logo" style="display:none" data-btn=".btn-logo" data-name="#logoName" data-preview=".logo-preview" class="vns-file" />
+                                <span id="logoName"></span>
+                                <button type="button" class="default-button submit-btn btn btn-logo">Upload Logo</button>
+                                <button type="submit" class="btn btn-primary pull-right">Update</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        }
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card card-profile">
+                    <div class="card-avatar">
+                        <a href="#pablo">
+                            <img class="img" src="@Url.Content("~/")PanalAssets/img/faces/marc.jpg" />
+                        </a>
+                    </div>
+                    <div class="content">
+                        <h6 class="category text-gray">CEO / Co-Founder</h6>
+                        <h4 class="card-title">Sir Waleed ur Rehman</h4>
+                        <p class="card-content">
+                            Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                        </p>
+                        <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" class="active-nav" value="#Company" />
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/common/fileuploader.js"></script>
+    <script type="text/javascript">
+        $('.vns-file').VNSFileUploder();
+
+    </script>
+}
+
+
+
+

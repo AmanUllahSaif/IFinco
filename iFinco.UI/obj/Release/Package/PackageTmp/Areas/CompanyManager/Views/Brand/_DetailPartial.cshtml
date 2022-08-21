@@ -1,0 +1,43 @@
+﻿
+@model iFinco.DAL.Brand
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group label-floating">
+                    @Html.LabelFor(x => x.Title, new { @class = "contor-label" })
+                    @Html.HiddenFor(x => x.Id)
+                    @Html.TextBoxFor(x => x.Title, new { @class = "form-control", disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.Title)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group label-floating">
+                    @Html.LabelFor(x => x.Description, new { @class = "contor-label" })
+                    @Html.TextAreaFor(x => x.Description, new { @class = "form-control", disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.Description)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="text-center">
+            <h4 style="margin-bottom:30px">Logo</h4>
+            @if (Model.ImgUrl != null)
+            {
+                <img class="logo-preview" src="@Model.ImgUrl" style="height:130px;width:130px" />
+            }
+            else
+            {
+                <img class="logo-preview" src="~/PanalAssets/img/noImage.png" style="height:130px;width:130px" />
+            }
+            
+        </div>
+    </div>
+</div>
+
+
+

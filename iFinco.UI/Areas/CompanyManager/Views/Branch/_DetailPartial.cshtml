@@ -1,0 +1,40 @@
+﻿@model iFinco.DAL.Branch
+    @using iFinco.DAL.Enum
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group label-floating">
+                    @Html.LabelFor(x => x.Title, new { @class = "contor-label" })
+                    @Html.HiddenFor(x => x.Id)
+                    @Html.TextBoxFor(x => x.Title, new { @class = "form-control", disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.Title)
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    @Html.LabelFor(x => x.Status, new { @class = "contor-label" })
+                    @Html.DropDownListFor(x => x.Status, EnumHelper.GetSelectList(typeof(Status)), "Select Status", new { @class = "form-control", disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.Status)
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group label-floating">
+                    @Html.LabelFor(x => x.Contact, new { @class = "contor-label" })
+                    @Html.TextBoxFor(x => x.Contact, new { @class = "form-control", disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.Contact)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group label-floating">
+                    @Html.LabelFor(x => x.Adress, new { @class = "contor-label" })
+                    @Html.TextBoxFor(x => x.Adress, new { @class = "form-control", disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.Adress)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

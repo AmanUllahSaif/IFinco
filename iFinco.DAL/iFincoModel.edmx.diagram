@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3f59953993274caaac4f89a1a7f9ec42" Name="Diagram1">
+        <EntityTypeShape EntityType="iFincoDBModel.Category" Width="1.5" PointX="7.75" PointY="5.125" />
+        <EntityTypeShape EntityType="iFincoDBModel.Company" Width="1.5" PointX="0.75" PointY="5" />
+        <EntityTypeShape EntityType="iFincoDBModel.GoDown" Width="1.5" PointX="0.75" PointY="1.125" />
+        <EntityTypeShape EntityType="iFincoDBModel.Variant" Width="1.5" PointX="3.375" PointY="1.125" />
+        <EntityTypeShape EntityType="iFincoDBModel.VariantValue" Width="1.5" PointX="5.625" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="iFincoDBModel.FK_VariantValue_Variants" />
+        <EntityTypeShape EntityType="iFincoDBModel.ProductVariant" Width="1.5" PointX="12.25" PointY="2.25" />
+        <AssociationConnector Association="iFincoDBModel.FK_ProductVariant_Variants" />
+        <EntityTypeShape EntityType="iFincoDBModel.PACDetail" Width="1.5" PointX="14.5" PointY="3.875" />
+        <AssociationConnector Association="iFincoDBModel.FK_PACDetail_Variants" />
+        <AssociationConnector Association="iFincoDBModel.FK_PACDetail_VariantValue" />
+        <EntityTypeShape EntityType="iFincoDBModel.Brand" Width="1.5" PointX="5" PointY="10.875" />
+        <AssociationConnector Association="iFincoDBModel.FK_Brand_Company" />
+        <EntityTypeShape EntityType="iFincoDBModel.Product" Width="1.5" PointX="10" PointY="7.125" />
+        <AssociationConnector Association="iFincoDBModel.FK_Product_Brand" />
+        <AssociationConnector Association="iFincoDBModel.FK_Product_Category" />
+        <AssociationConnector Association="iFincoDBModel.FK_Product_Company" />
+        <AssociationConnector Association="iFincoDBModel.FK_ProductVariant_ProductVariant" />
+        <EntityTypeShape EntityType="iFincoDBModel.Party" Width="1.5" PointX="5" PointY="5.625" />
+        <AssociationConnector Association="iFincoDBModel.FK_Party_Company" />
+        <EntityTypeShape EntityType="iFincoDBModel.Stock" Width="1.5" PointX="17.5" PointY="4.125" />
+        <AssociationConnector Association="iFincoDBModel.FK_Stock_GoDown" />
+        <AssociationConnector Association="iFincoDBModel.FK_Stock_Product" />
+        <EntityTypeShape EntityType="iFincoDBModel.Sale" Width="1.5" PointX="7.25" PointY="9.625" />
+        <AssociationConnector Association="iFincoDBModel.FK_Sale_Party" />
+        <EntityTypeShape EntityType="iFincoDBModel.ProductAttributeCombination" Width="1.5" PointX="12.25" PointY="8.375" />
+        <AssociationConnector Association="iFincoDBModel.FK_PACDetail_ProductAttributeCombination" />
+        <AssociationConnector Association="iFincoDBModel.FK_ProductAttributeCombination_Product" />
+        <AssociationConnector Association="iFincoDBModel.FK_Stock_ProductAttributeCombination" />
+        <EntityTypeShape EntityType="iFincoDBModel.Branch" Width="1.5" PointX="3" PointY="15.625" />
+        <AssociationConnector Association="iFincoDBModel.FK_Branch_Company" />
+        <AssociationConnector Association="iFincoDBModel.FK_Brand_Branch" />
+        <AssociationConnector Association="iFincoDBModel.FK_Party_Branch" />
+        <AssociationConnector Association="iFincoDBModel.FK_Product_Branch" />
+        <EntityTypeShape EntityType="iFincoDBModel.Purchase" Width="1.5" PointX="7.25" PointY="15.75" />
+        <AssociationConnector Association="iFincoDBModel.FK_Purchase_Party" />
+        <EntityTypeShape EntityType="iFincoDBModel.BranchAccess" Width="1.5" PointX="5.25" PointY="21.375" />
+        <AssociationConnector Association="iFincoDBModel.FK_BranchAccess_Branch" />
+        <EntityTypeShape EntityType="iFincoDBModel.PurchaseDetail" Width="1.5" PointX="14.5" PointY="13.625" />
+        <EntityTypeShape EntityType="iFincoDBModel.SaleDetail" Width="1.5" PointX="17.5" PointY="10.625" />
+        <AssociationConnector Association="iFincoDBModel.FK_PurchaseDetail_Product" />
+        <AssociationConnector Association="iFincoDBModel.FK_SaleDetail_Product" />
+        <AssociationConnector Association="iFincoDBModel.FK_PurchaseDetail_ProductAttributeCombination" />
+        <AssociationConnector Association="iFincoDBModel.FK_SaleDetail_ProductAttributeCombination" />
+        <AssociationConnector Association="iFincoDBModel.FK_PurchaseDetail_Purchase" />
+        <AssociationConnector Association="iFincoDBModel.FK_SaleDetail_Sale" />
+        <EntityTypeShape EntityType="iFincoDBModel.PurchaseReturn" Width="1.5" PointX="7.25" PointY="25.875" />
+        <AssociationConnector Association="iFincoDBModel.FK_PurchaseReturn_Party" />
+        <EntityTypeShape EntityType="iFincoDBModel.ShippingDetail" Width="1.5" PointX="9.375" PointY="19.75" />
+        <AssociationConnector Association="iFincoDBModel.FK_ShippingDetail_Purchase" />
+        <AssociationConnector Association="iFincoDBModel.FK_ShippingDetail_ShippingDetail" />
+        <EntityTypeShape EntityType="iFincoDBModel.CompanyMenusAccess" Width="1.5" PointX="14.625" PointY="18.5" />
+        <AssociationConnector Association="iFincoDBModel.FK_CompanyMenusAccess_Company" />
+        <EntityTypeShape EntityType="iFincoDBModel.SaleReturn" Width="1.5" PointX="9.5" PointY="0.75" />
+        <AssociationConnector Association="iFincoDBModel.FK_SaleReturn_Party" />
+        <AssociationConnector Association="iFincoDBModel.FK_SaleReturn_Sale" />
+        <EntityTypeShape EntityType="iFincoDBModel.PurchaseReturnDetail" Width="1.5" PointX="17.5" PointY="15.75" />
+        <EntityTypeShape EntityType="iFincoDBModel.SaleReturnDetail" Width="1.5" PointX="14.5" PointY="8" />
+        <AssociationConnector Association="iFincoDBModel.FK_PurchaseReturnDetail_Product" />
+        <AssociationConnector Association="iFincoDBModel.FK_SaleReturnDetail_Product" />
+        <AssociationConnector Association="iFincoDBModel.FK_PurchaseReturnDetail_ProductAttributeCombination" />
+        <AssociationConnector Association="iFincoDBModel.FK_SaleReturnDetail_ProductAttributeCombination" />
+        <AssociationConnector Association="iFincoDBModel.FK_PurchaseReturnDetail_PurchaseReturn" />
+        <AssociationConnector Association="iFincoDBModel.FK_SaleReturnDetail_SaleReturn" />
+        <EntityTypeShape EntityType="iFincoDBModel.Generalinvoice" Width="1.5" PointX="7.25" PointY="31.375" />
+        <AssociationConnector Association="iFincoDBModel.FK_Generalinvoice_Party" />
+        <EntityTypeShape EntityType="iFincoDBModel.Menu" Width="1.5" PointX="11.375" PointY="15" />
+        <AssociationConnector Association="iFincoDBModel.FK_CompanyMenusAccess_Menu" />
+        <AssociationConnector Association="iFincoDBModel.FK_Menu_Menu" />
+        <EntityTypeShape EntityType="iFincoDBModel.InvoiceTemplate" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="iFincoDBModel.PlaceHolder" Width="1.5" PointX="17.375" PointY="0.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

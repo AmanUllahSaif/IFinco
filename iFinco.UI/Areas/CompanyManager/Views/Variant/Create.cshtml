@@ -1,0 +1,117 @@
+﻿@model iFinco.UI.Areas.CompanyManager.Models.VariantVM
+
+@{
+    ViewBag.Title = "Variant Management";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Create Variant</h4>
+                        <p class="category"></p>
+                    </div>
+                    <div class="card-content">
+                        @using (Html.BeginForm("Create", "Variant", FormMethod.Post, new { id = "contact-for", enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <h5>Variant</h5>
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                @Html.LabelFor(x => x.Variant.Title, new { @class = "contor-label" })
+                                                @Html.HiddenFor(x => x.Variant.Id)
+                                                @Html.TextBoxFor(x => x.Variant.Title, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(x => x.Variant.Title)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="hldr">
+                                        <h5>Variant Value</h5>
+                                        <div class="col-md-4 vVal">
+                                            <div class="col-md-8 val">
+                                                <div class="form-group label-floating">
+                                                    @Html.LabelFor(x => x.Values[0].Title, new { @class = "contor-label" })
+                                                    @Html.TextBoxFor(x => x.Values[0].Title, new { @class = "form-control txtReName" })
+                                                    @Html.ValidationMessageFor(x => x.Values[0].Title, "", new { @class = "VLD" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <a href="#" class="material-icons btnAdd">add_circle</a>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <a href="#" class="material-icons btnDel">remove_circle</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <a href="@Url.Action("Index","Variant")" class="btn btn-default pull-right btn-md">Cancel</a>
+                                <button type="submit" class="btn btn-primary pull-right">Save</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" class="active-nav" value="#Variant" />
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/common/fileuploader.js"></script>
+    <script type="text/javascript">
+        var count = 1;
+        $('.vns-file').VNSFileUploder();
+
+        //adding dynamic 'vVal' divs
+        $(document).on('click', '.btnAdd', function () {
+            var cln = $(this).closest('.vVal').clone();
+            $(cln).find('.form-control').val('')
+            $('#hldr').append(cln);
+            ReName();
+            count++;
+        });
+
+        //changing the attribute of dynamic created txtboxes
+        $(document).on('click', '.btnDel', function () {
+            if (count > 1) {
+                var cln = $(this).closest('.vVal').remove();
+                ReName();
+                count--;
+            }
+
+            //$('#hldr').append(cln);
+        });
+
+        function ReName() {
+            var txtboxes = $('.txtReName');
+            var VLDS = $('.VLD');
+
+            for (var i = 0; i < txtboxes.length; i++) {
+                $(txtboxes[i]).attr('name', 'Values[' + i + '].Title')
+                $(VLDS[i]).attr('data-valmsg-for', 'Values[' + i + '].Title')
+            }
+            ReSetValidation();
+        }
+
+        function ReSetValidation() {
+            var form = $('form').removeData('validator').removeData('unobtrusiveValidation');
+            $.validator.unobtrusive.parse(form);
+        }
+
+    </script>
+}
+
+
+
+
+

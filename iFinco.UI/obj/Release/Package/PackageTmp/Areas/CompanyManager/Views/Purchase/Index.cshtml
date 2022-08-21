@@ -1,0 +1,166 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+
+@model iFinco.UI.Models.PurchaseSearchModel
+
+@{
+    ViewBag.Title = "Purchase Managment";
+    bool isSearched = Model != null && ((Model.PartyId != null) || (Model.DateFrom != null) || (Model.DateTo != null));
+}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <div class="col-md-9">
+                            <h4 class="title">Purchase</h4>
+                            <p class="category">Manage Purchase, you can add,edit or delete any Purchase.</p>
+                        </div>
+                        <div class="col-md-3 text-right">
+                            @Html.ActionLink("Add", "Create", "Purchase", new { @class = "btn btn-info btn-sm" })
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="card-content table-responsive">
+                        @using (Html.BeginForm("Index", "Purchase", FormMethod.Get))
+                        {
+                            <table class="table">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th>Party</th>
+                                        <th>Date</th>
+                                        <th>Total</th>
+                                        <th>Discount</th>
+                                        <th>Paid</th>
+                                        <th>Description</th>
+                                        <th>
+                                            Action
+                                            <a href="#">
+                                                <i class="material-icons" id="btnSearch">keyboard_arrow_down</i>
+                                            </a>
+                                        </th>
+                                    </tr>
+                                    <tr @(isSearched ? "" : "style=display:none") id="trSearch">
+                                        <td>@Html.DropDownListFor(x => x.PartyId, new SelectList(ViewBag.Party, "Id", "Title"), "Select Party", new { @class = "form-control" })</td>
+                                        <td>@Html.TextBoxFor(x => x.DateFrom, "{0:dd/MM/yyyy}", new { @class = "form-control form_datetime", placeholder = "From" })</td>
+                                        <td>@Html.TextBoxFor(x => x.DateTo, "{0:dd/MM/yyyy}", new { @class = "form-control form_datetime", placeholder = "To" })</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <button class="btn btn-info btn-sm " type="submit">
+                                                <i class="material-icons">search</i>
+                                                <div class="ripple-container"></div>
+                                            </button>
+                                            <a href="@Url.Action("Index","Purchase")" class="btn btn-info btn-sm">
+                                                <i class="material-icons">refresh</i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.Data == null || Model.Data.Count() < 1)
+                                    {
+                                        <tr>
+                                            <td colspan="4" class="text-center">No record found</td>
+                                        </tr>
+                                    }
+                                    @foreach (var item in Model.Data)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @if (item.PartyId != null)
+                                                {
+                                                    @item.Party.Title
+                                                }
+                                                else
+                                                {
+                                                    @: Walking Customer
+                                                }
+                                            </td>
+                                            <td>@item.Date.ToString("dd/MM/yyyy")</td>
+                                            <td>@item.Total PKR</td>
+                                            <td>@item.Discount PKR</td>
+                                            <td>@item.PaidAmount PKR</td>
+                                            <td>@item.Notes</td>
+                                            <td>
+                                                <a href="@Url.Action("Delete", "Purchase", new { area = "CompanyManager", id = item.Id })" data-toggle="tooltip" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                                <a href="@Url.Action("Create", "PurchaseReturn", new { area = "CompanyManager", id = item.Id })" data-toggle="tooltip" title="Return"><i class="material-icons">reply</i></a>
+                                                @Ajax.ActionLink(" ", "Print", "Purchase", new { area = "CompanyManager", id = item.Id }, new AjaxOptions { HttpMethod = "GET", OnSuccess = "ShowPrint" }, new { data_toggle = "tooltip", title = "Print", @class = "fa fa-print" })
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <div class="col-md-12 text-right">
+                                @Html.PagedListPager((IPagedList)Model.Data, page => Url.Action("Index", new { page, Title = Request.QueryString["Title"], DateFrom = Request.QueryString["DateFrom"], DateTo = Request.QueryString["DateTo"] }))
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="companyModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Purchase Info</h4>
+            </div>
+            <div class="modal-body" id="content">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="btnCncl" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" class="active-nav" value="#Purchase" />
+
+@section Scripts{
+
+    <script type="text/javascript">
+        function ShowModal(data) {
+            $('#content').html(data);
+            $('#companyModal').modal();
+        }
+
+        function ShowPrint(data) {
+            var w = window.open("", "", "width=900,height=700");
+            w.document.write(data);
+            w.document.close();
+            w.focus();
+            setTimeout(function () {
+                w.print();
+                w.close();
+            }, 1000)
+
+        }
+
+        $('#btnSearch').click(function () {
+            $('#trSearch').slideToggle('slow');
+        })
+    </script>
+
+    @if (ViewBag.Id != null)
+    {
+        <script type="text/javascript">
+            var id = @ViewBag.Id
+            $.ajax({
+                type: "GET",
+                url: '/CompanyManager/Purchase/Print/' + id,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: ShowPrint
+            });
+        </script>
+    }
+}
+
+

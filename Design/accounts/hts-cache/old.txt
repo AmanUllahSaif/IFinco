@@ -1,0 +1,3 @@
+date	size'/'remotesize	flags(request:Update,Range state:File response:Modified,Chunked,gZipped)	statuscode	status ('servermsg')	MIME	Etag|Date	URL	localfile	(from URL)
+16:22:13	18/18	---M--	503	error ('Service%20Unavailable')	text/html	date:Wed,%2027%20Dec%202017%2011:22:10%20GMT	https://devitems.com/html/financo-preview/financo/index-2.html	E:/office/accounts/devitems.com/html/financo-preview/financo/index-2.0.delayed	(from )
+16:22:21	18/18	---M--	503	error ('Service%20Unavailable')	text/html	date:Wed,%2027%20Dec%202017%2011:22:18%20GMT	https://devitems.com/robots.txt		(from )

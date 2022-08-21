@@ -1,0 +1,1210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="iFincoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Branch">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Adress" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="CompanyId" Type="bigint" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="bigint" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Contact" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsHeadOffice" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BranchAccess">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BranchId" Type="bigint" Nullable="false" />
+    <Property Name="UId" Type="bigint" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Brand">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="300" />
+    <Property Name="ImgUrl" Type="nvarchar" MaxLength="300" />
+    <Property Name="CompanyId" Type="bigint" Nullable="false" />
+    <Property Name="BranchId" Type="bigint" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="300" />
+    <Property Name="CompanyId" Type="bigint" Nullable="false" />
+    <Property Name="BranchId" Type="bigint" />
+    <Property Name="ImgUrl" Type="nvarchar" MaxLength="300" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Type" Type="int" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Type" Type="int" />
+    <Property Name="NTN/STN" Type="nvarchar" MaxLength="50" />
+    <Property Name="OwnerId" Type="bigint" />
+    <Property Name="Contact" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Adress" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="LogoUrl" Type="nvarchar" MaxLength="300" />
+    <Property Name="CreateOn" Type="datetime" Nullable="false" />
+    <Property Name="CreateBy" Type="bigint" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="IsApproved" Type="bit" Nullable="false" />
+    <Property Name="IsEmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="IsContactConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PhoneCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="CompanyMenusAccess">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyId" Type="bigint" Nullable="false" />
+    <Property Name="MenuId" Type="bigint" Nullable="false" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Generalinvoice">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PartyId" Type="bigint" />
+    <Property Name="InvoiceNum" Type="bigint" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="BranchId" Type="bigint" />
+    <Property Name="CompanyId" Type="bigint" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GoDown">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="300" />
+    <Property Name="Contact" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="CompanyId" Type="bigint" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InvoiceTemplate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TemplateType" Type="int" />
+    <Property Name="FileUrl" Type="nvarchar(max)" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CompanyId" Type="bigint" Nullable="false" />
+    <Property Name="BranchId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="ClassName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+    <Property Name="Area" Type="nvarchar" MaxLength="50" />
+    <Property Name="Action" Type="nvarchar" MaxLength="50" />
+    <Property Name="Controller" Type="nvarchar" MaxLength="50" />
+    <Property Name="ParentId" Type="bigint" />
+    <Property Name="Type" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="InNav" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PACDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PACId" Type="bigint" Nullable="false" />
+    <Property Name="VariantId" Type="bigint" Nullable="false" />
+    <Property Name="VariantValueId" Type="bigint" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Party">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyId" Type="bigint" Nullable="false" />
+    <Property Name="BranchId" Type="bigint" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Contact" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Adress" Type="nvarchar" MaxLength="300" />
+    <Property Name="CompanyTitle" Type="nvarchar" MaxLength="50" />
+    <Property Name="CompanyEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="CompanyContact" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PlaceHolder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" Nullable="false" />
+    <Property Name="TemplateType" Type="int" Nullable="false" />
+    <Property Name="Palceholder" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="300" />
+    <Property Name="Tags" Type="nvarchar" MaxLength="300" />
+    <Property Name="ImageUrl" Type="nvarchar" MaxLength="300" />
+    <Property Name="HaveVarients" Type="bit" Nullable="false" />
+    <Property Name="CompanyId" Type="bigint" Nullable="false" />
+    <Property Name="BranchId" Type="bigint" />
+    <Property Name="CategoryId" Type="bigint" Nullable="false" />
+    <Property Name="BrandId" Type="bigint" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="HasExpiry" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductAttributeCombination">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductId" Type="bigint" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProductVariant">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductId" Type="bigint" Nullable="false" />
+    <Property Name="VariantId" Type="bigint" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Purchase">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyId" Type="bigint" Nullable="false" />
+    <Property Name="PartyId" Type="bigint" />
+    <Property Name="BranchId" Type="bigint" />
+    <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="250" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="PaymentType" Type="int" Nullable="false" />
+    <Property Name="PaidAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="InvoiceNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PurchaseDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductId" Type="bigint" Nullable="false" />
+    <Property Name="PACId" Type="bigint" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="PurchaseId" Type="bigint" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Tax" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="PurchaseReturn">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PurchaseId" Type="bigint" Nullable="false" />
+    <Property Name="CompanyId" Type="bigint" Nullable="false" />
+    <Property Name="PartyId" Type="bigint" />
+    <Property Name="BranchId" Type="bigint" />
+    <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="250" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="PaymentType" Type="int" Nullable="false" />
+    <Property Name="PaidAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="InvoiceNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PurchaseReturnDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductId" Type="bigint" Nullable="false" />
+    <Property Name="PACId" Type="bigint" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="PurchaseReturnId" Type="bigint" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Tax" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="Sale">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyId" Type="bigint" Nullable="false" />
+    <Property Name="PartyId" Type="bigint" />
+    <Property Name="BranchId" Type="bigint" />
+    <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="250" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="PaymentType" Type="int" Nullable="false" />
+    <Property Name="PaidAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="InvoiceNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SaleDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductId" Type="bigint" Nullable="false" />
+    <Property Name="PACId" Type="bigint" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="SaleId" Type="bigint" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Tax" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="SaleReturn">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaleId" Type="bigint" Nullable="false" />
+    <Property Name="CompanyId" Type="bigint" Nullable="false" />
+    <Property Name="PartyId" Type="bigint" />
+    <Property Name="BranchId" Type="bigint" />
+    <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="250" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="PaymentType" Type="int" Nullable="false" />
+    <Property Name="PaidAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="InvoiceNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SaleReturnDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaleReturnId" Type="bigint" Nullable="false" />
+    <Property Name="ProductId" Type="bigint" Nullable="false" />
+    <Property Name="PACId" Type="bigint" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Tax" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="ShippingDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="SaleId" Type="bigint" />
+    <Property Name="PurchaseId" Type="bigint" />
+    <Property Name="ShipmentNo" Type="bigint" />
+    <Property Name="Address" Type="nvarchar" MaxLength="250" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Stock">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Quantity" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="SellingPrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="PurchasingPrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="150" />
+    <Property Name="BarCode" Type="nvarchar" MaxLength="150" />
+    <Property Name="BarCodeImgUrl" Type="nvarchar" MaxLength="300" />
+    <Property Name="ExpiryDate" Type="datetime" />
+    <Property Name="ProductId" Type="bigint" Nullable="false" />
+    <Property Name="CompanyId" Type="bigint" Nullable="false" />
+    <Property Name="BranchId" Type="bigint" />
+    <Property Name="GodownId" Type="bigint" />
+    <Property Name="PACId" Type="bigint" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Variants">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CompanyId" Type="bigint" Nullable="false" />
+    <Property Name="BranchId" Type="bigint" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VariantValue">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CompanyId" Type="bigint" Nullable="false" />
+    <Property Name="BranchId" Type="bigint" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="VariantId" Type="bigint" Nullable="false" />
+    <Property Name="ModifiedBy" Type="bigint" />
+    <Property Name="ModifiedOn" Type="datetime" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Branch_Company">
+    <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+    <End Role="Branch" Type="Self.Branch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Branch">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BranchAccess_Branch">
+    <End Role="Branch" Type="Self.Branch" Multiplicity="1" />
+    <End Role="BranchAccess" Type="Self.BranchAccess" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BranchAccess">
+        <PropertyRef Name="BranchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Brand_Branch">
+    <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+    <End Role="Brand" Type="Self.Brand" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Brand">
+        <PropertyRef Name="BranchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Brand_Company">
+    <End Role="Company" Type="Self.Company" Multiplicity="1" />
+    <End Role="Brand" Type="Self.Brand" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Brand">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompanyMenusAccess_Company">
+    <End Role="Company" Type="Self.Company" Multiplicity="1" />
+    <End Role="CompanyMenusAccess" Type="Self.CompanyMenusAccess" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CompanyMenusAccess">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CompanyMenusAccess_Menu">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+    <End Role="CompanyMenusAccess" Type="Self.CompanyMenusAccess" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CompanyMenusAccess">
+        <PropertyRef Name="MenuId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Generalinvoice_Party">
+    <End Role="Party" Type="Self.Party" Multiplicity="0..1" />
+    <End Role="Generalinvoice" Type="Self.Generalinvoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Party">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Generalinvoice">
+        <PropertyRef Name="PartyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Menu_Menu">
+    <End Role="Menu" Type="Self.Menu" Multiplicity="0..1" />
+    <End Role="Menu1" Type="Self.Menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Menu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Menu1">
+        <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PACDetail_ProductAttributeCombination">
+    <End Role="ProductAttributeCombination" Type="Self.ProductAttributeCombination" Multiplicity="1" />
+    <End Role="PACDetail" Type="Self.PACDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductAttributeCombination">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PACDetail">
+        <PropertyRef Name="PACId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PACDetail_Variants">
+    <End Role="Variants" Type="Self.Variants" Multiplicity="1" />
+    <End Role="PACDetail" Type="Self.PACDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Variants">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PACDetail">
+        <PropertyRef Name="VariantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PACDetail_VariantValue">
+    <End Role="VariantValue" Type="Self.VariantValue" Multiplicity="1" />
+    <End Role="PACDetail" Type="Self.PACDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VariantValue">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PACDetail">
+        <PropertyRef Name="VariantValueId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Party_Branch">
+    <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+    <End Role="Party" Type="Self.Party" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Party">
+        <PropertyRef Name="BranchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Party_Company">
+    <End Role="Company" Type="Self.Company" Multiplicity="1" />
+    <End Role="Party" Type="Self.Party" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Party">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Branch">
+    <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="BranchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Brand">
+    <End Role="Brand" Type="Self.Brand" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Brand">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="BrandId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Company">
+    <End Role="Company" Type="Self.Company" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductAttributeCombination_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="ProductAttributeCombination" Type="Self.ProductAttributeCombination" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductAttributeCombination">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductVariant_ProductVariant">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="ProductVariant" Type="Self.ProductVariant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductVariant">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductVariant_Variants">
+    <End Role="Variants" Type="Self.Variants" Multiplicity="1" />
+    <End Role="ProductVariant" Type="Self.ProductVariant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Variants">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductVariant">
+        <PropertyRef Name="VariantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Purchase_Party">
+    <End Role="Party" Type="Self.Party" Multiplicity="0..1" />
+    <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Party">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Purchase">
+        <PropertyRef Name="PartyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchaseDetail_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="PurchaseDetail" Type="Self.PurchaseDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PurchaseDetail">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchaseDetail_ProductAttributeCombination">
+    <End Role="ProductAttributeCombination" Type="Self.ProductAttributeCombination" Multiplicity="0..1" />
+    <End Role="PurchaseDetail" Type="Self.PurchaseDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductAttributeCombination">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PurchaseDetail">
+        <PropertyRef Name="PACId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchaseDetail_Purchase">
+    <End Role="Purchase" Type="Self.Purchase" Multiplicity="1" />
+    <End Role="PurchaseDetail" Type="Self.PurchaseDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Purchase">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PurchaseDetail">
+        <PropertyRef Name="PurchaseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchaseReturn_Party">
+    <End Role="Party" Type="Self.Party" Multiplicity="0..1" />
+    <End Role="PurchaseReturn" Type="Self.PurchaseReturn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Party">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PurchaseReturn">
+        <PropertyRef Name="PartyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchaseReturnDetail_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="PurchaseReturnDetail" Type="Self.PurchaseReturnDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PurchaseReturnDetail">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchaseReturnDetail_ProductAttributeCombination">
+    <End Role="ProductAttributeCombination" Type="Self.ProductAttributeCombination" Multiplicity="0..1" />
+    <End Role="PurchaseReturnDetail" Type="Self.PurchaseReturnDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductAttributeCombination">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PurchaseReturnDetail">
+        <PropertyRef Name="PACId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchaseReturnDetail_PurchaseReturn">
+    <End Role="PurchaseReturn" Type="Self.PurchaseReturn" Multiplicity="1" />
+    <End Role="PurchaseReturnDetail" Type="Self.PurchaseReturnDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PurchaseReturn">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PurchaseReturnDetail">
+        <PropertyRef Name="PurchaseReturnId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sale_Party">
+    <End Role="Party" Type="Self.Party" Multiplicity="0..1" />
+    <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Party">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="PartyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleDetail_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="SaleDetail" Type="Self.SaleDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleDetail">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleDetail_ProductAttributeCombination">
+    <End Role="ProductAttributeCombination" Type="Self.ProductAttributeCombination" Multiplicity="0..1" />
+    <End Role="SaleDetail" Type="Self.SaleDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductAttributeCombination">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleDetail">
+        <PropertyRef Name="PACId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleDetail_Sale">
+    <End Role="Sale" Type="Self.Sale" Multiplicity="1" />
+    <End Role="SaleDetail" Type="Self.SaleDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sale">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleDetail">
+        <PropertyRef Name="SaleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleReturn_Party">
+    <End Role="Party" Type="Self.Party" Multiplicity="0..1" />
+    <End Role="SaleReturn" Type="Self.SaleReturn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Party">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleReturn">
+        <PropertyRef Name="PartyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleReturn_Sale">
+    <End Role="Sale" Type="Self.Sale" Multiplicity="1" />
+    <End Role="SaleReturn" Type="Self.SaleReturn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sale">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleReturn">
+        <PropertyRef Name="SaleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleReturnDetail_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="SaleReturnDetail" Type="Self.SaleReturnDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleReturnDetail">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleReturnDetail_ProductAttributeCombination">
+    <End Role="ProductAttributeCombination" Type="Self.ProductAttributeCombination" Multiplicity="0..1" />
+    <End Role="SaleReturnDetail" Type="Self.SaleReturnDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductAttributeCombination">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleReturnDetail">
+        <PropertyRef Name="PACId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleReturnDetail_SaleReturn">
+    <End Role="SaleReturn" Type="Self.SaleReturn" Multiplicity="1" />
+    <End Role="SaleReturnDetail" Type="Self.SaleReturnDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaleReturn">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleReturnDetail">
+        <PropertyRef Name="SaleReturnId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShippingDetail_Purchase">
+    <End Role="Purchase" Type="Self.Purchase" Multiplicity="0..1" />
+    <End Role="ShippingDetail" Type="Self.ShippingDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Purchase">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ShippingDetail">
+        <PropertyRef Name="PurchaseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ShippingDetail_ShippingDetail">
+    <End Role="Sale" Type="Self.Sale" Multiplicity="0..1" />
+    <End Role="ShippingDetail" Type="Self.ShippingDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sale">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ShippingDetail">
+        <PropertyRef Name="SaleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_GoDown">
+    <End Role="GoDown" Type="Self.GoDown" Multiplicity="0..1" />
+    <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GoDown">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="GodownId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_ProductAttributeCombination">
+    <End Role="ProductAttributeCombination" Type="Self.ProductAttributeCombination" Multiplicity="0..1" />
+    <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductAttributeCombination">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="PACId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VariantValue_Variants">
+    <End Role="Variants" Type="Self.Variants" Multiplicity="1" />
+    <End Role="VariantValue" Type="Self.VariantValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Variants">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="VariantValue">
+        <PropertyRef Name="VariantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="iFincoDBModelStoreContainer">
+    <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BranchAccess" EntityType="Self.BranchAccess" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CompanyMenusAccess" EntityType="Self.CompanyMenusAccess" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Generalinvoice" EntityType="Self.Generalinvoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GoDown" EntityType="Self.GoDown" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InvoiceTemplate" EntityType="Self.InvoiceTemplate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PACDetail" EntityType="Self.PACDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Party" EntityType="Self.Party" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PlaceHolder" EntityType="Self.PlaceHolder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductAttributeCombination" EntityType="Self.ProductAttributeCombination" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductVariant" EntityType="Self.ProductVariant" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Purchase" EntityType="Self.Purchase" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PurchaseDetail" EntityType="Self.PurchaseDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PurchaseReturn" EntityType="Self.PurchaseReturn" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PurchaseReturnDetail" EntityType="Self.PurchaseReturnDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sale" EntityType="Self.Sale" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaleDetail" EntityType="Self.SaleDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaleReturn" EntityType="Self.SaleReturn" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaleReturnDetail" EntityType="Self.SaleReturnDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ShippingDetail" EntityType="Self.ShippingDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Variants" EntityType="Self.Variants" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VariantValue" EntityType="Self.VariantValue" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Branch_Company" Association="Self.FK_Branch_Company">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="Branch" EntitySet="Branch" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BranchAccess_Branch" Association="Self.FK_BranchAccess_Branch">
+      <End Role="Branch" EntitySet="Branch" />
+      <End Role="BranchAccess" EntitySet="BranchAccess" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Brand_Branch" Association="Self.FK_Brand_Branch">
+      <End Role="Branch" EntitySet="Branch" />
+      <End Role="Brand" EntitySet="Brand" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Brand_Company" Association="Self.FK_Brand_Company">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="Brand" EntitySet="Brand" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompanyMenusAccess_Company" Association="Self.FK_CompanyMenusAccess_Company">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="CompanyMenusAccess" EntitySet="CompanyMenusAccess" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CompanyMenusAccess_Menu" Association="Self.FK_CompanyMenusAccess_Menu">
+      <End Role="Menu" EntitySet="Menu" />
+      <End Role="CompanyMenusAccess" EntitySet="CompanyMenusAccess" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Generalinvoice_Party" Association="Self.FK_Generalinvoice_Party">
+      <End Role="Party" EntitySet="Party" />
+      <End Role="Generalinvoice" EntitySet="Generalinvoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Menu_Menu" Association="Self.FK_Menu_Menu">
+      <End Role="Menu" EntitySet="Menu" />
+      <End Role="Menu1" EntitySet="Menu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PACDetail_ProductAttributeCombination" Association="Self.FK_PACDetail_ProductAttributeCombination">
+      <End Role="ProductAttributeCombination" EntitySet="ProductAttributeCombination" />
+      <End Role="PACDetail" EntitySet="PACDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PACDetail_Variants" Association="Self.FK_PACDetail_Variants">
+      <End Role="Variants" EntitySet="Variants" />
+      <End Role="PACDetail" EntitySet="PACDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PACDetail_VariantValue" Association="Self.FK_PACDetail_VariantValue">
+      <End Role="VariantValue" EntitySet="VariantValue" />
+      <End Role="PACDetail" EntitySet="PACDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Party_Branch" Association="Self.FK_Party_Branch">
+      <End Role="Branch" EntitySet="Branch" />
+      <End Role="Party" EntitySet="Party" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Party_Company" Association="Self.FK_Party_Company">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="Party" EntitySet="Party" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Branch" Association="Self.FK_Product_Branch">
+      <End Role="Branch" EntitySet="Branch" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Brand" Association="Self.FK_Product_Brand">
+      <End Role="Brand" EntitySet="Brand" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Company" Association="Self.FK_Product_Company">
+      <End Role="Company" EntitySet="Company" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductAttributeCombination_Product" Association="Self.FK_ProductAttributeCombination_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductAttributeCombination" EntitySet="ProductAttributeCombination" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductVariant_ProductVariant" Association="Self.FK_ProductVariant_ProductVariant">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductVariant" EntitySet="ProductVariant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductVariant_Variants" Association="Self.FK_ProductVariant_Variants">
+      <End Role="Variants" EntitySet="Variants" />
+      <End Role="ProductVariant" EntitySet="ProductVariant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Purchase_Party" Association="Self.FK_Purchase_Party">
+      <End Role="Party" EntitySet="Party" />
+      <End Role="Purchase" EntitySet="Purchase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseDetail_Product" Association="Self.FK_PurchaseDetail_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="PurchaseDetail" EntitySet="PurchaseDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseDetail_ProductAttributeCombination" Association="Self.FK_PurchaseDetail_ProductAttributeCombination">
+      <End Role="ProductAttributeCombination" EntitySet="ProductAttributeCombination" />
+      <End Role="PurchaseDetail" EntitySet="PurchaseDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseDetail_Purchase" Association="Self.FK_PurchaseDetail_Purchase">
+      <End Role="Purchase" EntitySet="Purchase" />
+      <End Role="PurchaseDetail" EntitySet="PurchaseDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseReturn_Party" Association="Self.FK_PurchaseReturn_Party">
+      <End Role="Party" EntitySet="Party" />
+      <End Role="PurchaseReturn" EntitySet="PurchaseReturn" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseReturnDetail_Product" Association="Self.FK_PurchaseReturnDetail_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="PurchaseReturnDetail" EntitySet="PurchaseReturnDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseReturnDetail_ProductAttributeCombination" Association="Self.FK_PurchaseReturnDetail_ProductAttributeCombination">
+      <End Role="ProductAttributeCombination" EntitySet="ProductAttributeCombination" />
+      <End Role="PurchaseReturnDetail" EntitySet="PurchaseReturnDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseReturnDetail_PurchaseReturn" Association="Self.FK_PurchaseReturnDetail_PurchaseReturn">
+      <End Role="PurchaseReturn" EntitySet="PurchaseReturn" />
+      <End Role="PurchaseReturnDetail" EntitySet="PurchaseReturnDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sale_Party" Association="Self.FK_Sale_Party">
+      <End Role="Party" EntitySet="Party" />
+      <End Role="Sale" EntitySet="Sale" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleDetail_Product" Association="Self.FK_SaleDetail_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="SaleDetail" EntitySet="SaleDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleDetail_ProductAttributeCombination" Association="Self.FK_SaleDetail_ProductAttributeCombination">
+      <End Role="ProductAttributeCombination" EntitySet="ProductAttributeCombination" />
+      <End Role="SaleDetail" EntitySet="SaleDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleDetail_Sale" Association="Self.FK_SaleDetail_Sale">
+      <End Role="Sale" EntitySet="Sale" />
+      <End Role="SaleDetail" EntitySet="SaleDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleReturn_Party" Association="Self.FK_SaleReturn_Party">
+      <End Role="Party" EntitySet="Party" />
+      <End Role="SaleReturn" EntitySet="SaleReturn" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleReturn_Sale" Association="Self.FK_SaleReturn_Sale">
+      <End Role="Sale" EntitySet="Sale" />
+      <End Role="SaleReturn" EntitySet="SaleReturn" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleReturnDetail_Product" Association="Self.FK_SaleReturnDetail_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="SaleReturnDetail" EntitySet="SaleReturnDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleReturnDetail_ProductAttributeCombination" Association="Self.FK_SaleReturnDetail_ProductAttributeCombination">
+      <End Role="ProductAttributeCombination" EntitySet="ProductAttributeCombination" />
+      <End Role="SaleReturnDetail" EntitySet="SaleReturnDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleReturnDetail_SaleReturn" Association="Self.FK_SaleReturnDetail_SaleReturn">
+      <End Role="SaleReturn" EntitySet="SaleReturn" />
+      <End Role="SaleReturnDetail" EntitySet="SaleReturnDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShippingDetail_Purchase" Association="Self.FK_ShippingDetail_Purchase">
+      <End Role="Purchase" EntitySet="Purchase" />
+      <End Role="ShippingDetail" EntitySet="ShippingDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ShippingDetail_ShippingDetail" Association="Self.FK_ShippingDetail_ShippingDetail">
+      <End Role="Sale" EntitySet="Sale" />
+      <End Role="ShippingDetail" EntitySet="ShippingDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_GoDown" Association="Self.FK_Stock_GoDown">
+      <End Role="GoDown" EntitySet="GoDown" />
+      <End Role="Stock" EntitySet="Stock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_Product" Association="Self.FK_Stock_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Stock" EntitySet="Stock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_ProductAttributeCombination" Association="Self.FK_Stock_ProductAttributeCombination">
+      <End Role="ProductAttributeCombination" EntitySet="ProductAttributeCombination" />
+      <End Role="Stock" EntitySet="Stock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VariantValue_Variants" Association="Self.FK_VariantValue_Variants">
+      <End Role="Variants" EntitySet="Variants" />
+      <End Role="VariantValue" EntitySet="VariantValue" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

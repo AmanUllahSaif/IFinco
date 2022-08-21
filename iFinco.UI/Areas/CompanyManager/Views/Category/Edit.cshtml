@@ -1,0 +1,98 @@
+﻿@model iFinco.DAL.Category
+@using iFinco.DAL.Enum
+@{
+    ViewBag.Title = "Category Management";
+
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Update Category</h4>
+                        <p class="category"></p>
+                    </div>
+                    <div class="card-content">
+                        @using (Html.BeginForm("Edit", "Category", FormMethod.Post, new { id = "contact-for", enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                @Html.LabelFor(x => x.Type, new { @class = "contor-label" })
+                                                @Html.DropDownListFor(x => x.Type, EnumHelper.GetSelectList(typeof(CategoryType)), "Select Category Type", new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(x => x.Type)
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                @Html.LabelFor(x => x.Title, new { @class = "contor-label" })
+                                                @Html.HiddenFor(x => x.Id)
+                                                @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(x => x.Title)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group label-floating">
+                                                @Html.LabelFor(x => x.Description, new { @class = "contor-label" })
+                                                @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(x => x.Description)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="text-center">
+                                        <h4 style="margin-bottom:30px">Image</h4>
+                                        @if (string.IsNullOrEmpty(Model.ImgUrl))
+                                        {
+                                            <img class="logo-preview" src="~/PanalAssets/img/noImage.png" style="height:150px;width:150px" />
+
+                                        }
+                                        else
+                                        {
+                                            <img class="logo-preview" src="@Url.Content(Model.ImgUrl)" style="height:100px;width:100px" />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <input type="file" name="logo" style="display:none" data-btn=".btn-logo" data-name="#logoName" data-preview=".logo-preview" class="vns-file" />
+                                <span id="logoName"></span>
+                                <a href="@Url.Action("Index","Category")" class="btn btn-default pull-right">Cancel</a>
+                                <button type="button" class="default-button submit-btn btn btn-logo">Upload Logo</button>
+                                <button type="submit" class="btn btn-primary pull-right">Update</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" class="active-nav" value="#Category" />
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/common/fileuploader.js"></script>
+    <script type="text/javascript">
+        $('.vns-file').VNSFileUploder();
+
+    </script>
+}
+
+
+
+
+
+
+
+

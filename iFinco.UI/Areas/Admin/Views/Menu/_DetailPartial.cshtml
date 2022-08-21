@@ -1,0 +1,73 @@
+﻿@model iFinco.DAL.Menu
+@using iFinco.DAL.Enum
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    @Html.LabelFor(x => x.Title, new { @class = "contor-label" })
+                    @Html.TextBoxFor(x => x.Title, new { @class = "form-control", disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.Title)
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    @Html.LabelFor(x => x.Type, new { @class = "contor-label" })
+                    @Html.DropDownListFor(x => x.Type, EnumHelper.GetSelectList(typeof(MenuType)), "Select Menu Type", new { @class = "form-control", disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.Type)
+                </div>
+            </div>
+            @if (Model.Type == (int)MenuType.Menu)
+            {
+                <div class="col-md-4">
+                    <div class="form-group label-floating">
+                        @Html.LabelFor(x => x.ParentId, new { @class = "contor-label" })
+                        @Html.DropDownListFor(x => x.ParentId, new SelectList(ViewBag.ParentType, "Id", "Title"), "Select Module", new { @class = "form-control", disabled = "disabled" })
+                        @Html.ValidationMessageFor(x => x.ParentId)
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group label-floating">
+                    @Html.LabelFor(x => x.Description, new { @class = "contor-label" })
+                    @Html.TextBoxFor(x => x.Description, new { @class = "form-control", disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.Description)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-3">
+                    <div class="form-group label-floating">
+                        @Html.LabelFor(x => x.Area, new { @class = "contor-label" })
+                        @Html.TextBoxFor(x => x.Area, new { @class = "form-control", disabled = "disabled" })
+                        @Html.ValidationMessageFor(x => x.Area)
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group label-floating">
+                        @Html.LabelFor(x => x.Controller, new { @class = "contor-label" })
+                        @Html.TextBoxFor(x => x.Controller, new { @class = "form-control", disabled = "disabled" })
+                        @Html.ValidationMessageFor(x => x.Controller)
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group label-floating">
+                        @Html.LabelFor(x => x.Action, new { @class = "contor-label" })
+                        @Html.TextBoxFor(x => x.Action, new { @class = "form-control", disabled = "disabled" })
+                        @Html.ValidationMessageFor(x => x.Action)
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group label-floating">
+                        @Html.LabelFor(x => x.ClassName, new { @class = "contor-label" })
+                        @Html.TextBoxFor(x => x.ClassName, new { @class = "form-control", disabled = "disabled" })
+                        @Html.ValidationMessageFor(x => x.ClassName)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

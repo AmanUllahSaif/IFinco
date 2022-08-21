@@ -1,0 +1,35 @@
+﻿@model iFinco.DAL.Company
+@{
+    ViewBag.Title = "ConfirmEmail";
+}
+
+<div class="breadcrumb-area bg-overlay-dark bg-6">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-text text-left">
+                    <h1>Email Confirmed!</h1>
+                    <div class="breadcrumb-bar">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="contact-form-area fix pb-120 pt-120">
+    <div class="container">
+        <div class="contact-form-left">
+            <h4>Congratulations! Your Email has been confirmed successfully!</h4>
+        </div>
+    </div>
+</div>
+<div class="contact-form-right">
+    <div class="single-sidebar-widget fix bg-8">
+        <div class="sidebar-contact-info">
+            <h4>Need Any Help?</h4>
+            <p>We are here to help! We're frinedly and available to help you. Reach out to us at anytime and we'll happily answer your questions.</p>
+            <a href="@Url.Action("index", "home")#contact" class="default-button">Contact</a>
+        </div>
+    </div>
+</div>

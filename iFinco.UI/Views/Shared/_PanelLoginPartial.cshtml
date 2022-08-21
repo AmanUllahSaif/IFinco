@@ -1,0 +1,73 @@
+﻿@using Microsoft.AspNet.Identity
+@using iFinco.UI.Util
+
+@using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+{
+    @Html.AntiForgeryToken()
+}
+
+<ul class="nav navbar-nav navbar-right">
+    @*<li>
+            <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="material-icons">dashboard</i>
+                <p class="hidden-lg hidden-md">Dashboard</p>
+            </a>
+        </li>*@
+    @*<li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="material-icons">notifications</i>
+                <span class="notification">5</span>
+                <p class="hidden-lg hidden-md">Notifications</p>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="#">Mike John responded to your email</a>
+                </li>
+                <li>
+                    <a href="#">You have 5 new tasks</a>
+                </li>
+                <li>
+                    <a href="#">You're now friend with Andrew</a>
+                </li>
+                <li>
+                    <a href="#">Another Notification</a>
+                </li>
+                <li>
+                    <a href="#">Another One</a>
+                </li>
+            </ul>
+        </li>*@
+    <li>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="material-icons">person</i>
+            <p class="hidden-lg hidden-md">Profile</p>
+        </a>
+        <ul class="dropdown-menu" style="width:300px">
+            <li>
+                <div class="col-md-3 pull-left">
+                    <img src="@User.Identity.GetImage()" class="img-responsive img-rounded" style="width:50px;height:50px" />
+                </div>
+                <div class="col-md-9 pull-right">
+                    <a href="#"><b>@User.Identity.GetName()</b></a> as @User.Identity.GetUserRole(User.Identity.GetUserId())
+                    <br />
+                    <a href="#"><b>@User.Identity.GetBranchName()</b></a>
+                </div>
+            </li>
+            <li>
+                <a href="#changePasswordModal" data-toggle="modal">Change Password</a>
+            </li>
+            @if (!User.IsInRole("Admin"))
+            {
+                <li>
+                    <a href="@Url.Action("SwitchBranch","Account", new { area=""})">Switch Branch</a>
+                </li>
+            }
+            <li>
+                <a href="#">Lock</a>
+            </li>
+            <li>
+                <a href="javascript:document.getElementById('logoutForm').submit()">Log Out</a>
+            </li>
+        </ul>
+    </li>
+</ul>

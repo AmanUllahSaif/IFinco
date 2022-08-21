@@ -1,0 +1,121 @@
+﻿@model iFinco.UI.Models.InvoiceTempleteVM
+@{
+    ViewBag.Title = "Create";
+}
+@using iFinco.DAL.Enum
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Create Invoice</h4>
+                        <p class="category"></p>
+                    </div>
+                    <div class="card-content">
+                        @using (Html.BeginForm("Create", "TemplateDesigner", FormMethod.Post, new { id = "contact-for" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group label-floating">
+                                        <div class="form-group label-floating">
+                                            @Html.LabelFor(x => x.InvoiceTemplate.TemplateType, new { @class = "contor-label" })
+                                            @Html.DropDownListFor(x => x.InvoiceTemplate.TemplateType, EnumHelper.GetSelectList(typeof(TemplateType)), "Select Invoice Type", new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(x => x.InvoiceTemplate.TemplateType)
+                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="content">
+                                    <div class="col-md-8">
+                                        <div class="card">
+                                            <div class="card-header" data-background-color="purple">
+                                                <h4 class="title">Create Invoice</h4>
+                                                <p class="category"></p>
+                                            </div>
+                                            @Html.TextAreaFor(x => x.content, new { @class = "form-control ckeditor" })
+                                            @Html.ValidationMessageFor(x => x.content)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pull-right">
+                                    <div class="card">
+                                        <div class="card-header" data-background-color="purple">
+                                            <h4 class="title">Place Holders</h4>
+                                            <p class="category"></p>
+                                        </div>
+                                        <div class="card-content">
+                                            <ul class="list-group" id="holdr">
+                                                @if (ViewBag.placeholdr != null)
+                                                {
+                                                    foreach (var plhldr in ViewBag.placeholdr)
+                                                    {
+                                                        <li class="list-group-item"><a href="#" class="plch" id="@plhldr.Id">@plhldr.Palceholder</a></li>
+                                                    }
+                                                }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <a href="@Url.Action("Create","TemplateDesigner")" class="btn btn-default pull-right btn-md">Cancle</a>
+                                <button type="submit" class="btn btn-primary pull-right">Save</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" class="active-nav" value="#InvoiceDesigner" />
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/common/fileuploader.js"></script>
+    <script type="text/javascript">
+        $('.vns-file').VNSFileUploder();
+        //function insertIntoCkeditor(data) {
+        //    CKEDITOR.instances['ckeditor'].setData(data);
+        //}
+        $(document).on('click', '.plch', function () {
+            
+            //var val = CKEDITOR.instances['content'].getData();
+            //var value = val + newval;
+            var newval = $(this).text();
+            CKEDITOR.instances['content'].insertText(newval.trim());
+        });
+
+        $("#InvoiceTemplate_TemplateType").change(function () {
+            var id = $(this).val();
+            if (id) {
+                $.ajax({
+                    type: "GET",
+                    url: "/CompanyManager/TemplateDesigner/IsFileAlreadyExist/" + id,
+                    success: function (data) {
+                        debugger;
+                        if (data.length) {
+                            var url = "/CompanyManager/TemplateDesigner/Edit?id=" + data[0].Id;
+                            window.location.href = url;
+                            var hdr = $('#holdr');
+                            for (var i = 0; i < data.length; i++) {
+                                $(hdr).append('<li class="list-group-item"> <a href="javascript:void(0)" class="plch" >' + data[i].palceholder + '</a></li>')
+                            }
+                        }
+                        else {
+                            var url = "/CompanyManager/TemplateDesigner/Create?id=" + id;
+                            window.location.href = url;
+                        }
+                    }
+                });
+            }
+        });
+
+        
+    </script>
+}

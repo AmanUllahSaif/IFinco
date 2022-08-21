@@ -1,0 +1,3058 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="iFincoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Adress" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="CompanyId" Type="bigint" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="bigint" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsHeadOffice" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BranchAccess">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BranchId" Type="bigint" Nullable="false" />
+          <Property Name="UId" Type="bigint" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" />
+          <Property Name="ImgUrl" Type="nvarchar" MaxLength="300" />
+          <Property Name="CompanyId" Type="bigint" Nullable="false" />
+          <Property Name="BranchId" Type="bigint" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" />
+          <Property Name="CompanyId" Type="bigint" Nullable="false" />
+          <Property Name="BranchId" Type="bigint" />
+          <Property Name="ImgUrl" Type="nvarchar" MaxLength="300" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Type" Type="int" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Type" Type="int" />
+          <Property Name="NTN/STN" Type="nvarchar" MaxLength="50" />
+          <Property Name="OwnerId" Type="bigint" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Adress" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="LogoUrl" Type="nvarchar" MaxLength="300" />
+          <Property Name="CreateOn" Type="datetime" Nullable="false" />
+          <Property Name="CreateBy" Type="bigint" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsApproved" Type="bit" Nullable="false" />
+          <Property Name="IsEmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="IsContactConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PhoneCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CompanyMenusAccess">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyId" Type="bigint" Nullable="false" />
+          <Property Name="MenuId" Type="bigint" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Generalinvoice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PartyId" Type="bigint" />
+          <Property Name="InvoiceNum" Type="bigint" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="BranchId" Type="bigint" />
+          <Property Name="CompanyId" Type="bigint" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GoDown">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="CompanyId" Type="bigint" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InvoiceTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TemplateType" Type="int" />
+          <Property Name="FileUrl" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CompanyId" Type="bigint" Nullable="false" />
+          <Property Name="BranchId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="ClassName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="250" />
+          <Property Name="Area" Type="nvarchar" MaxLength="50" />
+          <Property Name="Action" Type="nvarchar" MaxLength="50" />
+          <Property Name="Controller" Type="nvarchar" MaxLength="50" />
+          <Property Name="ParentId" Type="bigint" />
+          <Property Name="Type" Type="int" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="InNav" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PACDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PACId" Type="bigint" Nullable="false" />
+          <Property Name="VariantId" Type="bigint" Nullable="false" />
+          <Property Name="VariantValueId" Type="bigint" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Party">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyId" Type="bigint" Nullable="false" />
+          <Property Name="BranchId" Type="bigint" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Adress" Type="nvarchar" MaxLength="300" />
+          <Property Name="CompanyTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompanyEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompanyContact" Type="nvarchar" MaxLength="50" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PlaceHolder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="TemplateType" Type="int" Nullable="false" />
+          <Property Name="Palceholder" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" />
+          <Property Name="Tags" Type="nvarchar" MaxLength="300" />
+          <Property Name="ImageUrl" Type="nvarchar" MaxLength="300" />
+          <Property Name="HaveVarients" Type="bit" Nullable="false" />
+          <Property Name="CompanyId" Type="bigint" Nullable="false" />
+          <Property Name="BranchId" Type="bigint" />
+          <Property Name="CategoryId" Type="bigint" Nullable="false" />
+          <Property Name="BrandId" Type="bigint" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="HasExpiry" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductAttributeCombination">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="bigint" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductVariant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="bigint" Nullable="false" />
+          <Property Name="VariantId" Type="bigint" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Purchase">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyId" Type="bigint" Nullable="false" />
+          <Property Name="PartyId" Type="bigint" />
+          <Property Name="BranchId" Type="bigint" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="250" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="PaymentType" Type="int" Nullable="false" />
+          <Property Name="PaidAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="InvoiceNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PurchaseDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="bigint" Nullable="false" />
+          <Property Name="PACId" Type="bigint" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PurchaseId" Type="bigint" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Tax" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="PurchaseReturn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PurchaseId" Type="bigint" Nullable="false" />
+          <Property Name="CompanyId" Type="bigint" Nullable="false" />
+          <Property Name="PartyId" Type="bigint" />
+          <Property Name="BranchId" Type="bigint" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="250" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="PaymentType" Type="int" Nullable="false" />
+          <Property Name="PaidAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="InvoiceNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PurchaseReturnDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="bigint" Nullable="false" />
+          <Property Name="PACId" Type="bigint" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PurchaseReturnId" Type="bigint" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Tax" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyId" Type="bigint" Nullable="false" />
+          <Property Name="PartyId" Type="bigint" />
+          <Property Name="BranchId" Type="bigint" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="250" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="PaymentType" Type="int" Nullable="false" />
+          <Property Name="PaidAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="InvoiceNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SaleDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="bigint" Nullable="false" />
+          <Property Name="PACId" Type="bigint" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SaleId" Type="bigint" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Tax" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="SaleReturn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SaleId" Type="bigint" Nullable="false" />
+          <Property Name="CompanyId" Type="bigint" Nullable="false" />
+          <Property Name="PartyId" Type="bigint" />
+          <Property Name="BranchId" Type="bigint" />
+          <Property Name="Total" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="250" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="PaymentType" Type="int" Nullable="false" />
+          <Property Name="PaidAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="InvoiceNo" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SaleReturnDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SaleReturnId" Type="bigint" Nullable="false" />
+          <Property Name="ProductId" Type="bigint" Nullable="false" />
+          <Property Name="PACId" Type="bigint" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Discount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Tax" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="ShippingDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="SaleId" Type="bigint" />
+          <Property Name="PurchaseId" Type="bigint" />
+          <Property Name="ShipmentNo" Type="bigint" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SellingPrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="PurchasingPrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="150" />
+          <Property Name="BarCode" Type="nvarchar" MaxLength="150" />
+          <Property Name="BarCodeImgUrl" Type="nvarchar" MaxLength="300" />
+          <Property Name="ExpiryDate" Type="datetime" />
+          <Property Name="ProductId" Type="bigint" Nullable="false" />
+          <Property Name="CompanyId" Type="bigint" Nullable="false" />
+          <Property Name="BranchId" Type="bigint" />
+          <Property Name="GodownId" Type="bigint" />
+          <Property Name="PACId" Type="bigint" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Variants">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyId" Type="bigint" Nullable="false" />
+          <Property Name="BranchId" Type="bigint" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VariantValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyId" Type="bigint" Nullable="false" />
+          <Property Name="BranchId" Type="bigint" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="VariantId" Type="bigint" Nullable="false" />
+          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Branch_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="Branch" Type="Self.Branch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Branch">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BranchAccess_Branch">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="1" />
+          <End Role="BranchAccess" Type="Self.BranchAccess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BranchAccess">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Brand_Branch">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+          <End Role="Brand" Type="Self.Brand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Brand">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Brand_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="Brand" Type="Self.Brand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Brand">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyMenusAccess_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="CompanyMenusAccess" Type="Self.CompanyMenusAccess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanyMenusAccess">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyMenusAccess_Menu">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="1" />
+          <End Role="CompanyMenusAccess" Type="Self.CompanyMenusAccess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanyMenusAccess">
+              <PropertyRef Name="MenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Generalinvoice_Party">
+          <End Role="Party" Type="Self.Party" Multiplicity="0..1" />
+          <End Role="Generalinvoice" Type="Self.Generalinvoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Generalinvoice">
+              <PropertyRef Name="PartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Menu_Menu">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="0..1" />
+          <End Role="Menu1" Type="Self.Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Menu1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACDetail_ProductAttributeCombination">
+          <End Role="ProductAttributeCombination" Type="Self.ProductAttributeCombination" Multiplicity="1" />
+          <End Role="PACDetail" Type="Self.PACDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductAttributeCombination">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PACDetail">
+              <PropertyRef Name="PACId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACDetail_Variants">
+          <End Role="Variants" Type="Self.Variants" Multiplicity="1" />
+          <End Role="PACDetail" Type="Self.PACDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Variants">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PACDetail">
+              <PropertyRef Name="VariantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACDetail_VariantValue">
+          <End Role="VariantValue" Type="Self.VariantValue" Multiplicity="1" />
+          <End Role="PACDetail" Type="Self.PACDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VariantValue">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PACDetail">
+              <PropertyRef Name="VariantValueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Party_Branch">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+          <End Role="Party" Type="Self.Party" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Party">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Party_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="Party" Type="Self.Party" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Party">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Branch">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Brand">
+          <End Role="Brand" Type="Self.Brand" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="BrandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductAttributeCombination_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductAttributeCombination" Type="Self.ProductAttributeCombination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductAttributeCombination">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductVariant_ProductVariant">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductVariant" Type="Self.ProductVariant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductVariant">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductVariant_Variants">
+          <End Role="Variants" Type="Self.Variants" Multiplicity="1" />
+          <End Role="ProductVariant" Type="Self.ProductVariant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Variants">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductVariant">
+              <PropertyRef Name="VariantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_Party">
+          <End Role="Party" Type="Self.Party" Multiplicity="0..1" />
+          <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Purchase">
+              <PropertyRef Name="PartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseDetail_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="PurchaseDetail" Type="Self.PurchaseDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseDetail">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseDetail_ProductAttributeCombination">
+          <End Role="ProductAttributeCombination" Type="Self.ProductAttributeCombination" Multiplicity="0..1" />
+          <End Role="PurchaseDetail" Type="Self.PurchaseDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductAttributeCombination">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseDetail">
+              <PropertyRef Name="PACId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseDetail_Purchase">
+          <End Role="Purchase" Type="Self.Purchase" Multiplicity="1" />
+          <End Role="PurchaseDetail" Type="Self.PurchaseDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Purchase">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseDetail">
+              <PropertyRef Name="PurchaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseReturn_Party">
+          <End Role="Party" Type="Self.Party" Multiplicity="0..1" />
+          <End Role="PurchaseReturn" Type="Self.PurchaseReturn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseReturn">
+              <PropertyRef Name="PartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseReturnDetail_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="PurchaseReturnDetail" Type="Self.PurchaseReturnDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseReturnDetail">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseReturnDetail_ProductAttributeCombination">
+          <End Role="ProductAttributeCombination" Type="Self.ProductAttributeCombination" Multiplicity="0..1" />
+          <End Role="PurchaseReturnDetail" Type="Self.PurchaseReturnDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductAttributeCombination">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseReturnDetail">
+              <PropertyRef Name="PACId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseReturnDetail_PurchaseReturn">
+          <End Role="PurchaseReturn" Type="Self.PurchaseReturn" Multiplicity="1" />
+          <End Role="PurchaseReturnDetail" Type="Self.PurchaseReturnDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseReturn">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseReturnDetail">
+              <PropertyRef Name="PurchaseReturnId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sale_Party">
+          <End Role="Party" Type="Self.Party" Multiplicity="0..1" />
+          <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="PartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleDetail_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="SaleDetail" Type="Self.SaleDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SaleDetail">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleDetail_ProductAttributeCombination">
+          <End Role="ProductAttributeCombination" Type="Self.ProductAttributeCombination" Multiplicity="0..1" />
+          <End Role="SaleDetail" Type="Self.SaleDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductAttributeCombination">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SaleDetail">
+              <PropertyRef Name="PACId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleDetail_Sale">
+          <End Role="Sale" Type="Self.Sale" Multiplicity="1" />
+          <End Role="SaleDetail" Type="Self.SaleDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SaleDetail">
+              <PropertyRef Name="SaleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleReturn_Party">
+          <End Role="Party" Type="Self.Party" Multiplicity="0..1" />
+          <End Role="SaleReturn" Type="Self.SaleReturn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SaleReturn">
+              <PropertyRef Name="PartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleReturn_Sale">
+          <End Role="Sale" Type="Self.Sale" Multiplicity="1" />
+          <End Role="SaleReturn" Type="Self.SaleReturn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SaleReturn">
+              <PropertyRef Name="SaleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleReturnDetail_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="SaleReturnDetail" Type="Self.SaleReturnDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SaleReturnDetail">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleReturnDetail_ProductAttributeCombination">
+          <End Role="ProductAttributeCombination" Type="Self.ProductAttributeCombination" Multiplicity="0..1" />
+          <End Role="SaleReturnDetail" Type="Self.SaleReturnDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductAttributeCombination">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SaleReturnDetail">
+              <PropertyRef Name="PACId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleReturnDetail_SaleReturn">
+          <End Role="SaleReturn" Type="Self.SaleReturn" Multiplicity="1" />
+          <End Role="SaleReturnDetail" Type="Self.SaleReturnDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SaleReturn">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SaleReturnDetail">
+              <PropertyRef Name="SaleReturnId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShippingDetail_Purchase">
+          <End Role="Purchase" Type="Self.Purchase" Multiplicity="0..1" />
+          <End Role="ShippingDetail" Type="Self.ShippingDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Purchase">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShippingDetail">
+              <PropertyRef Name="PurchaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShippingDetail_ShippingDetail">
+          <End Role="Sale" Type="Self.Sale" Multiplicity="0..1" />
+          <End Role="ShippingDetail" Type="Self.ShippingDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShippingDetail">
+              <PropertyRef Name="SaleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_GoDown">
+          <End Role="GoDown" Type="Self.GoDown" Multiplicity="0..1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoDown">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="GodownId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_ProductAttributeCombination">
+          <End Role="ProductAttributeCombination" Type="Self.ProductAttributeCombination" Multiplicity="0..1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductAttributeCombination">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="PACId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VariantValue_Variants">
+          <End Role="Variants" Type="Self.Variants" Multiplicity="1" />
+          <End Role="VariantValue" Type="Self.VariantValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Variants">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VariantValue">
+              <PropertyRef Name="VariantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="iFincoDBModelStoreContainer">
+          <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BranchAccess" EntityType="Self.BranchAccess" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyMenusAccess" EntityType="Self.CompanyMenusAccess" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Generalinvoice" EntityType="Self.Generalinvoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GoDown" EntityType="Self.GoDown" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InvoiceTemplate" EntityType="Self.InvoiceTemplate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PACDetail" EntityType="Self.PACDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Party" EntityType="Self.Party" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlaceHolder" EntityType="Self.PlaceHolder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductAttributeCombination" EntityType="Self.ProductAttributeCombination" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductVariant" EntityType="Self.ProductVariant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Purchase" EntityType="Self.Purchase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseDetail" EntityType="Self.PurchaseDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseReturn" EntityType="Self.PurchaseReturn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseReturnDetail" EntityType="Self.PurchaseReturnDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sale" EntityType="Self.Sale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SaleDetail" EntityType="Self.SaleDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SaleReturn" EntityType="Self.SaleReturn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SaleReturnDetail" EntityType="Self.SaleReturnDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShippingDetail" EntityType="Self.ShippingDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Variants" EntityType="Self.Variants" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VariantValue" EntityType="Self.VariantValue" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Branch_Company" Association="Self.FK_Branch_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Branch" EntitySet="Branch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BranchAccess_Branch" Association="Self.FK_BranchAccess_Branch">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="BranchAccess" EntitySet="BranchAccess" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Brand_Branch" Association="Self.FK_Brand_Branch">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="Brand" EntitySet="Brand" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Brand_Company" Association="Self.FK_Brand_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Brand" EntitySet="Brand" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyMenusAccess_Company" Association="Self.FK_CompanyMenusAccess_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="CompanyMenusAccess" EntitySet="CompanyMenusAccess" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyMenusAccess_Menu" Association="Self.FK_CompanyMenusAccess_Menu">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="CompanyMenusAccess" EntitySet="CompanyMenusAccess" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Generalinvoice_Party" Association="Self.FK_Generalinvoice_Party">
+            <End Role="Party" EntitySet="Party" />
+            <End Role="Generalinvoice" EntitySet="Generalinvoice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Menu_Menu" Association="Self.FK_Menu_Menu">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="Menu1" EntitySet="Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACDetail_ProductAttributeCombination" Association="Self.FK_PACDetail_ProductAttributeCombination">
+            <End Role="ProductAttributeCombination" EntitySet="ProductAttributeCombination" />
+            <End Role="PACDetail" EntitySet="PACDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACDetail_Variants" Association="Self.FK_PACDetail_Variants">
+            <End Role="Variants" EntitySet="Variants" />
+            <End Role="PACDetail" EntitySet="PACDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACDetail_VariantValue" Association="Self.FK_PACDetail_VariantValue">
+            <End Role="VariantValue" EntitySet="VariantValue" />
+            <End Role="PACDetail" EntitySet="PACDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Party_Branch" Association="Self.FK_Party_Branch">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="Party" EntitySet="Party" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Party_Company" Association="Self.FK_Party_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Party" EntitySet="Party" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Branch" Association="Self.FK_Product_Branch">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Brand" Association="Self.FK_Product_Brand">
+            <End Role="Brand" EntitySet="Brand" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Company" Association="Self.FK_Product_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductAttributeCombination_Product" Association="Self.FK_ProductAttributeCombination_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductAttributeCombination" EntitySet="ProductAttributeCombination" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductVariant_ProductVariant" Association="Self.FK_ProductVariant_ProductVariant">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductVariant" EntitySet="ProductVariant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductVariant_Variants" Association="Self.FK_ProductVariant_Variants">
+            <End Role="Variants" EntitySet="Variants" />
+            <End Role="ProductVariant" EntitySet="ProductVariant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_Party" Association="Self.FK_Purchase_Party">
+            <End Role="Party" EntitySet="Party" />
+            <End Role="Purchase" EntitySet="Purchase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseDetail_Product" Association="Self.FK_PurchaseDetail_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="PurchaseDetail" EntitySet="PurchaseDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseDetail_ProductAttributeCombination" Association="Self.FK_PurchaseDetail_ProductAttributeCombination">
+            <End Role="ProductAttributeCombination" EntitySet="ProductAttributeCombination" />
+            <End Role="PurchaseDetail" EntitySet="PurchaseDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseDetail_Purchase" Association="Self.FK_PurchaseDetail_Purchase">
+            <End Role="Purchase" EntitySet="Purchase" />
+            <End Role="PurchaseDetail" EntitySet="PurchaseDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseReturn_Party" Association="Self.FK_PurchaseReturn_Party">
+            <End Role="Party" EntitySet="Party" />
+            <End Role="PurchaseReturn" EntitySet="PurchaseReturn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseReturnDetail_Product" Association="Self.FK_PurchaseReturnDetail_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="PurchaseReturnDetail" EntitySet="PurchaseReturnDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseReturnDetail_ProductAttributeCombination" Association="Self.FK_PurchaseReturnDetail_ProductAttributeCombination">
+            <End Role="ProductAttributeCombination" EntitySet="ProductAttributeCombination" />
+            <End Role="PurchaseReturnDetail" EntitySet="PurchaseReturnDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseReturnDetail_PurchaseReturn" Association="Self.FK_PurchaseReturnDetail_PurchaseReturn">
+            <End Role="PurchaseReturn" EntitySet="PurchaseReturn" />
+            <End Role="PurchaseReturnDetail" EntitySet="PurchaseReturnDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sale_Party" Association="Self.FK_Sale_Party">
+            <End Role="Party" EntitySet="Party" />
+            <End Role="Sale" EntitySet="Sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleDetail_Product" Association="Self.FK_SaleDetail_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="SaleDetail" EntitySet="SaleDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleDetail_ProductAttributeCombination" Association="Self.FK_SaleDetail_ProductAttributeCombination">
+            <End Role="ProductAttributeCombination" EntitySet="ProductAttributeCombination" />
+            <End Role="SaleDetail" EntitySet="SaleDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleDetail_Sale" Association="Self.FK_SaleDetail_Sale">
+            <End Role="Sale" EntitySet="Sale" />
+            <End Role="SaleDetail" EntitySet="SaleDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleReturn_Party" Association="Self.FK_SaleReturn_Party">
+            <End Role="Party" EntitySet="Party" />
+            <End Role="SaleReturn" EntitySet="SaleReturn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleReturn_Sale" Association="Self.FK_SaleReturn_Sale">
+            <End Role="Sale" EntitySet="Sale" />
+            <End Role="SaleReturn" EntitySet="SaleReturn" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleReturnDetail_Product" Association="Self.FK_SaleReturnDetail_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="SaleReturnDetail" EntitySet="SaleReturnDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleReturnDetail_ProductAttributeCombination" Association="Self.FK_SaleReturnDetail_ProductAttributeCombination">
+            <End Role="ProductAttributeCombination" EntitySet="ProductAttributeCombination" />
+            <End Role="SaleReturnDetail" EntitySet="SaleReturnDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleReturnDetail_SaleReturn" Association="Self.FK_SaleReturnDetail_SaleReturn">
+            <End Role="SaleReturn" EntitySet="SaleReturn" />
+            <End Role="SaleReturnDetail" EntitySet="SaleReturnDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShippingDetail_Purchase" Association="Self.FK_ShippingDetail_Purchase">
+            <End Role="Purchase" EntitySet="Purchase" />
+            <End Role="ShippingDetail" EntitySet="ShippingDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShippingDetail_ShippingDetail" Association="Self.FK_ShippingDetail_ShippingDetail">
+            <End Role="Sale" EntitySet="Sale" />
+            <End Role="ShippingDetail" EntitySet="ShippingDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_GoDown" Association="Self.FK_Stock_GoDown">
+            <End Role="GoDown" EntitySet="GoDown" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_Product" Association="Self.FK_Stock_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_ProductAttributeCombination" Association="Self.FK_Stock_ProductAttributeCombination">
+            <End Role="ProductAttributeCombination" EntitySet="ProductAttributeCombination" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VariantValue_Variants" Association="Self.FK_VariantValue_Variants">
+            <End Role="Variants" EntitySet="Variants" />
+            <End Role="VariantValue" EntitySet="VariantValue" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="iFincoDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="iFincoDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="iFincoDBModel.Category" />
+          <EntitySet Name="Companies" EntityType="iFincoDBModel.Company" />
+          <EntitySet Name="GoDowns" EntityType="iFincoDBModel.GoDown" />
+          <EntitySet Name="Variants" EntityType="iFincoDBModel.Variant" />
+          <EntitySet Name="VariantValues" EntityType="iFincoDBModel.VariantValue" />
+          <AssociationSet Name="FK_VariantValue_Variants" Association="iFincoDBModel.FK_VariantValue_Variants">
+            <End Role="Variant" EntitySet="Variants" />
+            <End Role="VariantValue" EntitySet="VariantValues" />
+          </AssociationSet>
+          <EntitySet Name="ProductVariants" EntityType="iFincoDBModel.ProductVariant" />
+          <AssociationSet Name="FK_ProductVariant_Variants" Association="iFincoDBModel.FK_ProductVariant_Variants">
+            <End Role="Variant" EntitySet="Variants" />
+            <End Role="ProductVariant" EntitySet="ProductVariants" />
+          </AssociationSet>
+          <EntitySet Name="ProductAttributeCombinations" EntityType="iFincoDBModel.ProductAttributeCombination" />
+          <EntitySet Name="PACDetails" EntityType="iFincoDBModel.PACDetail" />
+          <AssociationSet Name="FK_PACDetail_ProductAttributeCombination" Association="iFincoDBModel.FK_PACDetail_ProductAttributeCombination">
+            <End Role="ProductAttributeCombination" EntitySet="ProductAttributeCombinations" />
+            <End Role="PACDetail" EntitySet="PACDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACDetail_Variants" Association="iFincoDBModel.FK_PACDetail_Variants">
+            <End Role="Variant" EntitySet="Variants" />
+            <End Role="PACDetail" EntitySet="PACDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACDetail_VariantValue" Association="iFincoDBModel.FK_PACDetail_VariantValue">
+            <End Role="VariantValue" EntitySet="VariantValues" />
+            <End Role="PACDetail" EntitySet="PACDetails" />
+          </AssociationSet>
+          <EntitySet Name="Brands" EntityType="iFincoDBModel.Brand" />
+          <AssociationSet Name="FK_Brand_Company" Association="iFincoDBModel.FK_Brand_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Brand" EntitySet="Brands" />
+          </AssociationSet>
+          <EntitySet Name="Products" EntityType="iFincoDBModel.Product" />
+          <AssociationSet Name="FK_Product_Brand" Association="iFincoDBModel.FK_Product_Brand">
+            <End Role="Brand" EntitySet="Brands" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Category" Association="iFincoDBModel.FK_Product_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Company" Association="iFincoDBModel.FK_Product_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductAttributeCombination_Product" Association="iFincoDBModel.FK_ProductAttributeCombination_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductAttributeCombination" EntitySet="ProductAttributeCombinations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductVariant_ProductVariant" Association="iFincoDBModel.FK_ProductVariant_ProductVariant">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductVariant" EntitySet="ProductVariants" />
+          </AssociationSet>
+          <EntitySet Name="Parties" EntityType="iFincoDBModel.Party" />
+          <AssociationSet Name="FK_Party_Company" Association="iFincoDBModel.FK_Party_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Party" EntitySet="Parties" />
+          </AssociationSet>
+          <EntitySet Name="Stocks" EntityType="iFincoDBModel.Stock" />
+          <AssociationSet Name="FK_Stock_GoDown" Association="iFincoDBModel.FK_Stock_GoDown">
+            <End Role="GoDown" EntitySet="GoDowns" />
+            <End Role="Stock" EntitySet="Stocks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_Product" Association="iFincoDBModel.FK_Stock_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Stock" EntitySet="Stocks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_ProductAttributeCombination" Association="iFincoDBModel.FK_Stock_ProductAttributeCombination">
+            <End Role="ProductAttributeCombination" EntitySet="ProductAttributeCombinations" />
+            <End Role="Stock" EntitySet="Stocks" />
+          </AssociationSet>
+          <EntitySet Name="Sales" EntityType="iFincoDBModel.Sale" />
+          <AssociationSet Name="FK_Sale_Party" Association="iFincoDBModel.FK_Sale_Party">
+            <End Role="Party" EntitySet="Parties" />
+            <End Role="Sale" EntitySet="Sales" />
+          </AssociationSet>
+          <EntitySet Name="Branches" EntityType="iFincoDBModel.Branch" />
+          <AssociationSet Name="FK_Branch_Company" Association="iFincoDBModel.FK_Branch_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Branch" EntitySet="Branches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Brand_Branch" Association="iFincoDBModel.FK_Brand_Branch">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="Brand" EntitySet="Brands" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Party_Branch" Association="iFincoDBModel.FK_Party_Branch">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="Party" EntitySet="Parties" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Branch" Association="iFincoDBModel.FK_Product_Branch">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <EntitySet Name="Purchases" EntityType="iFincoDBModel.Purchase" />
+          <AssociationSet Name="FK_Purchase_Party" Association="iFincoDBModel.FK_Purchase_Party">
+            <End Role="Party" EntitySet="Parties" />
+            <End Role="Purchase" EntitySet="Purchases" />
+          </AssociationSet>
+          <EntitySet Name="BranchAccesses" EntityType="iFincoDBModel.BranchAccess" />
+          <AssociationSet Name="FK_BranchAccess_Branch" Association="iFincoDBModel.FK_BranchAccess_Branch">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="BranchAccess" EntitySet="BranchAccesses" />
+          </AssociationSet>
+          <EntitySet Name="PurchaseDetails" EntityType="iFincoDBModel.PurchaseDetail" />
+          <EntitySet Name="SaleDetails" EntityType="iFincoDBModel.SaleDetail" />
+          <AssociationSet Name="FK_PurchaseDetail_Product" Association="iFincoDBModel.FK_PurchaseDetail_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="PurchaseDetail" EntitySet="PurchaseDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleDetail_Product" Association="iFincoDBModel.FK_SaleDetail_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="SaleDetail" EntitySet="SaleDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseDetail_ProductAttributeCombination" Association="iFincoDBModel.FK_PurchaseDetail_ProductAttributeCombination">
+            <End Role="ProductAttributeCombination" EntitySet="ProductAttributeCombinations" />
+            <End Role="PurchaseDetail" EntitySet="PurchaseDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleDetail_ProductAttributeCombination" Association="iFincoDBModel.FK_SaleDetail_ProductAttributeCombination">
+            <End Role="ProductAttributeCombination" EntitySet="ProductAttributeCombinations" />
+            <End Role="SaleDetail" EntitySet="SaleDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseDetail_Purchase" Association="iFincoDBModel.FK_PurchaseDetail_Purchase">
+            <End Role="Purchase" EntitySet="Purchases" />
+            <End Role="PurchaseDetail" EntitySet="PurchaseDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleDetail_Sale" Association="iFincoDBModel.FK_SaleDetail_Sale">
+            <End Role="Sale" EntitySet="Sales" />
+            <End Role="SaleDetail" EntitySet="SaleDetails" />
+          </AssociationSet>
+          <EntitySet Name="PurchaseReturns" EntityType="iFincoDBModel.PurchaseReturn" />
+          <AssociationSet Name="FK_PurchaseReturn_Party" Association="iFincoDBModel.FK_PurchaseReturn_Party">
+            <End Role="Party" EntitySet="Parties" />
+            <End Role="PurchaseReturn" EntitySet="PurchaseReturns" />
+          </AssociationSet>
+          <EntitySet Name="ShippingDetails" EntityType="iFincoDBModel.ShippingDetail" />
+          <AssociationSet Name="FK_ShippingDetail_Purchase" Association="iFincoDBModel.FK_ShippingDetail_Purchase">
+            <End Role="Purchase" EntitySet="Purchases" />
+            <End Role="ShippingDetail" EntitySet="ShippingDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ShippingDetail_ShippingDetail" Association="iFincoDBModel.FK_ShippingDetail_ShippingDetail">
+            <End Role="Sale" EntitySet="Sales" />
+            <End Role="ShippingDetail" EntitySet="ShippingDetails" />
+          </AssociationSet>
+          <EntitySet Name="CompanyMenusAccesses" EntityType="iFincoDBModel.CompanyMenusAccess" />
+          <AssociationSet Name="FK_CompanyMenusAccess_Company" Association="iFincoDBModel.FK_CompanyMenusAccess_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="CompanyMenusAccess" EntitySet="CompanyMenusAccesses" />
+          </AssociationSet>
+          <EntitySet Name="SaleReturns" EntityType="iFincoDBModel.SaleReturn" />
+          <AssociationSet Name="FK_SaleReturn_Party" Association="iFincoDBModel.FK_SaleReturn_Party">
+            <End Role="Party" EntitySet="Parties" />
+            <End Role="SaleReturn" EntitySet="SaleReturns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleReturn_Sale" Association="iFincoDBModel.FK_SaleReturn_Sale">
+            <End Role="Sale" EntitySet="Sales" />
+            <End Role="SaleReturn" EntitySet="SaleReturns" />
+          </AssociationSet>
+          <EntitySet Name="PurchaseReturnDetails" EntityType="iFincoDBModel.PurchaseReturnDetail" />
+          <EntitySet Name="SaleReturnDetails" EntityType="iFincoDBModel.SaleReturnDetail" />
+          <AssociationSet Name="FK_PurchaseReturnDetail_Product" Association="iFincoDBModel.FK_PurchaseReturnDetail_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="PurchaseReturnDetail" EntitySet="PurchaseReturnDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleReturnDetail_Product" Association="iFincoDBModel.FK_SaleReturnDetail_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="SaleReturnDetail" EntitySet="SaleReturnDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseReturnDetail_ProductAttributeCombination" Association="iFincoDBModel.FK_PurchaseReturnDetail_ProductAttributeCombination">
+            <End Role="ProductAttributeCombination" EntitySet="ProductAttributeCombinations" />
+            <End Role="PurchaseReturnDetail" EntitySet="PurchaseReturnDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleReturnDetail_ProductAttributeCombination" Association="iFincoDBModel.FK_SaleReturnDetail_ProductAttributeCombination">
+            <End Role="ProductAttributeCombination" EntitySet="ProductAttributeCombinations" />
+            <End Role="SaleReturnDetail" EntitySet="SaleReturnDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseReturnDetail_PurchaseReturn" Association="iFincoDBModel.FK_PurchaseReturnDetail_PurchaseReturn">
+            <End Role="PurchaseReturn" EntitySet="PurchaseReturns" />
+            <End Role="PurchaseReturnDetail" EntitySet="PurchaseReturnDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleReturnDetail_SaleReturn" Association="iFincoDBModel.FK_SaleReturnDetail_SaleReturn">
+            <End Role="SaleReturn" EntitySet="SaleReturns" />
+            <End Role="SaleReturnDetail" EntitySet="SaleReturnDetails" />
+          </AssociationSet>
+          <EntitySet Name="Generalinvoices" EntityType="iFincoDBModel.Generalinvoice" />
+          <AssociationSet Name="FK_Generalinvoice_Party" Association="iFincoDBModel.FK_Generalinvoice_Party">
+            <End Role="Party" EntitySet="Parties" />
+            <End Role="Generalinvoice" EntitySet="Generalinvoices" />
+          </AssociationSet>
+          <EntitySet Name="Menus" EntityType="iFincoDBModel.Menu" />
+          <AssociationSet Name="FK_CompanyMenusAccess_Menu" Association="iFincoDBModel.FK_CompanyMenusAccess_Menu">
+            <End Role="Menu" EntitySet="Menus" />
+            <End Role="CompanyMenusAccess" EntitySet="CompanyMenusAccesses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Menu_Menu" Association="iFincoDBModel.FK_Menu_Menu">
+            <End Role="Menu" EntitySet="Menus" />
+            <End Role="Menu1" EntitySet="Menus" />
+          </AssociationSet>
+          <EntitySet Name="InvoiceTemplates" EntityType="iFincoDBModel.InvoiceTemplate" />
+          <EntitySet Name="PlaceHolders" EntityType="iFincoDBModel.PlaceHolder" />
+          </EntityContainer>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyId" Type="Int64" Nullable="false" />
+          <Property Name="BranchId" Type="Int64" />
+          <Property Name="ImgUrl" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Type" Type="Int32" />
+          <NavigationProperty Name="Products" Relationship="iFincoDBModel.FK_Product_Category" FromRole="Category" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="NTN_STN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerId" Type="Int64" />
+          <Property Name="Contact" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Adress" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="LogoUrl" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="CreateOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateBy" Type="Int64" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsApproved" Type="Boolean" Nullable="false" />
+          <Property Name="IsEmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="IsContactConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PhoneCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Brands" Relationship="iFincoDBModel.FK_Brand_Company" FromRole="Company" ToRole="Brand" />
+          <NavigationProperty Name="Products" Relationship="iFincoDBModel.FK_Product_Company" FromRole="Company" ToRole="Product" />
+          <NavigationProperty Name="Parties" Relationship="iFincoDBModel.FK_Party_Company" FromRole="Company" ToRole="Party" />
+          <NavigationProperty Name="Branches" Relationship="iFincoDBModel.FK_Branch_Company" FromRole="Company" ToRole="Branch" />
+          <NavigationProperty Name="CompanyMenusAccesses" Relationship="iFincoDBModel.FK_CompanyMenusAccess_Company" FromRole="Company" ToRole="CompanyMenusAccess" />
+        </EntityType>
+        <EntityType Name="GoDown">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyId" Type="Int64" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Stocks" Relationship="iFincoDBModel.FK_Stock_GoDown" FromRole="GoDown" ToRole="Stock" />
+        </EntityType>
+        <EntityType Name="Variant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyId" Type="Int64" Nullable="false" />
+          <Property Name="BranchId" Type="Int64" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="VariantValues" Relationship="iFincoDBModel.FK_VariantValue_Variants" FromRole="Variant" ToRole="VariantValue" />
+          <NavigationProperty Name="ProductVariants" Relationship="iFincoDBModel.FK_ProductVariant_Variants" FromRole="Variant" ToRole="ProductVariant" />
+          <NavigationProperty Name="PACDetails" Relationship="iFincoDBModel.FK_PACDetail_Variants" FromRole="Variant" ToRole="PACDetail" />
+        </EntityType>
+        <EntityType Name="VariantValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyId" Type="Int64" Nullable="false" />
+          <Property Name="BranchId" Type="Int64" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="VariantId" Type="Int64" Nullable="false" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Variant" Relationship="iFincoDBModel.FK_VariantValue_Variants" FromRole="VariantValue" ToRole="Variant" />
+          <NavigationProperty Name="PACDetails" Relationship="iFincoDBModel.FK_PACDetail_VariantValue" FromRole="VariantValue" ToRole="PACDetail" />
+        </EntityType>
+        <Association Name="FK_VariantValue_Variants">
+          <End Type="iFincoDBModel.Variant" Role="Variant" Multiplicity="1" />
+          <End Type="iFincoDBModel.VariantValue" Role="VariantValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Variant">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VariantValue">
+              <PropertyRef Name="VariantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ProductVariant">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int64" Nullable="false" />
+          <Property Name="VariantId" Type="Int64" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Variant" Relationship="iFincoDBModel.FK_ProductVariant_Variants" FromRole="ProductVariant" ToRole="Variant" />
+          <NavigationProperty Name="Product" Relationship="iFincoDBModel.FK_ProductVariant_ProductVariant" FromRole="ProductVariant" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_ProductVariant_Variants">
+          <End Type="iFincoDBModel.Variant" Role="Variant" Multiplicity="1" />
+          <End Type="iFincoDBModel.ProductVariant" Role="ProductVariant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Variant">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductVariant">
+              <PropertyRef Name="VariantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ProductAttributeCombination">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int64" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="PACDetails" Relationship="iFincoDBModel.FK_PACDetail_ProductAttributeCombination" FromRole="ProductAttributeCombination" ToRole="PACDetail" />
+          <NavigationProperty Name="Product" Relationship="iFincoDBModel.FK_ProductAttributeCombination_Product" FromRole="ProductAttributeCombination" ToRole="Product" />
+          <NavigationProperty Name="Stocks" Relationship="iFincoDBModel.FK_Stock_ProductAttributeCombination" FromRole="ProductAttributeCombination" ToRole="Stock" />
+          <NavigationProperty Name="PurchaseDetails" Relationship="iFincoDBModel.FK_PurchaseDetail_ProductAttributeCombination" FromRole="ProductAttributeCombination" ToRole="PurchaseDetail" />
+          <NavigationProperty Name="SaleDetails" Relationship="iFincoDBModel.FK_SaleDetail_ProductAttributeCombination" FromRole="ProductAttributeCombination" ToRole="SaleDetail" />
+          <NavigationProperty Name="PurchaseReturnDetails" Relationship="iFincoDBModel.FK_PurchaseReturnDetail_ProductAttributeCombination" FromRole="ProductAttributeCombination" ToRole="PurchaseReturnDetail" />
+          <NavigationProperty Name="SaleReturnDetails" Relationship="iFincoDBModel.FK_SaleReturnDetail_ProductAttributeCombination" FromRole="ProductAttributeCombination" ToRole="SaleReturnDetail" />
+        </EntityType>
+        <EntityType Name="PACDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PACId" Type="Int64" Nullable="false" />
+          <Property Name="VariantId" Type="Int64" Nullable="false" />
+          <Property Name="VariantValueId" Type="Int64" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ProductAttributeCombination" Relationship="iFincoDBModel.FK_PACDetail_ProductAttributeCombination" FromRole="PACDetail" ToRole="ProductAttributeCombination" />
+          <NavigationProperty Name="Variant" Relationship="iFincoDBModel.FK_PACDetail_Variants" FromRole="PACDetail" ToRole="Variant" />
+          <NavigationProperty Name="VariantValue" Relationship="iFincoDBModel.FK_PACDetail_VariantValue" FromRole="PACDetail" ToRole="VariantValue" />
+        </EntityType>
+        <Association Name="FK_PACDetail_ProductAttributeCombination">
+          <End Type="iFincoDBModel.ProductAttributeCombination" Role="ProductAttributeCombination" Multiplicity="1" />
+          <End Type="iFincoDBModel.PACDetail" Role="PACDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductAttributeCombination">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PACDetail">
+              <PropertyRef Name="PACId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACDetail_Variants">
+          <End Type="iFincoDBModel.Variant" Role="Variant" Multiplicity="1" />
+          <End Type="iFincoDBModel.PACDetail" Role="PACDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Variant">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PACDetail">
+              <PropertyRef Name="VariantId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACDetail_VariantValue">
+          <End Type="iFincoDBModel.VariantValue" Role="VariantValue" Multiplicity="1" />
+          <End Type="iFincoDBModel.PACDetail" Role="PACDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VariantValue">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PACDetail">
+              <PropertyRef Name="VariantValueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="ImgUrl" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyId" Type="Int64" Nullable="false" />
+          <Property Name="BranchId" Type="Int64" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Company" Relationship="iFincoDBModel.FK_Brand_Company" FromRole="Brand" ToRole="Company" />
+          <NavigationProperty Name="Products" Relationship="iFincoDBModel.FK_Product_Brand" FromRole="Brand" ToRole="Product" />
+          <NavigationProperty Name="Branch" Relationship="iFincoDBModel.FK_Brand_Branch" FromRole="Brand" ToRole="Branch" />
+        </EntityType>
+        <Association Name="FK_Brand_Company">
+          <End Type="iFincoDBModel.Company" Role="Company" Multiplicity="1" />
+          <End Type="iFincoDBModel.Brand" Role="Brand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Brand">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Tags" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="HaveVarients" Type="Boolean" Nullable="false" />
+          <Property Name="CompanyId" Type="Int64" Nullable="false" />
+          <Property Name="BranchId" Type="Int64" />
+          <Property Name="CategoryId" Type="Int64" Nullable="false" />
+          <Property Name="BrandId" Type="Int64" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="HasExpiry" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Brand" Relationship="iFincoDBModel.FK_Product_Brand" FromRole="Product" ToRole="Brand" />
+          <NavigationProperty Name="Category" Relationship="iFincoDBModel.FK_Product_Category" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="Company" Relationship="iFincoDBModel.FK_Product_Company" FromRole="Product" ToRole="Company" />
+          <NavigationProperty Name="ProductAttributeCombinations" Relationship="iFincoDBModel.FK_ProductAttributeCombination_Product" FromRole="Product" ToRole="ProductAttributeCombination" />
+          <NavigationProperty Name="ProductVariants" Relationship="iFincoDBModel.FK_ProductVariant_ProductVariant" FromRole="Product" ToRole="ProductVariant" />
+          <NavigationProperty Name="Stocks" Relationship="iFincoDBModel.FK_Stock_Product" FromRole="Product" ToRole="Stock" />
+          <NavigationProperty Name="Branch" Relationship="iFincoDBModel.FK_Product_Branch" FromRole="Product" ToRole="Branch" />
+          <NavigationProperty Name="PurchaseDetails" Relationship="iFincoDBModel.FK_PurchaseDetail_Product" FromRole="Product" ToRole="PurchaseDetail" />
+          <NavigationProperty Name="SaleDetails" Relationship="iFincoDBModel.FK_SaleDetail_Product" FromRole="Product" ToRole="SaleDetail" />
+          <NavigationProperty Name="PurchaseReturnDetails" Relationship="iFincoDBModel.FK_PurchaseReturnDetail_Product" FromRole="Product" ToRole="PurchaseReturnDetail" />
+          <NavigationProperty Name="SaleReturnDetails" Relationship="iFincoDBModel.FK_SaleReturnDetail_Product" FromRole="Product" ToRole="SaleReturnDetail" />
+        </EntityType>
+        <Association Name="FK_Product_Brand">
+          <End Type="iFincoDBModel.Brand" Role="Brand" Multiplicity="0..1" />
+          <End Type="iFincoDBModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="BrandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Category">
+          <End Type="iFincoDBModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="iFincoDBModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Company">
+          <End Type="iFincoDBModel.Company" Role="Company" Multiplicity="1" />
+          <End Type="iFincoDBModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductAttributeCombination_Product">
+          <End Type="iFincoDBModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="iFincoDBModel.ProductAttributeCombination" Role="ProductAttributeCombination" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductAttributeCombination">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductVariant_ProductVariant">
+          <End Type="iFincoDBModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="iFincoDBModel.ProductVariant" Role="ProductVariant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductVariant">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Party">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyId" Type="Int64" Nullable="false" />
+          <Property Name="BranchId" Type="Int64" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Contact" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Adress" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyContact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Company" Relationship="iFincoDBModel.FK_Party_Company" FromRole="Party" ToRole="Company" />
+          <NavigationProperty Name="Sales" Relationship="iFincoDBModel.FK_Sale_Party" FromRole="Party" ToRole="Sale" />
+          <NavigationProperty Name="Branch" Relationship="iFincoDBModel.FK_Party_Branch" FromRole="Party" ToRole="Branch" />
+          <NavigationProperty Name="Purchases" Relationship="iFincoDBModel.FK_Purchase_Party" FromRole="Party" ToRole="Purchase" />
+          <NavigationProperty Name="PurchaseReturns" Relationship="iFincoDBModel.FK_PurchaseReturn_Party" FromRole="Party" ToRole="PurchaseReturn" />
+          <NavigationProperty Name="SaleReturns" Relationship="iFincoDBModel.FK_SaleReturn_Party" FromRole="Party" ToRole="SaleReturn" />
+          <NavigationProperty Name="Generalinvoices" Relationship="iFincoDBModel.FK_Generalinvoice_Party" FromRole="Party" ToRole="Generalinvoice" />
+        </EntityType>
+        <Association Name="FK_Party_Company">
+          <End Type="iFincoDBModel.Company" Role="Company" Multiplicity="1" />
+          <End Type="iFincoDBModel.Party" Role="Party" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Party">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="SellingPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="PurchasingPrice" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Code" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="BarCode" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="BarCodeImgUrl" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="ExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="ProductId" Type="Int64" Nullable="false" />
+          <Property Name="CompanyId" Type="Int64" Nullable="false" />
+          <Property Name="BranchId" Type="Int64" />
+          <Property Name="GodownId" Type="Int64" />
+          <Property Name="PACId" Type="Int64" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="GoDown" Relationship="iFincoDBModel.FK_Stock_GoDown" FromRole="Stock" ToRole="GoDown" />
+          <NavigationProperty Name="Product" Relationship="iFincoDBModel.FK_Stock_Product" FromRole="Stock" ToRole="Product" />
+          <NavigationProperty Name="ProductAttributeCombination" Relationship="iFincoDBModel.FK_Stock_ProductAttributeCombination" FromRole="Stock" ToRole="ProductAttributeCombination" />
+        </EntityType>
+        <Association Name="FK_Stock_GoDown">
+          <End Type="iFincoDBModel.GoDown" Role="GoDown" Multiplicity="0..1" />
+          <End Type="iFincoDBModel.Stock" Role="Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoDown">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="GodownId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_Product">
+          <End Type="iFincoDBModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="iFincoDBModel.Stock" Role="Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_ProductAttributeCombination">
+          <End Type="iFincoDBModel.ProductAttributeCombination" Role="ProductAttributeCombination" Multiplicity="0..1" />
+          <End Type="iFincoDBModel.Stock" Role="Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductAttributeCombination">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="PACId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyId" Type="Int64" Nullable="false" />
+          <Property Name="PartyId" Type="Int64" />
+          <Property Name="BranchId" Type="Int64" />
+          <Property Name="Total" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Notes" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="PaymentType" Type="Int32" Nullable="false" />
+          <Property Name="PaidAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="InvoiceNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Party" Relationship="iFincoDBModel.FK_Sale_Party" FromRole="Sale" ToRole="Party" />
+          <NavigationProperty Name="SaleDetails" Relationship="iFincoDBModel.FK_SaleDetail_Sale" FromRole="Sale" ToRole="SaleDetail" />
+          <NavigationProperty Name="ShippingDetails" Relationship="iFincoDBModel.FK_ShippingDetail_ShippingDetail" FromRole="Sale" ToRole="ShippingDetail" />
+          <NavigationProperty Name="SaleReturns" Relationship="iFincoDBModel.FK_SaleReturn_Sale" FromRole="Sale" ToRole="SaleReturn" />
+        </EntityType>
+        <Association Name="FK_Sale_Party">
+          <End Type="iFincoDBModel.Party" Role="Party" Multiplicity="0..1" />
+          <End Type="iFincoDBModel.Sale" Role="Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="PartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Adress" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="CompanyId" Type="Int64" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Contact" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsHeadOffice" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Company" Relationship="iFincoDBModel.FK_Branch_Company" FromRole="Branch" ToRole="Company" />
+          <NavigationProperty Name="Brands" Relationship="iFincoDBModel.FK_Brand_Branch" FromRole="Branch" ToRole="Brand" />
+          <NavigationProperty Name="Parties" Relationship="iFincoDBModel.FK_Party_Branch" FromRole="Branch" ToRole="Party" />
+          <NavigationProperty Name="Products" Relationship="iFincoDBModel.FK_Product_Branch" FromRole="Branch" ToRole="Product" />
+          <NavigationProperty Name="BranchAccesses" Relationship="iFincoDBModel.FK_BranchAccess_Branch" FromRole="Branch" ToRole="BranchAccess" />
+        </EntityType>
+        <Association Name="FK_Branch_Company">
+          <End Type="iFincoDBModel.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="iFincoDBModel.Branch" Role="Branch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Branch">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Brand_Branch">
+          <End Type="iFincoDBModel.Branch" Role="Branch" Multiplicity="0..1" />
+          <End Type="iFincoDBModel.Brand" Role="Brand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Brand">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Party_Branch">
+          <End Type="iFincoDBModel.Branch" Role="Branch" Multiplicity="0..1" />
+          <End Type="iFincoDBModel.Party" Role="Party" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Party">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Branch">
+          <End Type="iFincoDBModel.Branch" Role="Branch" Multiplicity="0..1" />
+          <End Type="iFincoDBModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Purchase">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyId" Type="Int64" Nullable="false" />
+          <Property Name="PartyId" Type="Int64" />
+          <Property Name="BranchId" Type="Int64" />
+          <Property Name="Total" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Notes" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="PaymentType" Type="Int32" Nullable="false" />
+          <Property Name="PaidAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="InvoiceNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Party" Relationship="iFincoDBModel.FK_Purchase_Party" FromRole="Purchase" ToRole="Party" />
+          <NavigationProperty Name="PurchaseDetails" Relationship="iFincoDBModel.FK_PurchaseDetail_Purchase" FromRole="Purchase" ToRole="PurchaseDetail" />
+          <NavigationProperty Name="ShippingDetails" Relationship="iFincoDBModel.FK_ShippingDetail_Purchase" FromRole="Purchase" ToRole="ShippingDetail" />
+        </EntityType>
+        <Association Name="FK_Purchase_Party">
+          <End Type="iFincoDBModel.Party" Role="Party" Multiplicity="0..1" />
+          <End Type="iFincoDBModel.Purchase" Role="Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Purchase">
+              <PropertyRef Name="PartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BranchAccess">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BranchId" Type="Int64" Nullable="false" />
+          <Property Name="UId" Type="Int64" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Branch" Relationship="iFincoDBModel.FK_BranchAccess_Branch" FromRole="BranchAccess" ToRole="Branch" />
+        </EntityType>
+        <Association Name="FK_BranchAccess_Branch">
+          <End Type="iFincoDBModel.Branch" Role="Branch" Multiplicity="1" />
+          <End Type="iFincoDBModel.BranchAccess" Role="BranchAccess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BranchAccess">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PurchaseDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int64" Nullable="false" />
+          <Property Name="PACId" Type="Int64" />
+          <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PurchaseId" Type="Int64" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Tax" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="Product" Relationship="iFincoDBModel.FK_PurchaseDetail_Product" FromRole="PurchaseDetail" ToRole="Product" />
+          <NavigationProperty Name="ProductAttributeCombination" Relationship="iFincoDBModel.FK_PurchaseDetail_ProductAttributeCombination" FromRole="PurchaseDetail" ToRole="ProductAttributeCombination" />
+          <NavigationProperty Name="Purchase" Relationship="iFincoDBModel.FK_PurchaseDetail_Purchase" FromRole="PurchaseDetail" ToRole="Purchase" />
+        </EntityType>
+        <EntityType Name="SaleDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int64" Nullable="false" />
+          <Property Name="PACId" Type="Int64" />
+          <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SaleId" Type="Int64" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Tax" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="Product" Relationship="iFincoDBModel.FK_SaleDetail_Product" FromRole="SaleDetail" ToRole="Product" />
+          <NavigationProperty Name="ProductAttributeCombination" Relationship="iFincoDBModel.FK_SaleDetail_ProductAttributeCombination" FromRole="SaleDetail" ToRole="ProductAttributeCombination" />
+          <NavigationProperty Name="Sale" Relationship="iFincoDBModel.FK_SaleDetail_Sale" FromRole="SaleDetail" ToRole="Sale" />
+        </EntityType>
+        <Association Name="FK_PurchaseDetail_Product">
+          <End Type="iFincoDBModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="iFincoDBModel.PurchaseDetail" Role="PurchaseDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseDetail">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleDetail_Product">
+          <End Type="iFincoDBModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="iFincoDBModel.SaleDetail" Role="SaleDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SaleDetail">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseDetail_ProductAttributeCombination">
+          <End Type="iFincoDBModel.ProductAttributeCombination" Role="ProductAttributeCombination" Multiplicity="0..1" />
+          <End Type="iFincoDBModel.PurchaseDetail" Role="PurchaseDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductAttributeCombination">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseDetail">
+              <PropertyRef Name="PACId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleDetail_ProductAttributeCombination">
+          <End Type="iFincoDBModel.ProductAttributeCombination" Role="ProductAttributeCombination" Multiplicity="0..1" />
+          <End Type="iFincoDBModel.SaleDetail" Role="SaleDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductAttributeCombination">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SaleDetail">
+              <PropertyRef Name="PACId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseDetail_Purchase">
+          <End Type="iFincoDBModel.Purchase" Role="Purchase" Multiplicity="1" />
+          <End Type="iFincoDBModel.PurchaseDetail" Role="PurchaseDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Purchase">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseDetail">
+              <PropertyRef Name="PurchaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleDetail_Sale">
+          <End Type="iFincoDBModel.Sale" Role="Sale" Multiplicity="1" />
+          <End Type="iFincoDBModel.SaleDetail" Role="SaleDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SaleDetail">
+              <PropertyRef Name="SaleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PurchaseReturn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PurchaseId" Type="Int64" Nullable="false" />
+          <Property Name="CompanyId" Type="Int64" Nullable="false" />
+          <Property Name="PartyId" Type="Int64" />
+          <Property Name="BranchId" Type="Int64" />
+          <Property Name="Total" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Notes" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="PaymentType" Type="Int32" Nullable="false" />
+          <Property Name="PaidAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="InvoiceNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Party" Relationship="iFincoDBModel.FK_PurchaseReturn_Party" FromRole="PurchaseReturn" ToRole="Party" />
+          <NavigationProperty Name="PurchaseReturnDetails" Relationship="iFincoDBModel.FK_PurchaseReturnDetail_PurchaseReturn" FromRole="PurchaseReturn" ToRole="PurchaseReturnDetail" />
+        </EntityType>
+        <Association Name="FK_PurchaseReturn_Party">
+          <End Type="iFincoDBModel.Party" Role="Party" Multiplicity="0..1" />
+          <End Type="iFincoDBModel.PurchaseReturn" Role="PurchaseReturn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseReturn">
+              <PropertyRef Name="PartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ShippingDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SaleId" Type="Int64" />
+          <Property Name="PurchaseId" Type="Int64" />
+          <Property Name="ShipmentNo" Type="Int64" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Purchase" Relationship="iFincoDBModel.FK_ShippingDetail_Purchase" FromRole="ShippingDetail" ToRole="Purchase" />
+          <NavigationProperty Name="Sale" Relationship="iFincoDBModel.FK_ShippingDetail_ShippingDetail" FromRole="ShippingDetail" ToRole="Sale" />
+        </EntityType>
+        <Association Name="FK_ShippingDetail_Purchase">
+          <End Type="iFincoDBModel.Purchase" Role="Purchase" Multiplicity="0..1" />
+          <End Type="iFincoDBModel.ShippingDetail" Role="ShippingDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Purchase">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShippingDetail">
+              <PropertyRef Name="PurchaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ShippingDetail_ShippingDetail">
+          <End Type="iFincoDBModel.Sale" Role="Sale" Multiplicity="0..1" />
+          <End Type="iFincoDBModel.ShippingDetail" Role="ShippingDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ShippingDetail">
+              <PropertyRef Name="SaleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CompanyMenusAccess">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyId" Type="Int64" Nullable="false" />
+          <Property Name="MenuId" Type="Int64" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Company" Relationship="iFincoDBModel.FK_CompanyMenusAccess_Company" FromRole="CompanyMenusAccess" ToRole="Company" />
+          <NavigationProperty Name="Menu" Relationship="iFincoDBModel.FK_CompanyMenusAccess_Menu" FromRole="CompanyMenusAccess" ToRole="Menu" />
+        </EntityType>
+        <Association Name="FK_CompanyMenusAccess_Company">
+          <End Type="iFincoDBModel.Company" Role="Company" Multiplicity="1" />
+          <End Type="iFincoDBModel.CompanyMenusAccess" Role="CompanyMenusAccess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanyMenusAccess">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SaleReturn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SaleId" Type="Int64" Nullable="false" />
+          <Property Name="CompanyId" Type="Int64" Nullable="false" />
+          <Property Name="PartyId" Type="Int64" />
+          <Property Name="BranchId" Type="Int64" />
+          <Property Name="Total" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Notes" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="PaymentType" Type="Int32" Nullable="false" />
+          <Property Name="PaidAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="InvoiceNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Party" Relationship="iFincoDBModel.FK_SaleReturn_Party" FromRole="SaleReturn" ToRole="Party" />
+          <NavigationProperty Name="Sale" Relationship="iFincoDBModel.FK_SaleReturn_Sale" FromRole="SaleReturn" ToRole="Sale" />
+          <NavigationProperty Name="SaleReturnDetails" Relationship="iFincoDBModel.FK_SaleReturnDetail_SaleReturn" FromRole="SaleReturn" ToRole="SaleReturnDetail" />
+        </EntityType>
+        <Association Name="FK_SaleReturn_Party">
+          <End Type="iFincoDBModel.Party" Role="Party" Multiplicity="0..1" />
+          <End Type="iFincoDBModel.SaleReturn" Role="SaleReturn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SaleReturn">
+              <PropertyRef Name="PartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleReturn_Sale">
+          <End Type="iFincoDBModel.Sale" Role="Sale" Multiplicity="1" />
+          <End Type="iFincoDBModel.SaleReturn" Role="SaleReturn" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SaleReturn">
+              <PropertyRef Name="SaleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PurchaseReturnDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int64" Nullable="false" />
+          <Property Name="PACId" Type="Int64" />
+          <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PurchaseReturnId" Type="Int64" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Tax" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="Product" Relationship="iFincoDBModel.FK_PurchaseReturnDetail_Product" FromRole="PurchaseReturnDetail" ToRole="Product" />
+          <NavigationProperty Name="ProductAttributeCombination" Relationship="iFincoDBModel.FK_PurchaseReturnDetail_ProductAttributeCombination" FromRole="PurchaseReturnDetail" ToRole="ProductAttributeCombination" />
+          <NavigationProperty Name="PurchaseReturn" Relationship="iFincoDBModel.FK_PurchaseReturnDetail_PurchaseReturn" FromRole="PurchaseReturnDetail" ToRole="PurchaseReturn" />
+        </EntityType>
+        <EntityType Name="SaleReturnDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SaleReturnId" Type="Int64" Nullable="false" />
+          <Property Name="ProductId" Type="Int64" Nullable="false" />
+          <Property Name="PACId" Type="Int64" />
+          <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Tax" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="Product" Relationship="iFincoDBModel.FK_SaleReturnDetail_Product" FromRole="SaleReturnDetail" ToRole="Product" />
+          <NavigationProperty Name="ProductAttributeCombination" Relationship="iFincoDBModel.FK_SaleReturnDetail_ProductAttributeCombination" FromRole="SaleReturnDetail" ToRole="ProductAttributeCombination" />
+          <NavigationProperty Name="SaleReturn" Relationship="iFincoDBModel.FK_SaleReturnDetail_SaleReturn" FromRole="SaleReturnDetail" ToRole="SaleReturn" />
+        </EntityType>
+        <Association Name="FK_PurchaseReturnDetail_Product">
+          <End Type="iFincoDBModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="iFincoDBModel.PurchaseReturnDetail" Role="PurchaseReturnDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseReturnDetail">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleReturnDetail_Product">
+          <End Type="iFincoDBModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="iFincoDBModel.SaleReturnDetail" Role="SaleReturnDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SaleReturnDetail">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseReturnDetail_ProductAttributeCombination">
+          <End Type="iFincoDBModel.ProductAttributeCombination" Role="ProductAttributeCombination" Multiplicity="0..1" />
+          <End Type="iFincoDBModel.PurchaseReturnDetail" Role="PurchaseReturnDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductAttributeCombination">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseReturnDetail">
+              <PropertyRef Name="PACId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleReturnDetail_ProductAttributeCombination">
+          <End Type="iFincoDBModel.ProductAttributeCombination" Role="ProductAttributeCombination" Multiplicity="0..1" />
+          <End Type="iFincoDBModel.SaleReturnDetail" Role="SaleReturnDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductAttributeCombination">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SaleReturnDetail">
+              <PropertyRef Name="PACId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseReturnDetail_PurchaseReturn">
+          <End Type="iFincoDBModel.PurchaseReturn" Role="PurchaseReturn" Multiplicity="1" />
+          <End Type="iFincoDBModel.PurchaseReturnDetail" Role="PurchaseReturnDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseReturn">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseReturnDetail">
+              <PropertyRef Name="PurchaseReturnId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleReturnDetail_SaleReturn">
+          <End Type="iFincoDBModel.SaleReturn" Role="SaleReturn" Multiplicity="1" />
+          <End Type="iFincoDBModel.SaleReturnDetail" Role="SaleReturnDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SaleReturn">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SaleReturnDetail">
+              <PropertyRef Name="SaleReturnId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Generalinvoice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PartyId" Type="Int64" />
+          <Property Name="InvoiceNum" Type="Int64" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="BranchId" Type="Int64" />
+          <Property Name="CompanyId" Type="Int64" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Party" Relationship="iFincoDBModel.FK_Generalinvoice_Party" FromRole="Generalinvoice" ToRole="Party" />
+        </EntityType>
+        <Association Name="FK_Generalinvoice_Party">
+          <End Type="iFincoDBModel.Party" Role="Party" Multiplicity="0..1" />
+          <End Type="iFincoDBModel.Generalinvoice" Role="Generalinvoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Generalinvoice">
+              <PropertyRef Name="PartyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClassName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Area" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Action" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Controller" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ParentId" Type="Int64" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="InNav" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CompanyMenusAccesses" Relationship="iFincoDBModel.FK_CompanyMenusAccess_Menu" FromRole="Menu" ToRole="CompanyMenusAccess" />
+          <NavigationProperty Name="Menu1" Relationship="iFincoDBModel.FK_Menu_Menu" FromRole="Menu" ToRole="Menu1" />
+          <NavigationProperty Name="Menu2" Relationship="iFincoDBModel.FK_Menu_Menu" FromRole="Menu1" ToRole="Menu" />
+        </EntityType>
+        <Association Name="FK_CompanyMenusAccess_Menu">
+          <End Type="iFincoDBModel.Menu" Role="Menu" Multiplicity="1" />
+          <End Type="iFincoDBModel.CompanyMenusAccess" Role="CompanyMenusAccess" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompanyMenusAccess">
+              <PropertyRef Name="MenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Menu_Menu">
+          <End Type="iFincoDBModel.Menu" Role="Menu" Multiplicity="0..1" />
+          <End Type="iFincoDBModel.Menu" Role="Menu1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Menu1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="InvoiceTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TemplateType" Type="Int32" />
+          <Property Name="FileUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CompanyId" Type="Int64" Nullable="false" />
+          <Property Name="BranchId" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PlaceHolder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="TemplateType" Type="Int32" Nullable="false" />
+          <Property Name="Palceholder" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="iFincoDBModelStoreContainer" CdmEntityContainer="iFincoDBEntities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="iFincoDBModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ImgUrl" ColumnName="ImgUrl" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="iFincoDBModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneCode" ColumnName="PhoneCode" />
+                <ScalarProperty Name="IsContactConfirmed" ColumnName="IsContactConfirmed" />
+                <ScalarProperty Name="IsEmailConfirmed" ColumnName="IsEmailConfirmed" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="CreateOn" ColumnName="CreateOn" />
+                <ScalarProperty Name="LogoUrl" ColumnName="LogoUrl" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="NTN_STN" ColumnName="NTN/STN" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GoDowns">
+            <EntityTypeMapping TypeName="iFincoDBModel.GoDown">
+              <MappingFragment StoreEntitySet="GoDown">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Variants">
+            <EntityTypeMapping TypeName="iFincoDBModel.Variant">
+              <MappingFragment StoreEntitySet="Variants">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VariantValues">
+            <EntityTypeMapping TypeName="iFincoDBModel.VariantValue">
+              <MappingFragment StoreEntitySet="VariantValue">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="VariantId" ColumnName="VariantId" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductVariants">
+            <EntityTypeMapping TypeName="iFincoDBModel.ProductVariant">
+              <MappingFragment StoreEntitySet="ProductVariant">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="VariantId" ColumnName="VariantId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductAttributeCombinations">
+            <EntityTypeMapping TypeName="iFincoDBModel.ProductAttributeCombination">
+              <MappingFragment StoreEntitySet="ProductAttributeCombination">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PACDetails">
+            <EntityTypeMapping TypeName="iFincoDBModel.PACDetail">
+              <MappingFragment StoreEntitySet="PACDetail">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="VariantValueId" ColumnName="VariantValueId" />
+                <ScalarProperty Name="VariantId" ColumnName="VariantId" />
+                <ScalarProperty Name="PACId" ColumnName="PACId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Brands">
+            <EntityTypeMapping TypeName="iFincoDBModel.Brand">
+              <MappingFragment StoreEntitySet="Brand">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="ImgUrl" ColumnName="ImgUrl" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="iFincoDBModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="HasExpiry" ColumnName="HasExpiry" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="HaveVarients" ColumnName="HaveVarients" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parties">
+            <EntityTypeMapping TypeName="iFincoDBModel.Party">
+              <MappingFragment StoreEntitySet="Party">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CompanyContact" ColumnName="CompanyContact" />
+                <ScalarProperty Name="CompanyEmail" ColumnName="CompanyEmail" />
+                <ScalarProperty Name="CompanyTitle" ColumnName="CompanyTitle" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stocks">
+            <EntityTypeMapping TypeName="iFincoDBModel.Stock">
+              <MappingFragment StoreEntitySet="Stock">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="PACId" ColumnName="PACId" />
+                <ScalarProperty Name="GodownId" ColumnName="GodownId" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="BarCodeImgUrl" ColumnName="BarCodeImgUrl" />
+                <ScalarProperty Name="BarCode" ColumnName="BarCode" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="PurchasingPrice" ColumnName="PurchasingPrice" />
+                <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sales">
+            <EntityTypeMapping TypeName="iFincoDBModel.Sale">
+              <MappingFragment StoreEntitySet="Sale">
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+                <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="PartyId" ColumnName="PartyId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Branches">
+            <EntityTypeMapping TypeName="iFincoDBModel.Branch">
+              <MappingFragment StoreEntitySet="Branch">
+                <ScalarProperty Name="IsHeadOffice" ColumnName="IsHeadOffice" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Purchases">
+            <EntityTypeMapping TypeName="iFincoDBModel.Purchase">
+              <MappingFragment StoreEntitySet="Purchase">
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+                <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="PartyId" ColumnName="PartyId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BranchAccesses">
+            <EntityTypeMapping TypeName="iFincoDBModel.BranchAccess">
+              <MappingFragment StoreEntitySet="BranchAccess">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UId" ColumnName="UId" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseDetails">
+            <EntityTypeMapping TypeName="iFincoDBModel.PurchaseDetail">
+              <MappingFragment StoreEntitySet="PurchaseDetail">
+                <ScalarProperty Name="Tax" ColumnName="Tax" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="PurchaseId" ColumnName="PurchaseId" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="PACId" ColumnName="PACId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleDetails">
+            <EntityTypeMapping TypeName="iFincoDBModel.SaleDetail">
+              <MappingFragment StoreEntitySet="SaleDetail">
+                <ScalarProperty Name="Tax" ColumnName="Tax" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="PACId" ColumnName="PACId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseReturns">
+            <EntityTypeMapping TypeName="iFincoDBModel.PurchaseReturn">
+              <MappingFragment StoreEntitySet="PurchaseReturn">
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+                <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="PartyId" ColumnName="PartyId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="PurchaseId" ColumnName="PurchaseId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShippingDetails">
+            <EntityTypeMapping TypeName="iFincoDBModel.ShippingDetail">
+              <MappingFragment StoreEntitySet="ShippingDetail">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ShipmentNo" ColumnName="ShipmentNo" />
+                <ScalarProperty Name="PurchaseId" ColumnName="PurchaseId" />
+                <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyMenusAccesses">
+            <EntityTypeMapping TypeName="iFincoDBModel.CompanyMenusAccess">
+              <MappingFragment StoreEntitySet="CompanyMenusAccess">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="MenuId" ColumnName="MenuId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleReturns">
+            <EntityTypeMapping TypeName="iFincoDBModel.SaleReturn">
+              <MappingFragment StoreEntitySet="SaleReturn">
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+                <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="PartyId" ColumnName="PartyId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseReturnDetails">
+            <EntityTypeMapping TypeName="iFincoDBModel.PurchaseReturnDetail">
+              <MappingFragment StoreEntitySet="PurchaseReturnDetail">
+                <ScalarProperty Name="Tax" ColumnName="Tax" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="PurchaseReturnId" ColumnName="PurchaseReturnId" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="PACId" ColumnName="PACId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleReturnDetails">
+            <EntityTypeMapping TypeName="iFincoDBModel.SaleReturnDetail">
+              <MappingFragment StoreEntitySet="SaleReturnDetail">
+                <ScalarProperty Name="Tax" ColumnName="Tax" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="PACId" ColumnName="PACId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="SaleReturnId" ColumnName="SaleReturnId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Generalinvoices">
+            <EntityTypeMapping TypeName="iFincoDBModel.Generalinvoice">
+              <MappingFragment StoreEntitySet="Generalinvoice">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="InvoiceNum" ColumnName="InvoiceNum" />
+                <ScalarProperty Name="PartyId" ColumnName="PartyId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menus">
+            <EntityTypeMapping TypeName="iFincoDBModel.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="InNav" ColumnName="InNav" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InvoiceTemplates">
+            <EntityTypeMapping TypeName="iFincoDBModel.InvoiceTemplate">
+              <MappingFragment StoreEntitySet="InvoiceTemplate">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="FileUrl" ColumnName="FileUrl" />
+                <ScalarProperty Name="TemplateType" ColumnName="TemplateType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlaceHolders">
+            <EntityTypeMapping TypeName="iFincoDBModel.PlaceHolder">
+              <MappingFragment StoreEntitySet="PlaceHolder">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Palceholder" ColumnName="Palceholder" />
+                <ScalarProperty Name="TemplateType" ColumnName="TemplateType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

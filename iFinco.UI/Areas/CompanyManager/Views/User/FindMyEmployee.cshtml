@@ -1,0 +1,65 @@
+﻿<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            @*@Html.ActionLink("Index", "Branch", new { @class = "btn btn-info btn-lg" })*@
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <div class="col-md-9">
+                            <h4 class="title">Find Employee</h4>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <div id="map" style="width:100%;height:700px;"></div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGRfPdjPOonBbSPsbT_hMJTS13tgjW-e4"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript">
+        var map = '';
+        var marker = '';
+        function InitMap(latLng) {
+            var myCenter = latLng;
+            var mapCanvas = document.getElementById("map");
+            var mapOptions = { center: myCenter, zoom: 15 };
+            map = new google.maps.Map(mapCanvas, mapOptions);
+            marker = new google.maps.Marker({ position: myCenter, title: 'VNext Solution' });
+            marker.setMap(map);
+        }
+        function addmarker(latilongi) {
+            var marker = new google.maps.Marker({
+                position: latilongi,
+                title: 'new marker',
+                draggable: true,
+                map: map
+            });
+            map.setCenter(marker.getPosition())
+        }
+
+        $(document).ready(function () {
+            var currentLocation = new google.maps.LatLng('32.16101340000001', '74.19743489999999');
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    // addmarker(initialLocation);
+                });
+            }
+
+            if (navigator.geolocation) {
+                navigator.geolocation.watchPosition(function (position) {
+                    currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                    // addmarker(initialLocation);
+                });
+            }
+            InitMap(currentLocation);
+        });
+        
+    </script>
+}

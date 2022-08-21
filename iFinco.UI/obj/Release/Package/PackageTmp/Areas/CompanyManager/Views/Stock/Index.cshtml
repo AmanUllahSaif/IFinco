@@ -1,0 +1,150 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+
+@model iFinco.UI.Models.StockSearchModel
+
+@{
+    ViewBag.Title = "Stock Management";
+    bool isSearched = Model != null && (!string.IsNullOrEmpty(Model.Title) || Model.GodownId > 0);
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <div class="col-md-9">
+                            <h4 class="title">Stock</h4>
+                            <p class="category">Manage Stock, you can add,edit or delete any Stock.</p>
+                        </div>
+                        <div class="col-md-3 text-right">
+                            @Html.ActionLink("Add", "Create", "Stcok", new { @class = "btn btn-info btn-sm" })
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    @using (Html.BeginForm("index", "Stock", FormMethod.Get))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="card-content table-responsive">
+                            <table class="table ">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th>Product</th>
+                                        @*<th>Godown</th>*@
+                                        <th>Quantity</th>
+                                        <th>
+                                            Action
+                                            <a href="#">
+                                                <i class="material-icons" id="btnSearch">keyboard_arrow_down</i>
+                                            </a>
+                                            @*<button class="btn btn-info btn-sm" id="btnSearch" type="button">
+                                                    <i class="material-icons">search</i>
+                                                    <div class="ripple-container"></div>
+                                                </button>*@
+                                        </th>
+                                    </tr>
+
+                                    <tr @(isSearched ? "" : "style=display:none") id="trSearch">
+
+                                        <td>@Html.TextBoxFor(x => x.Title, new { @class = "form-control", placeholder = "Title" })</td>
+                                        @*<td>@Html.DropDownListFor(x => x.GodownId, new SelectList(ViewBag.Godown, "Id", "Title"), "Select Godown", new { @class = "form-control" })</td>*@
+                                        <td> </td>
+                                        <td>
+                                            <button class="btn btn-info btn-sm " type="submit">
+                                                <i class="material-icons">search</i>
+                                                <div class="ripple-container"></div>
+                                            </button>
+                                            <a href="@Url.Action("Index","Stock")" class="btn btn-info btn-sm">
+                                                <i class="material-icons">refresh</i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @if (Model.Data == null || Model.Data.Count() < 1)
+                                    {
+                                        <tr>
+                                            <td colspan="5" class="text-center">No record found</td>
+                                        </tr>
+                                    }
+                                    @foreach (var item in Model.Data)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <b>@item.Product.Title</b> <br />
+                                                @if (item.ProductAttributeCombination != null)
+                                                {
+                                                    foreach (var pdetail in item.ProductAttributeCombination.PACDetails)
+                                                    {
+                                                        if (pdetail.IsActive)
+                                                        {
+                                                            <label>@pdetail.VariantValue.Title ,</label>
+                                                        }
+                                                    }
+                                                }
+                                            </td>
+                                            @*<td>
+                                                    @if (item.GodownId != null)
+                                                    {
+                                                        @item.GoDown.Title
+                                                    }
+                                                </td>*@
+                                            <td>@item.Quantity</td>
+                                            <td>
+                                                <a href="@Url.Action("Edit", "Stock", new { area="CompanyManager", id = item.ProductId, pacid = item.PACId})" data-toggle="tooltip" title="Deduct Stock"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                                @*<a href="@Url.Action("Delete", "Stock", new { area="CompanyManager", id = item.ProductId, pacid = item.PACId})" data-toggle="tooltip" title="Delete Stock"><i class="fa fa-trash" aria-hidden="true"></i></a>*@
+                                                @Ajax.ActionLink(" ", "Detail", "Stock", new { area = "CompanyManager", id = item.ProductId, pacid = item.PACId }, new AjaxOptions { HttpMethod = "GET", OnSuccess = "ShowModal" }, new { data_toggle = "tooltip", title = "View Detail", @class = "fa fa-info" })
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <div class="col-md-12 text-right">
+                                @Html.PagedListPager((IPagedList)Model.Data, page => Url.Action("Index", new { page, Adress = Request.QueryString["Adress"], Title = Request.QueryString["Title"], GodownId = Request.QueryString["GodownId"] }))
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="companyModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Stock Info</h4>
+            </div>
+            <div class="modal-body" id="content">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="btnCncl" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" class="active-nav" value="#Stock" />
+
+@section Scripts{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript">
+        function ShowModal(data) {
+            $('#content').html(data);
+            $('#companyModal').modal();
+        }
+
+        $('#btnSearch').click(function () {
+            $('#trSearch').slideToggle('slow');
+        })
+
+    </script>
+}
+

@@ -1,0 +1,89 @@
+﻿@model iFinco.UI.Models.BranchAccessVM
+@{
+    ViewBag.Title = "Branch Access";
+}
+
+
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-4">
+            @Html.DropDownList("Users", new SelectList(ViewBag.Users, "UID", "Name"), "Select User", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        @foreach (var item in ViewBag.Branchs)
+        {
+            <div class="col-md-4" id="brnch-@item.Id">
+                <input type="hidden" name="id" class="brnchId" value="@item.Id" />
+                <div class="card card-stats">
+                    <div class="card-header" data-background-color="green">
+                        <i class="material-icons">store</i>
+                    </div>
+                    <div class="card-content">
+                        <p class="title">@item.Title</p>
+                        <div class="checkbox">
+                            <label for="chek-@item.Id">
+                                <input id="chek-@item.Id" class="check" type="checkbox" value="@item.Id">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">date_range</i> @item.Adress
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $('.check').on('change', function (event, state) {
+            debugger;
+            var userId = $('#Users').val();
+            var checked = $(this).is(':checked')
+            if (userId) {
+                if (checked) {
+                    $.ajax({
+                        url: '/companymanager/Branch/SaveAccess/' + userId + '?branchId=' + $(this).val(),
+                        type: 'GET',
+                    })
+                } else {
+                    $.ajax({
+                        url: '/companymanager/Branch/RemoveAccess/' + userId + '?branchId=' + $(this).val(),
+                        type: 'GET',
+                    })
+                }
+            } else {
+                ShowNotification('top', 'right', 'danger', 'notifications', 'Select User.')
+                $(this).prop('checked', false);
+                return false;
+            }
+        });
+
+        $('#Users').change(function () {
+            var id = $(this).val();
+            if (id) {
+                $('.check').prop('checked', false);
+                $.ajax({
+                    url: '/companymanager/Branch/GetAccessBranchs/' + id,
+                    type: 'GET',
+                    success: function (data) {
+                        if (!data) {
+                            ShowNotification('top', 'right', 'danger', 'notifications', 'This User has no access to any branch.');
+                        } else {
+                            for (var i = 0; i < data.length; i++) {
+                                $('#chek-' + data[i]).prop('checked', true);
+                            }
+                        }
+                    }
+                })
+            }
+
+        })
+    </script>
+}
+

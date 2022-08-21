@@ -1,0 +1,106 @@
+﻿@model iFinco.DAL.Party
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Create Party</h4>
+                        <p class="Party"></p>
+                    </div>
+                    <div class="card-content">
+                        @using (Html.BeginForm("Create", "Party", FormMethod.Post, new { id = "contact-for", enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group label-floating">
+                                        @Html.LabelFor(x => x.Title, new { @class = "contor-label" })
+                                        @Html.HiddenFor(x => x.Id)
+                                        @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.Title)
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group label-floating">
+                                        @Html.LabelFor(x => x.Email, new { @class = "contor-label" })
+                                        @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.Email)
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group label-floating">
+                                        @Html.LabelFor(x => x.Contact, new { @class = "contor-label" })
+                                        @Html.TextBoxFor(x => x.Contact, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.Contact)
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group label-floating">
+                                        @Html.LabelFor(x => x.CompanyTitle, new { @class = "contor-label" })
+                                        @Html.TextBoxFor(x => x.CompanyTitle, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.CompanyTitle)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group label-floating">
+                                        @Html.LabelFor(x => x.CompanyContact, new { @class = "contor-label" })
+                                        @Html.TextBoxFor(x => x.CompanyContact, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.CompanyContact)
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group label-floating">
+                                        @Html.LabelFor(x => x.CompanyEmail, new { @class = "contor-label" })
+                                        @Html.TextBoxFor(x => x.CompanyEmail, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.CompanyEmail)
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group label-floating">
+                                        @Html.LabelFor(x => x.Balance, new { @class = "contor-label" })
+                                        @Html.TextBoxFor(x => x.Balance, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.Balance)
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group label-floating">
+                                        @Html.LabelFor(x => x.IsCredit, new { @class = "contor-label" })<br />
+                                        @Html.CheckBoxFor(x => x.IsCredit, new { @class = "form-control switch" })
+                                        @Html.ValidationMessageFor(x => x.IsCredit)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group label-floating">
+                                        @Html.LabelFor(x => x.Adress, new { @class = "contor-label" })
+                                        @Html.TextBoxFor(x => x.Adress, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.Adress)
+                                    </div>
+                                </div>
+                                <a href="@Url.Action("Index","Party")" class="btn btn-default pull-right">Cancel</a>
+                                <button type="submit" class="btn btn-primary pull-right">Save</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/common/fileuploader.js"></script>
+    <script type="text/javascript">
+        $('.vns-file').VNSFileUploder();
+    </script>
+}

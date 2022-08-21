@@ -1,0 +1,80 @@
+﻿@model iFinco.DAL.Branch
+@using iFinco.DAL.Enum
+
+@{
+    ViewBag.Title = "Branch Management";
+}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Create Branch</h4>
+                        <p class="category"></p>
+                    </div>
+                    <div class="card-content">
+                        @using (Html.BeginForm("Create", "Branch", FormMethod.Post, new { id = "contact-for", enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                @Html.LabelFor(x => x.Title, new { @class = "contor-label" })
+                                                @Html.HiddenFor(x => x.Id)
+                                                @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(x => x.Title)
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                @Html.LabelFor(x => x.Status, new { @class = "contor-label" })
+                                                @Html.DropDownListFor(x => x.Status, EnumHelper.GetSelectList(typeof(Status)), "Select Status", new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(x => x.Status)
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                @Html.LabelFor(x => x.Contact, new { @class = "contor-label" })
+                                                @Html.TextBoxFor(x => x.Contact, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(x => x.Contact)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group label-floating">
+                                                @Html.LabelFor(x => x.Adress, new { @class = "contor-label" })
+                                                @Html.TextBoxFor(x => x.Adress, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(x => x.Adress)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pull-right">
+                                        <button class="btn btn-primary" type="submit">Save</button>
+                                        <a href="@Url.Action("Index","Branch")" class="btn btn-default">Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" class="active-nav" value="#Branch" />
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/common/fileuploader.js"></script>
+    <script type="text/javascript">
+        $('.vns-file').VNSFileUploder();
+
+    </script>
+}
+

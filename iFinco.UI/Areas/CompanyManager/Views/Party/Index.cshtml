@@ -1,0 +1,135 @@
+﻿@model iFinco.UI.Models.PartySearchModel
+
+@using PagedList.Mvc;
+@using PagedList;
+
+@{
+    ViewBag.Title = "Party Management";
+    bool isSearched = Model != null && (!string.IsNullOrEmpty(Model.Title) || !string.IsNullOrEmpty(Model.Email) || !string.IsNullOrEmpty(Model.Contact) || !string.IsNullOrEmpty(Model.Adress) || !string.IsNullOrEmpty(Model.CompanyTitle));
+}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            @*@Html.ActionLink("Index", "Branch", new { @class = "btn btn-info btn-lg" })*@
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <div class="col-md-9">
+                            <h4 class="title">Party</h4>
+                            <p class="category">Manage Party, you can add,edit or delete any Party.</p>
+                        </div>
+                        <div class="col-md-3 text-right">
+                            @Html.ActionLink("Add", "Create", "Party", new { @class = "btn btn-info btn-sm" })
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    @using (Html.BeginForm("index", "Party", FormMethod.Get))
+                    {
+                        <div class="card-content table-responsive">
+                            <table class="table">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Email</th>
+                                        <th>Contact</th>
+                                        <th>Company Title</th>
+                                        <th>Company Email</th>
+                                        <th>
+                                            Action
+                                            <a href="#">
+                                                <i class="material-icons" id="btnSearch">keyboard_arrow_down</i>
+                                            </a>
+                                        </th>
+                                    </tr>
+
+                                    <tr @(isSearched ? "" : "style=display:none") id="trSearch">
+                                        <td>@Html.TextBoxFor(x => x.Title, new { @class = "form-control", placeholder = "Title" })</td>
+                                        <td> @Html.TextBoxFor(x => x.Email, new { @class = "form-control", placeholder = "Email" })</td>
+                                        <td>@Html.TextBoxFor(x => x.Contact, new { @class = "form-control", placeholder = "Contact" })</td>
+                                        <td>@Html.TextBoxFor(x => x.CompanyTitle, new { @class = "form-control", placeholder = "CompanyTitle" })</td>
+                                        <td></td>
+                                        <td>
+                                            <button class="btn btn-info btn-sm " type="submit">
+                                                <i class="material-icons">search</i>
+                                                <div class="ripple-container"></div>
+                                            </button>
+                                            <a href="@Url.Action("Index","Party")" class="btn btn-info btn-sm">
+                                                <i class="material-icons">refresh</i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.Data == null || Model.Data.Count() < 1)
+                                    {
+                                        <tr>
+                                            <td colspan="5" class="text-center">No record found</td>
+                                        </tr>
+                                    }
+                                    @foreach (var item in Model.Data)
+                                    {
+                                        <tr>
+                                            <td>@item.Title</td>
+                                            <td> @item.Email</td>
+                                            <td>@item.Contact</td>
+                                            <td>@item.CompanyTitle</td>
+                                            <td>@item.CompanyEmail</td>
+                                            <td>
+                                                <a href="@Url.Action("Edit", "Party", new { area = "CompanyManager", id = item.Id })" data-toggle="tooltip" title="Edit Party"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                                <a href="@Url.Action("Delete", "Party", new { area = "CompanyManager", id = item.Id })" data-toggle="tooltip" title="Delete Party"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                                @Ajax.ActionLink(" ", "Detail", "Party", new { area = "CompanyManager", id = item.Id }, new AjaxOptions { HttpMethod = "GET", OnSuccess = "ShowCompanyModal" }, new { data_toggle = "tooltip", title = "View Detail", @class = "fa fa-info" })
+                                                @Html.ActionLink(" ", "PartyHistory", "Party", new { area = "CompanyManager", id = item.Id }, new { data_toggle = "tooltip", title = "View Detail", @class = "fa fa-history" })
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <div class="col-md-12 text-right">
+                                @Html.PagedListPager((IPagedList)Model.Data, page => Url.Action("Index", new { page, Title = Request.QueryString["Title"], Contact = Request.QueryString["Contact"], status = Request.QueryString["Email"], Address = Request.QueryString["Adress"], CompanyTitle = Request.QueryString["CompanyTitle"] }))
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="companyModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Party Info</h4>
+            </div>
+            <div class="modal-body" id="content">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="btnCncl" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<input type="hidden" class="active-nav" value="#Party" />
+
+@section Scripts{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript">
+        function ShowCompanyModal(data) {
+            $('#content').html(data);
+            $('#companyModal').modal();
+        }
+
+        $('#btnSearch').click(function () {
+            $('#trSearch').slideToggle('slow');
+        })
+    </script>
+}
+
+

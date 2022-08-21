@@ -1,0 +1,99 @@
+﻿@model iFinco.UI.Models.EmployeeHistoryVM
+@using PagedList.Mvc;
+@using PagedList;
+@*@{
+        ViewBag.Title = "Party Histoy Management";
+    }*@
+<link href="~/PanalAssets/css/PartyTab.css" rel="stylesheet" />
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            @*@Html.ActionLink("Index", "Branch", new { @class = "btn btn-info btn-lg" })*@
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <div class="col-md-9">
+                            <h4 class="title">@Model.employee.Name</h4>
+                            @*<p class="category">Manage Party, you can add,edit or delete any Party.</p>*@
+                        </div>
+                        @*<div class="col-md-3 text-right">
+                                @Html.ActionLink("Add", "Create", "Party", new { @class = "btn btn-info btn-sm" })
+                            </div>*@
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <div class="row">
+                            <div class="bhoechie-tab-container">
+                                <div class="clearfix"></div>
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu text-primary" data-background-color="purple">
+                                    <div class="list-group">
+                                        <a href="#" class="list-group-item active text-center">
+                                            <i class="material-icons">shopping_basket</i>
+                                            <br /><h4>Sale</h4>
+                                        </a>
+                                        <a href="#" class="list-group-item text-center">
+                                            <i class="fa fa-mail-forward"></i>
+                                            <br /><h4>Sale Return</h4>
+                                        </a>
+                                        <a href="#" class="list-group-item text-center">
+                                            <i class="material-icons">shopping_cart</i>
+                                            <br /><h4>Purchase</h4>
+                                        </a>
+                                        <a href="#" class="list-group-item text-center">
+                                            <i class="fa fa-mail-reply"></i>
+                                            <br /><h4>Purchase Return</h4>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
+                                    <div class="bhoechie-tab-content active" id="tblSale">
+                                        @Html.Action("EmployeeSaleHistory", "User", new { Id = Model.employee.Id })
+                                    </div>
+                                    <div class="bhoechie-tab-content" id="tblSaleReturn">
+                                        @Html.Action("EmployeeSaleReturnHistory", "User", new { Id = Model.employee.Id })
+                                    </div>
+                                        <div class="bhoechie-tab-content" id="tblPurchase">
+                                            @Html.Action("EmployeePurchaseHistory", "User", new { Id = Model.employee.Id })
+                                        </div>
+                                        <div class="bhoechie-tab-content" id="tblPurchaseReturn">
+                                            @Html.Action("EmployeePurchaseReturnHistory", "User", new { Id = Model.employee.Id })
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("div.bhoechie-tab-menu>div.list-group>a").click(function (e) {
+                e.preventDefault();
+                $(this).siblings('a.active').removeClass("active");
+                $(this).addClass("active");
+                var index = $(this).index();
+                $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+                $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+            });
+        });
+
+        function ShowPrint(data) {
+            var w = window.open("", "", "width=900,height=700");
+            w.document.write(data);
+            w.document.close();
+            w.focus();
+            setTimeout(function () {
+                w.print();
+                w.close();
+            }, 1000)
+
+        }
+
+
+    </script>
+}
+

@@ -1,0 +1,9 @@
+<p>
+	[[invoiceType]];lskdjf&nbsp; &nbsp;&nbsp;[[paymentMethod]]</p>
+<p>
+	&nbsp;</p>
+<p>
+	asdflkj dfsa&nbsp; &nbsp; &nbsp;&nbsp;</p>
+<p>
+	[[total]]</p>
+

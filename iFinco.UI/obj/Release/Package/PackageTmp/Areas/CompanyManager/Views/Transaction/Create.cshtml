@@ -1,0 +1,154 @@
+﻿
+@model iFinco.UI.Areas.CompanyManager.Models.TransactionVM
+@{
+    ViewBag.Title = "General Transaction";
+}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            @*@Html.ActionLink("Index", "Branch", new { @class = "btn btn-info btn-lg" })*@
+            <div class="col-md-12">
+                <div class="card">
+
+                    @using (Html.BeginForm("Create", "Transaction", FormMethod.Post, new { id = "contact-for" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="card-header" data-background-color="purple">
+                            <row>
+                                <div class="col-md-2 pull-right">@Html.TextBoxFor(x => x.transaction.Date, new { @class = "form_datetime", style = "color:black" })</div>
+                            </row>
+                            
+                            <h3 class="title">Transaction </h3>
+                        </div>
+                        <div class="card-content table-responsive">
+                            <table class="table",style="border-collapse: collapse; border: none;">
+                                <thead class="text-primary">
+                                    <tr style="border: none;">
+                                        <th>Account </th>
+                                        <th>Dr</th>
+                                        <th>Cr</th>
+                                       
+                                        <th>
+                                        </th>
+                                    </tr>
+
+
+                                </thead>
+
+                                <tbody id="hldr">
+                                    <tr class="vVal",style="border: none;">
+                                        <td style="border: none;" >
+                                            @Html.DropDownListFor(x => x.Details[0].AccountId, new SelectList(ViewBag.Name, "Id", "Name"), "Select Account", new { @class = "form-control ddlAccount" })
+                                            @Html.ValidationMessageFor(x => x.Details[0].AccountId, "", new { @class = "ddlVLD" })
+                                        </td>
+
+                                        <td style="border: none;">
+                                            @Html.TextBoxFor(x => x.Details[0].Dr, new { @class = "form-control txtDr", placeholder = "Debit Amount" })
+                                            @Html.ValidationMessageFor(x => x.Details[0].Dr, "", new { @class = "DrVLD" })
+                                        </td>
+                                        <td style="border: none;">
+                                            @Html.TextBoxFor(x => x.Details[0].Cr, new { @class = "form-control txtCr", placeholder = "Credit Amount" })
+                                            @Html.ValidationMessageFor(x => x.Details[0].Cr, "", new { @class = "CrVLD" })
+                                        </td>
+                                       
+                                        <td style="border: none;">
+                                            <div class="col-md-3">
+                                                <a href="#" class="material-icons btnAdd">add_circle</a>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <a href="#" class="material-icons btnDel">remove_circle</a>
+                                            </div>
+                                            @*<div class="col-md-2">
+                                                <button type="button" class="btn btn-primary pull-right btn-circle-sm btnAdd">+</button>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <button type="button" class="btn btn-primary pull-right btn-circle-sm btnDel">-</button>
+                                            </div>*@
+                                        </td>
+
+                                    </tr>
+
+                                    
+                                          
+                                        
+                                     
+                                </tbody>
+                            </table>
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    @Html.TextBoxFor(x => x.transaction.Narration, new { @class = "form-control", placeholder = "Naration" })
+                                    @Html.ValidationMessageFor(x => x.Details[0].Cr, "", new { @class = "CrVLD" })
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary pull-right">Save</button>
+
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="~/Scripts/common/fileuploader.js"></script>
+    <script type="text/javascript">
+        var count = 1;
+        $('.vns-file').VNSFileUploder();
+
+        //adding dynamic 'vVal' divs
+        $(document).on('click', '.btnAdd', function () {
+            var cln = $(this).closest('.vVal').clone();
+            $(cln).find('.form-control').val('')
+            $('#hldr').append(cln);
+            ReName();
+            count++;
+        });
+
+        //changing the attribute of dynamic created txtboxes
+        $(document).on('click', '.btnDel', function () {
+            if (count > 1) {
+                var cln = $(this).closest('.vVal').remove();
+                ReName();
+                count--;
+            }
+
+            //$('#hldr').append(cln);
+        });
+
+        function ReName() {
+            debugger;
+            var ddlAccounts = $('.ddlAccount');
+            var txtDrs = $('.txtDr');
+            var txtCr = $('.txtCr');
+            var ddlVLD = $('.ddlVLD');
+            var DrVLD = $('.DrVLD');
+            var CrVLD = $('.CrVLD');
+
+            for (var i = 0; i < ddlAccounts.length; i++) {
+                $(ddlAccounts[i]).attr('name', 'Details[' + i + '].AccountId')
+                $(txtDrs[i]).attr('name', 'Details[' + i + '].Dr')
+                $(txtCr[i]).attr('name', 'Details[' + i + '].Cr')
+                $(ddlVLD[i]).attr('data-valmsg-for', 'Details[' + i + '].AccountId')
+                $(DrVLD[i]).attr('data-valmsg-for', 'Details['+i+'].Dr')
+                $(CrVLD[i]).attr('data-valmsg-for', 'Details['+i+'].Cr')
+            }
+            ReSetValidation();
+        }
+
+        function ReSetValidation() {
+            var form = $('form').removeData('validator').removeData('unobtrusiveValidation');
+            $.validator.unobtrusive.parse(form);
+        }
+
+    </script>
+}
+
+
+
+
+

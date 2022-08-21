@@ -1,0 +1,47 @@
+﻿@model iFinco.DAL.GoDown
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group label-floating">
+                    @Html.LabelFor(x => x.Title, new { @class = "contor-label" })
+                    @Html.HiddenFor(x => x.Id)
+                    @Html.TextBoxFor(x => x.Title, new { @class = "form-control", disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.Title)
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group label-floating">
+                    @Html.LabelFor(x => x.Contact, new { @class = "contor-label" })
+                    @Html.TextBoxFor(x => x.Contact, new { @class = "form-control", disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.Contact)
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group label-floating">
+                    @Html.LabelFor(x => x.Description, new { @class = "contor-label" })
+                    @Html.TextBoxFor(x => x.Description, new { @class = "form-control", disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.Description)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group label-floating">
+                    @Html.LabelFor(x => x.Address, new { @class = "contor-label" })
+                    @Html.TextBoxFor(x => x.Address, new { @class = "form-control", disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.Address)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

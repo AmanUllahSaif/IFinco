@@ -1,0 +1,58 @@
+H:\IFinco\iFinco.DAL\bin\Debug\iFinco.DAL.dll.config
+H:\IFinco\iFinco.DAL\bin\Debug\iFinco.DAL.dll
+H:\IFinco\iFinco.DAL\bin\Debug\iFinco.DAL.pdb
+H:\IFinco\iFinco.DAL\bin\Debug\EntityFramework.dll
+H:\IFinco\iFinco.DAL\bin\Debug\EntityFramework.SqlServer.dll
+H:\IFinco\iFinco.DAL\bin\Debug\System.Web.Mvc.dll
+H:\IFinco\iFinco.DAL\bin\Debug\EntityFramework.xml
+H:\IFinco\iFinco.DAL\bin\Debug\EntityFramework.SqlServer.xml
+H:\IFinco\iFinco.DAL\bin\Debug\System.Web.Mvc.xml
+H:\IFinco\iFinco.DAL\obj\Debug\iFinco.DAL.MetaDataResource.resources
+H:\IFinco\iFinco.DAL\obj\Debug\iFinco.DAL.csproj.GenerateResource.Cache
+H:\IFinco\iFinco.DAL\obj\Debug\iFinco.DAL.dll
+H:\IFinco\iFinco.DAL\obj\Debug\iFinco.DAL.pdb
+H:\IFinco\iFinco.DAL\obj\Debug\iFinco.DAL.csprojResolveAssemblyReference.cache
+F:\Vnext\ifinco\IFinco\iFinco.DAL\bin\Debug\iFinco.DAL.dll.config
+F:\Vnext\ifinco\IFinco\iFinco.DAL\bin\Debug\iFinco.DAL.dll
+F:\Vnext\ifinco\IFinco\iFinco.DAL\bin\Debug\iFinco.DAL.pdb
+F:\Vnext\ifinco\IFinco\iFinco.DAL\bin\Debug\EntityFramework.dll
+F:\Vnext\ifinco\IFinco\iFinco.DAL\bin\Debug\EntityFramework.SqlServer.dll
+F:\Vnext\ifinco\IFinco\iFinco.DAL\bin\Debug\System.Web.Mvc.dll
+F:\Vnext\ifinco\IFinco\iFinco.DAL\bin\Debug\EntityFramework.xml
+F:\Vnext\ifinco\IFinco\iFinco.DAL\bin\Debug\EntityFramework.SqlServer.xml
+F:\Vnext\ifinco\IFinco\iFinco.DAL\bin\Debug\System.Web.Mvc.xml
+F:\Vnext\ifinco\IFinco\iFinco.DAL\obj\Debug\iFinco.DAL.csprojResolveAssemblyReference.cache
+F:\Vnext\ifinco\IFinco\iFinco.DAL\obj\Debug\iFinco.DAL.MetaDataResource.resources
+F:\Vnext\ifinco\IFinco\iFinco.DAL\obj\Debug\iFinco.DAL.csproj.GenerateResource.Cache
+F:\Vnext\ifinco\IFinco\iFinco.DAL\obj\Debug\iFinco.DAL.dll
+F:\Vnext\ifinco\IFinco\iFinco.DAL\obj\Debug\iFinco.DAL.pdb
+E:\Vnext\ifinco\IFinco\iFinco.DAL\bin\Debug\iFinco.DAL.dll.config
+E:\Vnext\ifinco\IFinco\iFinco.DAL\bin\Debug\iFinco.DAL.dll
+E:\Vnext\ifinco\IFinco\iFinco.DAL\bin\Debug\iFinco.DAL.pdb
+E:\Vnext\ifinco\IFinco\iFinco.DAL\bin\Debug\EntityFramework.dll
+E:\Vnext\ifinco\IFinco\iFinco.DAL\bin\Debug\EntityFramework.SqlServer.dll
+E:\Vnext\ifinco\IFinco\iFinco.DAL\bin\Debug\EntityFramework.xml
+E:\Vnext\ifinco\IFinco\iFinco.DAL\bin\Debug\EntityFramework.SqlServer.xml
+E:\Vnext\ifinco\IFinco\iFinco.DAL\bin\Debug\System.Web.Mvc.xml
+E:\Vnext\ifinco\IFinco\iFinco.DAL\obj\Debug\iFinco.DAL.MetaDataResource.resources
+E:\Vnext\ifinco\IFinco\iFinco.DAL\obj\Debug\iFinco.DAL.csproj.GenerateResource.Cache
+E:\Vnext\ifinco\IFinco\iFinco.DAL\obj\Debug\iFinco.DAL.dll
+E:\Vnext\ifinco\IFinco\iFinco.DAL\obj\Debug\iFinco.DAL.pdb
+E:\Vnext\ifinco\IFinco\iFinco.DAL\obj\Debug\iFinco.DAL.csprojAssemblyReference.cache
+E:\Vnext\ifinco\IFinco\iFinco.DAL\obj\Debug\iFinco.DAL.csproj.CoreCompileInputs.cache
+E:\Vnext\ifinco\IFinco\iFinco.DAL\obj\Debug\iFinco.DAL.csproj.CopyComplete
+E:\Vnext\ifinco ok\IFinco\iFinco.DAL\bin\Debug\iFinco.DAL.dll.config
+E:\Vnext\ifinco ok\IFinco\iFinco.DAL\bin\Debug\iFinco.DAL.dll
+E:\Vnext\ifinco ok\IFinco\iFinco.DAL\bin\Debug\iFinco.DAL.pdb
+E:\Vnext\ifinco ok\IFinco\iFinco.DAL\bin\Debug\EntityFramework.dll
+E:\Vnext\ifinco ok\IFinco\iFinco.DAL\bin\Debug\EntityFramework.SqlServer.dll
+E:\Vnext\ifinco ok\IFinco\iFinco.DAL\bin\Debug\EntityFramework.xml
+E:\Vnext\ifinco ok\IFinco\iFinco.DAL\bin\Debug\EntityFramework.SqlServer.xml
+E:\Vnext\ifinco ok\IFinco\iFinco.DAL\bin\Debug\System.Web.Mvc.xml
+E:\Vnext\ifinco ok\IFinco\iFinco.DAL\obj\Debug\iFinco.DAL.csprojAssemblyReference.cache
+E:\Vnext\ifinco ok\IFinco\iFinco.DAL\obj\Debug\iFinco.DAL.MetaDataResource.resources
+E:\Vnext\ifinco ok\IFinco\iFinco.DAL\obj\Debug\iFinco.DAL.csproj.GenerateResource.cache
+E:\Vnext\ifinco ok\IFinco\iFinco.DAL\obj\Debug\iFinco.DAL.csproj.CoreCompileInputs.cache
+E:\Vnext\ifinco ok\IFinco\iFinco.DAL\obj\Debug\iFinco.DAL.csproj.CopyComplete
+E:\Vnext\ifinco ok\IFinco\iFinco.DAL\obj\Debug\iFinco.DAL.dll
+E:\Vnext\ifinco ok\IFinco\iFinco.DAL\obj\Debug\iFinco.DAL.pdb

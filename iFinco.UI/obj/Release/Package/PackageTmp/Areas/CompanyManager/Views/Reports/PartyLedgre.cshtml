@@ -1,0 +1,86 @@
+﻿@model IEnumerable<iFinco.DAL.Party>
+
+@{
+    ViewBag.Title = "Party Ledger";
+}
+
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            @*@Html.ActionLink("Index", "Branch", new { @class = "btn btn-info btn-lg" })*@
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <div class="col-md-9">
+                            <h4 class="title">Party Ledger</h4>
+                        </div>
+                        <div class="col-md-3 text-right">
+                            @Ajax.ActionLink(" ", "PartyPrint", "Reports", new { area = "CompanyManager" }, new AjaxOptions { HttpMethod = "GET", OnSuccess = "ShowPrint" }, new { data_toggle = "tooltip", title = "Print", @class = "fa fa-print" })
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    @using (Html.BeginForm("PartyLedgre", "Reports", FormMethod.Get))
+                    {
+                        <table class="table">
+                            <thead class="text-primary">
+                                <tr>
+                                    <th>Parties</th>
+                                    <th>Balance</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    var balnce = "";
+                                    if (item.Balance < 0)
+                                    {
+                                        item.Balance *= -1;
+                                        balnce = "(" + item.Balance + ")";
+                                    }
+                                    else
+                                    {
+                                        balnce = item.Balance.ToString();
+                                    }
+                                    <tr>
+                                        <td><a href="@Url.Action("PartyHistory","Party",new {id=item.Id })">@item.Title</a> </td>
+                                        <td>
+                                            @balnce
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink(" ", "PartyHistory", "Party", new { area = "CompanyManager", id = item.Id }, new { data_toggle = "tooltip", title = "View Detail", @class = "fa fa-history" })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script type="text/javascript">
+        function ShowModal(data) {
+            $('#content').html(data);
+            $('#companyModal').modal();
+        }
+        function ShowPrint(data) {
+            var w = window.open("", "", "width=900,height=700");
+            w.document.write(data);
+            w.document.close();
+            w.focus();
+            setTimeout(function () {
+                w.print();
+                w.close();
+            }, 1000)
+
+        }
+
+        $('#btnSearch').click(function () {
+            $('#trSearch').slideToggle('slow');
+        })
+    </script>
+}

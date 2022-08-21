@@ -1,0 +1,672 @@
+﻿@model iFinco.UI.Models.PurchaseVM
+@using iFinco.DAL.Enum
+@{
+    ViewBag.Title = "Purchase";
+    var paymentMehtods = Enum.GetValues(typeof(PaymentType));
+    int count = 1;
+}
+
+<style>
+    /*.panel-heading .accordion-toggle.collapsed:after {*/
+    /* symbol for "collapsed" panels */
+    /*content: "\e080";*/ /* adjust as needed, taken from bootstrap.css */
+    /*}*/
+    #accordion span.date {
+        float: right;
+        line-height: 50px;
+        text-align: right;
+    }
+
+    .typeahead__container .dropdown-menu {
+        width: 100% !important;
+    }
+
+    .dropdown-menu > .active > a, .dropdown-menu > .active > a:focus, .dropdown-menu > .active > a:hover {
+        color: #fff;
+        text-decoration: none;
+        background-color: #a03ab5 !important;
+        outline: 0;
+    }
+
+    .cart {
+        height: 400px;
+        overflow-y: auto;
+        padding-top: 5px;
+    }
+
+
+
+    .payment-Modal {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        background: #fff;
+        /*opacity: 0.8;*/
+        z-index: 10000;
+    }
+
+    .radio-container {
+        /*display: block;*/
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 22px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+        /* Hide the browser's default checkbox */
+        .radio-container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+    /* Create a custom checkbox */
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: #eee;
+    }
+
+    /* On mouse-over, add a grey background color */
+    .radio-container:hover input ~ .checkmark {
+        background-color: #ccc;
+    }
+
+    /* When the checkbox is checked, add a blue background */
+    .radio-container input:checked ~ .checkmark {
+        background-color: #9c27b0;
+    }
+
+    /* Create the checkmark/indicator (hidden when not checked) */
+    .radio-container:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    /* Show the checkmark when checked */
+    .radio-container input:checked ~ .checkmark:after {
+        display: block;
+    }
+
+    /* Style the checkmark/indicator */
+    .radio-container .checkmark:after {
+        left: 9px;
+        top: 5px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+
+    .card .form-group {
+        margin-top: 0px !important;
+    }
+</style>
+
+<div class="content">
+    <div class="container-fluid">
+        @using (Html.BeginForm("Create", "Purchase", FormMethod.Post, new { id = "frmPurchase" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <div class="typeahead__container">
+                            <input type="search" placeholder="Product Search" class="form-control" id="txtSearch" autocomplete="off" />
+                            <input type="hidden" id="hfProduct" name="CustomerId" />
+                        </div>
+                        <div class="typeahead__container">
+                            <input type="search" placeholder="Party Search" class="form-control" id="txtSearchParty" autocomplete="off" />
+                            <input type="hidden" id="hfParty" name="CustomerId" />
+                        </div>
+                        <div class="card">
+                            <div class="card-header" data-background-color="purple">
+                                <h4 class="title">Shipping Details</h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(x => x.ShippingDetail.Name, new { @class = "form-control", placeholder = "Name" })
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(x => x.ShippingDetail.ShipmentNo, new { @class = "form-control", placeholder = "Shipment No" })
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @Html.TextAreaFor(x => x.ShippingDetail.Address, new { @class = "form-control", placeholder = "Address" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header" data-background-color="purple">
+                                <h4 class="title">Product Details</h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h4 class="title"><label class="material-icons pull-left">person</label> <label class="party-name pull-left">Party</label></h4>
+                                    </div>
+                                    <div class="col-md-4">
+                                        @Html.TextBoxFor(x => x.Purchase.Date, new { @class = "form-control form_datetime", placeholder = "Date", Value = DateTime.UtcNow.ToString("MM/dd/yyyy") })
+                                    </div>
+                                </div>
+                                <div class="row cart">
+                                    <div class="panel-group" id="accordion">
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @Html.TextBoxFor(x => x.Purchase.Notes, new { @class = "form-control", placeholder = "add purchase note..." })
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <tr>
+                                            <th class="text-primary">
+                                                Sub Total
+                                            </th>
+                                            <th class="text-left sbTotal">
+                                                0.00
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-primary">
+                                                Discount
+                                            </th>
+                                            <th class="text-left sbDisscount">
+                                                0.000
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-primary">Grand Total</th>
+                                            <th class="text-left sbGrandTotal">
+                                                0.00
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-primary">Paid</th>
+                                            <th class="text-left">
+                                                @Html.TextBoxFor(x => x.Purchase.PaidAmount, new { @class = "form-control" })
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="2">
+                                                @foreach (var item in paymentMehtods)
+                                                {
+                                                <label class="radio-container">
+                                                    @item
+                                                    @Html.RadioButtonFor(x => x.Purchase.PaymentType, count)
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                }
+                                            </th>
+                                        </tr>
+                                    </table>
+                                </div>
+                                @Html.HiddenFor(x => x.Purchase.Total, new { @class = "hdnPurchaseTotal" })
+                                @Html.HiddenFor(x => x.Purchase.Discount, new { @class = "hdnPurchaseDiscount" })
+                                @Html.HiddenFor(x => x.Purchase.Date, new { @class = "hdnSahdnPurchaseDateleDate", Value = DateTime.UtcNow.Date })
+                                @Html.HiddenFor(x => x.Purchase.PartyId, new { @class = "hdnPurchaseParty" })
+                                <button class="btn-primary submit-btn btn btn-pay" type="button" style="width:100%">Pay</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div id="item-gen" style="display:none">
+    <div class="panel panel-default cart-item">
+        <div class="panel-heading">
+            <table class="table">
+                <tr>
+                    <td><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse"><i class="material-icons">keyboard_arrow_down</i></a></td>
+                    <td class="tdName">
+                        @Html.HiddenFor(x => x.PurchaseDetail[0].ProductId, new { @class = "control hdnPID" })
+                        @Html.HiddenFor(x => x.PurchaseDetail[0].PACId, new { @class = "control hdnPACID" })
+                        <h4 class="panel-title prodName"></h4>
+                    </td>
+                    <td>
+                        <label id="lblPrice"> 300 </label> PKR
+                    </td>
+                    <td><a href="javascript:void(0)" class="material-icons pull-right del">delete</a></td>
+                </tr>
+            </table>
+        </div>
+        <div id="collapse" class="panel-collapse collapse clp">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group label-floating">
+                            @Html.LabelFor(x => x.PurchaseDetail[0].Quantity)
+                            @Html.TextBoxFor(x => x.PurchaseDetail[0].Quantity, new { @class = "form-control control txtQuantity" })
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group label-floating">
+                            @Html.LabelFor(x => x.PurchaseDetail[0].Price)
+                            @Html.TextBoxFor(x => x.PurchaseDetail[0].Price, new { @class = "form-control control txtPrice" })
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group label-floating">
+                            @Html.LabelFor(x => x.PurchaseDetail[0].Discount)
+                            @Html.TextBoxFor(x => x.PurchaseDetail[0].Discount, new { @class = "form-control txtDiscount control" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" class="active-nav" value="#Purchase" />
+
+<div id="VariantModal" class="modal fade" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Variant Info</h4>
+            </div>
+            <div class="modal-body" id="content">
+                <div class="row">
+                    <form id="varintHldr"></form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn btn-primary" id="btnSave">Save</button>
+                <button type="button" class="btn btn-default" id="btnCncl" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $.validator.setDefaults({
+            ignore: ""
+        });
+        var pac = {
+            prodId: '',
+            Id: '',
+            varints: []
+        }
+        var varients = '';
+
+        var map;
+        var srchItems = [];
+        var ItemsInCart = [];
+        var count = 0;
+
+        $(document).ready(function () {
+            $("#txtSearch").typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1,
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/Product/GetProducts",
+                        data: "{ 'prefix': '" + request + "'}",
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            items = [];
+                            map = {};
+                            srchItems = [];
+                            $.each(data, function (i, item) {
+                                var id = item.Id;
+                                var name = item.Title;
+                                map[name] = { id: id, name: name, HaveVariant: item.HaveVarrient, SellingPrice: item.SellingPrice, PurchasingPrice: item.PurchasingPrice };
+                                srchItems.push({ id: id, name: name, HaveVariant: item.HaveVarrient });
+                                items.push(name);
+                            });
+                            response(items);
+                            $(".dropdown-menu").css("height", "auto");
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                },
+                updater: function (item) {
+                    $('#hfProduct').val(map[item].id);
+                    if (map[item].HaveVariant) {
+                        getVariants(map[item].id)
+                        $('#VariantModal').modal();
+                    }
+                    else {
+                        AddItemInCart(map[item], '', map[item].PurchasingPrice);
+                    }
+                    ReSetValidation();
+                    return item;
+                }
+            });
+        });
+
+        $("#txtSearchParty").typeahead({
+            hint: true,
+            highlight: true,
+            minLength: 1,
+            source: function (request, response) {
+                $.ajax({
+                    url: "/Party/GetParties",
+                    data: "{ 'prefix': '" + request + "'}",
+                    dataType: "json",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        parties = [];
+                        partymap = {};
+                        $.each(data, function (i, item) {
+                            var id = item.Id;
+                            var name = item.Title;
+                            partymap[name] = { id: id, name: name };
+                            parties.push(name);
+                        });
+                        response(parties);
+                        $(".dropdown-menu").css("height", "auto");
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            },
+            updater: function (item) {
+                $('.hdnPurchaseParty').val(partymap[item].id);
+                $('.party-name').html(partymap[item].name + ' <a href="#" class="material-icons btnDel">remove_circle</a>');
+                $('#txtSearchParty').val('');
+                ReSetValidation();
+            }
+        });
+
+        $(document).on('click', '.btnDel', function () {
+            $(this).remove();
+            $('.hdnPurchaseParty').val('');
+            $('.party-name').text('Party')
+        });
+
+        $('#btnSave').click(function () {
+            pac.prodId = '';
+            pac.varints = [];
+            var isvalid = $('#varintHldr').valid();
+
+            if (isvalid) {
+                var ddlVariantsValue = $('.VariantValueId');
+                var hdnVariants = $('.hdnVariantId');
+                for (var i = 0; i < ddlVariantsValue.length; i++) {
+                    var vari = {
+                        varientId: $(hdnVariants[i]).val(), valueId: $(ddlVariantsValue[i]).val()
+                    }
+                    pac.varints.push(vari);
+                    varients += $(ddlVariantsValue[i]).find('option:selected').text() + ', ';
+                }
+
+                pac.prodId = $('#hfProduct').val();
+                $.ajax({
+                    url: "/CompanyManager/Product/PACSearch/",
+                    type: "Post",
+                    data: JSON.stringify(pac),
+                    contentType: "application/json",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data) {
+                            $('#VariantModal').modal('hide');
+                            //pac.Id = html;
+                            var prod = $(srchItems).filter(function (idx) {
+                                return srchItems[idx].id === parseInt(pac.prodId);
+                            })[0];
+                            AddItemInCart(prod, data, data.PurchasingPrice);
+                        } else {
+                            varients = '';
+                            ShowNotification('top', 'right', 'danger', 'notifications', 'There is no such version of this product')
+                        }
+                    }
+                });
+            }
+        });
+
+        function AddItemInCart(prod, pacid,price) {
+            var isNewItem = true;
+            if (ItemsInCart.length > 0) {
+                var oldItem = $(ItemsInCart).filter(function (idx) {
+                    return ItemsInCart[idx].id === prod.id && ItemsInCart[idx].pacid === pacid;
+                });
+                if (oldItem != undefined && oldItem.length > 0 && oldItem[0].id > 0) {
+                    isNewItem = false;
+                    varients = '';
+                }
+            }
+
+            if (isNewItem) {
+                var item = $('#item-gen').html();
+                var newItem = $(item).clone();
+                var cntrls = $(newItem).find('.control');
+                $(newItem).find('.accordion-toggle').attr('href', '#collapse' + count)
+                $(newItem).find('.clp').attr('id', 'collapse' + count)
+                $(newItem).find('.prodName').text(prod.name)
+
+                $(newItem).find('.hdnPID').val(prod.id)
+                $(newItem).find('.hdnPACID').val(pacid)
+
+                $(newItem).find('.txtQuantity').val(1)
+                $(newItem).find('.txtPrice').val(price)
+                $(newItem).find('.txtDiscount').val('0')
+                $(newItem).find('#lblPrice').text(price)
+
+                for (var i = 0; i < cntrls.length; i++) {
+                    var oldName = $(cntrls[i]).attr('name');
+                    var newName = 'PurchaseDetail[' + count + '].' + oldName.split('.')[1];
+                    $(cntrls[i]).attr('name', newName);
+                }
+
+                ItemsInCart.push({ id: prod.id, pacid: pacid });
+                $('#accordion').append(newItem);
+                count++;
+                var value = $('#accordion').html();
+                $('#accordion').find('.cart-item').last().find('.tdName').append(varients)
+                varients = '';
+            }
+
+            $('#txtSearch').val('');
+            CalculateGrandTotal();
+        }
+
+        $(document).on('input', '.txtQuantity', function (e) {
+            var item = $(this).closest('.cart-item');
+            CalculateItemsTotal(item);
+            CalculateGrandTotal();
+        });
+        $(document).on('input', '.txtPrice', function (e) {
+            var item = $(this).closest('.cart-item');
+            CalculateItemsTotal(item);
+            CalculateGrandTotal();
+        });
+        $(document).on('input', '.txtDiscount', function (e) {
+            var discount = $(this).val();
+            if (discount > 100 || discount < 0) {
+                $(this).val(0);
+            }
+            var item = $(this).closest('.cart-item');
+            CalculateItemsTotal(item);
+            CalculateGrandTotal();
+        });
+
+        function CalculateItemsTotal(item) {
+            var price = $(item).find('.txtPrice').val();
+            var quantity = $(item).find('.txtQuantity').val();
+            var discount = $(item).find('.txtDiscount').val();
+            var toatl = price * quantity;
+            if (discount > 0 && discount < 101) {
+                toatl = toatl - (discount * toatl) / 100;
+            }
+            $(item).find('#lblPrice').text(toatl);
+        }
+
+        $(document).on('click', '.del', function () {
+            debugger;
+            var item = $(this).closest('.cart-item');
+            var id = $(item).find('.hdnPID').val();
+            var pacid = $(item).find('.hdnPACID').val();
+            ItemsInCart = $(ItemsInCart).filter(function (idx) {
+                return ItemsInCart[idx].id != id && ItemsInCart[idx].pacid != pacid;
+            });
+
+            $(this).closest('.cart-item').remove();
+            Rename();
+            CalculateGrandTotal();
+            count--;
+        });
+
+
+        function CalculateGrandTotal() {
+            var items = $('#accordion').find('.cart-item');
+            var subTotal = 0;
+            var discountedAmount = 0;
+            var GrandTotal = 0;
+            var dis = 0;
+            for (var i = 0; i < items.length; i++) {
+                var price = $(items[i]).find('.txtPrice').val();
+                var quantity = $(items[i]).find('.txtQuantity').val();
+                var discount = $(items[i]).find('.txtDiscount').val();
+                var thisSubtotal = quantity * price;
+                subTotal += thisSubtotal;
+                dis = 0;
+                if (discount) {
+                    discountedAmount += (thisSubtotal * discount) / 100;
+                    dis = (thisSubtotal * discount) / 100;
+                }
+                GrandTotal += thisSubtotal - dis;
+            }
+            $('.sbTotal').html(subTotal + ' PKR');
+            $('.sbDisscount').html(discountedAmount + ' PKR');
+            $('.sbGrandTotal').html(GrandTotal + ' PKR')
+
+            $('.hdnPurchaseTotal').val(GrandTotal)
+            $('.hdnPurchaseDiscount').val(discountedAmount)
+        }
+
+        $('.btn-pay').click(function () {
+            var items = $('#accordion').find('.cart-item');
+            if (items == undefined || items.length < 1) {
+                ShowNotification('top', 'right', 'danger', 'notifications', 'There is no item in cart.')
+                return false;
+            }
+            var validator = $("#frmPurchase").validate();
+            $("#frmPurchase").valid();
+            var validation_erros = validator.errorList;
+            var form_errors = "";
+
+            for (var i = 0; i < validation_erros.length; i++) {
+                form_errors += validation_erros[i].message + " <br />";
+            }
+            if (form_errors.length > 0) {
+                ShowNotification('top', 'right', 'danger', 'notifications', form_errors)
+                return false;
+            }
+
+            var paidAmount = $('#Purchase_PaidAmount').val();
+            var grandTotal = $('.hdnPurchaseTotal').val();
+
+            if (paidAmount != grandTotal && $('.hdnPurchaseParty').val() == '') {
+                ShowNotification('top', 'right', 'danger', 'notifications', "Please select the party or pay total amount.")
+                return false;
+            }
+
+
+            $("#frmPurchase").submit();
+        })
+
+        function Rename() {
+            var items = $('#accordion').find('.cart-item')
+            for (var i = 0; i < items.length; i++) {
+                var newItem = items[i];
+                $(newItem).find('.accordion-toggle').attr('href', '#collapse' + i)
+                $(newItem).find('.clp').attr('id', 'collapse' + i)
+                var cntrls = $(newItem).find('.control');
+                for (var j = 0; j < cntrls.length; j++) {
+                    var oldName = $(cntrls[j]).attr('name');
+                    var newName = 'PurchaseDetail[' + i + '].' + oldName.split('.')[1];
+                    $(cntrls[j]).attr('name', newName);
+                }
+            }
+        }
+
+        function ReSetValidation() {
+            var form = $('form').removeData('validator').removeData('unobtrusiveValidation');
+            $.validator.unobtrusive.parse(form);
+        }
+
+        function getVariants(id) {
+            var varints = '';
+            $.ajax({
+                type: "GET",
+                url: "/CompanyManager/Product/GetVariants/" + id,
+                success: function (response) {
+                    if (response) {
+                        if (response.varints.length > 0) {
+
+                            for (var i = 0; i < response.varints.length; i++) {
+                                varints += '<div class="col-md-4"> <div class="form-group label-floating is-empty">' +
+                                                           '<label class="label-control">' + response.varints[i].Title + '</label>'
+                                + '<input class="hdnVariantId" data-val="true" data-val-number="The field VariantId must be a number." data-val-required="The VariantId field is required." id="PACDetail_' + i + '__VariantId" name="PACDetail[' + i + '].VariantId" type="hidden" value="' + response.varints[i].Id + '" />';
+                                var selectList = '<select class="form-control VariantValueId" data-val="true" data-val-number="The field VariantValueId must be a number." data-val-required="This field is required." id="PACDetail_' + i + '__VariantValueId" name="PACDetail[' + i + '].VariantValueId"><option value="">Select ' + response.varints[i].Title + '</option>';
+                                var options = "";
+                                for (var j = 0; j < response.varints[i].Values.length; j++) {
+                                    selectList += '<option value="' + response.varints[i].Values[j].Id + '">' + response.varints[i].Values[j].Title + '</option>'
+                                }
+                                selectList += '</select><span class="field-validation-valid" data-valmsg-for="PACDetail[' + i + '].VariantValueId" data-valmsg-replace="true"></span>';
+                                varints += selectList + '</div></div>'
+                            }
+                        }
+                        $('#varintHldr').html(varints);
+
+                    }
+                }
+            });
+        }
+
+        function ShowModal(data) {
+            $('#content').html(data);
+            $('#VariantModal').modal();
+        }
+    </script>
+}
+
+
+
+
+

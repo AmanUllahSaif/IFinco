@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Confirm Email";
+}
+
+
+<div class="breadcrumb-area bg-overlay-dark bg-6">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-text text-left">
+                    <h2>Email Confirmed</h2>
+                    <div class="breadcrumb-bar">
+                        @*<ul class="breadcrumb">
+                                <li><a href="index.html">HOME</a></li>
+                                <li>Register</li>
+                            </ul>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="contact-form-area fix pb-120 pt-120">
+    <div class="container">
+        <div class="contact-form-left">
+            @*<h4 class="details-title">Your company has been registered successfully! </h4>*@
+            <h2>@ViewBag.Title.</h2>
+            <div>
+                <p>
+                    Thank you for confirming your email. Please @Html.ActionLink("Click here to Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

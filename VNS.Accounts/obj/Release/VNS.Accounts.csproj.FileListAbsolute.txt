@@ -1,0 +1,14 @@
+H:\IFinco\VNS.Accounts\bin\Release\VNS.Accounts.dll.config
+H:\IFinco\VNS.Accounts\bin\Release\VNS.Accounts.dll
+H:\IFinco\VNS.Accounts\bin\Release\VNS.Accounts.pdb
+H:\IFinco\VNS.Accounts\bin\Release\EntityFramework.dll
+H:\IFinco\VNS.Accounts\bin\Release\EntityFramework.SqlServer.dll
+H:\IFinco\VNS.Accounts\bin\Release\iFinco.DAL.dll
+H:\IFinco\VNS.Accounts\bin\Release\System.Web.Mvc.dll
+H:\IFinco\VNS.Accounts\bin\Release\iFinco.DAL.pdb
+H:\IFinco\VNS.Accounts\bin\Release\EntityFramework.xml
+H:\IFinco\VNS.Accounts\bin\Release\EntityFramework.SqlServer.xml
+H:\IFinco\VNS.Accounts\bin\Release\System.Web.Mvc.xml
+H:\IFinco\VNS.Accounts\obj\Release\VNS.Accounts.csprojResolveAssemblyReference.cache
+H:\IFinco\VNS.Accounts\obj\Release\VNS.Accounts.dll
+H:\IFinco\VNS.Accounts\obj\Release\VNS.Accounts.pdb

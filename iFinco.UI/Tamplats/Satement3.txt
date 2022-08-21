@@ -1,0 +1,7 @@
+<h3 style="box-sizing: border-box; font-family: montserratregular; font-weight: 400; line-height: 14px; color: rgb(48, 48, 48); margin: 0px 0px 9px; font-size: 20px; background-color: rgb(245, 247, 249);">
+	<span style="box-sizing: border-box; color: rgb(0, 107, 99);">We Provide Best</span></h3>
+<h2 style="box-sizing: border-box; font-family: montserratregular; font-weight: 400; line-height: 1.1; color: rgb(48, 48, 48); margin: 0px 0px 25px; font-size: 28px; background-color: rgb(245, 247, 249);">
+	Financial Plan for You 22</h2>
+<p style="box-sizing: border-box; margin: 0px 0px 19px; color: rgb(96, 96, 96); line-height: 24px; font-family: Poppins, sans-serif; font-size: 14px; background-color: rgb(245, 247, 249);">
+	No one strategy fits everyone, which is why every client gets our undivided attention&mdash;from planning to execution to follow-up. We take a proactive approach to helping you develop a strategy to address your financial goals and objectives, using the most efficient methods available. Recognizing that everyone encounters challenges along the way, we strive to anticipate and address those situations as they occur. We want to keep you on track toward a meaningful and purpose-driven financial future. We invite you to check out all the material on our website. If something prompts a question, please send us a quick email or call our office. We would enjoy speaking with you.</p>
+

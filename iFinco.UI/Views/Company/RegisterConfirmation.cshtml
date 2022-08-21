@@ -1,0 +1,78 @@
+﻿@model iFinco.DAL.Company
+@{
+    ViewBag.Title = "Register Confirmation";
+}
+
+<!-- Breadcrumb Area Start-->
+<div class="breadcrumb-area bg-overlay-dark bg-6">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-text text-left">
+                    <h2>Register Confirmation</h2>
+                    <div class="breadcrumb-bar">
+                        <ul class="breadcrumb">
+                            <li><a href="">HOME</a></li>
+                            <li>Register Confirmation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Area End -->
+
+<div class="contact-form-area fix pb-120 pt-120">
+    <div class="container">
+        <div class="contact-form-left">
+            <h4 class="details-title">Your company has been registered successfully! </h4>
+            <h5 class="details-title">We have received your request and after reviewing our team will approve your company. @*You can change your company info by clicking <a href="@Url.Content("~/Company/Edit/"+Model.Id)" style="color:#E96">here</a>.*@</h5>
+            <div>
+                @Html.TextBoxFor(x => x.Title, new { placeholder = "Company Title", disabled = "disabled" })
+
+            </div>
+            <div>
+                @Html.TextBoxFor(x => x.NTN_STN, new { placeholder = "NTN/STN", disabled = "disabled" })
+
+            </div>
+            <div>
+                @Html.TextBoxFor(x => x.Contact, new { placeholder = "Contact no", disabled = "disabled" })
+
+            </div>
+            <div>
+                @Html.TextBoxFor(x => x.Email, new { placeholder = "Email Adress", disabled = "disabled" })
+
+            </div>
+            <div>
+                @Html.TextAreaFor(x => x.Adress, new { placeholder = "Adress", disabled = "disabled" })
+
+            </div>
+
+
+            <p class="form-messege"></p>
+
+        </div>
+        <div class="contact-form-right text-center">
+            <h4 style="margin-bottom:30px">Logo</h4>
+            @if (string.IsNullOrEmpty(Model.LogoUrl))
+            {
+                <img class="logo-preview" src="~/PanalAssets/img/noImage.png" style="width:100px;height:100px" />
+            }
+            else
+            {
+                <img class="" src="@Url.Content(Model.LogoUrl)" style="height:100px;width:100px" />
+            }
+        </div>
+        <div class="contact-form-right">
+            <div class="single-sidebar-widget fix bg-8">
+                <div class="sidebar-contact-info">
+                    <h4>Need Any Help?</h4>
+                    <p>Financo consectetur adipiscing elitsed do eiud tempor incididnt in the nto sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim </p>
+                    <a href="contact.html" class="default-button">Contact</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

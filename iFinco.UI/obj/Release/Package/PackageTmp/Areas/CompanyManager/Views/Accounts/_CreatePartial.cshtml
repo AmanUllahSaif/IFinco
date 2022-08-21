@@ -1,0 +1,68 @@
+﻿@model VNS.Accounts.DAL.Account
+@using VNS.Accounts.DAL
+
+<div id="companyModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Create Account</h4>
+            </div>
+            @using (Html.BeginForm("CreatePartial", "Accounts", FormMethod.Post, new { id = "contact-for", enctype = "multipart/form-data" }))
+            {
+
+                <div class="modal-body" id="content">
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group label-floating">
+                                        @Html.LabelFor(x => x.Name, new { @class = "contor-label" })
+                                        @Html.HiddenFor(x => x.Id)
+                                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.Name)
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group label-floating">
+                                        @Html.LabelFor(x => x.Type, new { @class = "contor-label" })
+                                        @Html.DropDownListFor(x => x.Type, EnumHelper.GetSelectList(typeof(AccountType)), "Select Type", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.Type)
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group label-floating">
+                                        @Html.LabelFor(x => x.Balance, new { @class = "contor-label" })
+                                        @Html.TextBoxFor(x => x.Balance, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.Balance)
+                                    </div>
+                                </div>
+                               <div class="col-md-6">
+                                    <div class="form-group label-floating">
+                                        <label for="IsCr">Is Credit</label><br />
+                                        @Html.CheckBox("IsCr", new { @class = "switch" })
+                                    </div>
+                                </div> 
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="submit">save</button>
+                    <button type="button" class="btn btn-default pull-right" id="btnCncl" data-dismiss="modal">Cancel</button>
+                </div>
+            }
+
+        </div>
+
+    </div>
+</div>

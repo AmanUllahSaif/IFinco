@@ -1,0 +1,112 @@
+﻿@model iFinco.DAL.Company
+@{
+    ViewBag.Title = "Edit";
+}
+
+<!-- Breadcrumb Area Start-->
+<div class="breadcrumb-area bg-overlay-dark bg-6">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="breadcrumb-text text-left">
+                    <h2>Edit Company</h2>
+                    <div class="breadcrumb-bar">
+                        <ul class="breadcrumb">
+                            <li><a href="index.html">HOME</a></li>
+                            <li>Edit</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Area End -->
+<!--Start Contact Form Area-->
+<div class="contact-form-area fix pb-120 pt-120">
+    <div class="container">
+        <div class="contact-form-left">
+            <h4 class="details-title">Edit Your Company</h4>
+            @using (Html.BeginForm("Edit", "Company", FormMethod.Post, new { id = "contact-for", enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <div>
+                    @Html.HiddenFor(x=>x.Id)
+                    @Html.TextBoxFor(x => x.Title, new { placeholder = "Company Title" })
+                    @Html.ValidationMessageFor(x => x.Title)
+                </div>
+                <div>
+                    @Html.TextBoxFor(x => x.NTN_STN, new { placeholder = "NTN/STN" })
+                    @Html.ValidationMessageFor(x => x.NTN_STN)
+                </div>
+                <div>
+                    @Html.TextBoxFor(x => x.Contact, new { placeholder = "Contact no" })
+                    @Html.ValidationMessageFor(x => x.Contact)
+                </div>
+                <div>
+                    @Html.TextBoxFor(x => x.Email, new { placeholder = "Email Adress" })
+                    @Html.ValidationMessageFor(x => x.Email)
+                </div>
+                <div>
+                    @Html.TextAreaFor(x => x.Adress, new { placeholder = "Adress" })
+                    @Html.ValidationMessageFor(x => x.Adress)
+                </div>
+
+                <div class="col-10 fix text-right">
+                    <input type="file" name="logo" style="display:none" id="flLogo" />
+                    <span id="logoName"></span>
+                    <button type="button" class="default-button submit-btn btn-logo">Upload Logo</button>
+                    <button type="submit" class="default-button submit-btn">SUBMIT</button>
+                </div>
+                <p class="form-messege"></p>
+            }
+
+
+        </div>
+        <div class="contact-form-right text-center">
+            <h4 style="margin-bottom:30px">Logo</h4>
+            @if (string.IsNullOrEmpty(Model.LogoUrl))
+            {
+                <img class="" src="" style="height:100px;width:100px" />
+            }
+            else
+            {
+                <img class="" src="@Url.Content(Model.LogoUrl)" style="height:100px;width:100px" />
+            }
+        </div>
+        <div class="contact-form-right">
+            <div class="single-sidebar-widget fix bg-8">
+                <div class="sidebar-contact-info">
+                    <h4>Need Any Help?</h4>
+                    <p>We are here to help! We're frinedly and available to help you. Reach out to us at anytime and we'll happily answer your questions.</p>
+                    <a href="@Url.Action("index", "home")#contact" class="default-button">Contact</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $('.btn-logo').click(function () {
+            $('#flLogo').trigger('click')
+        })
+        $('#flLogo').change(function () {
+            debugger;
+            var files = $(this).prop('files')[0];
+            if (files) {
+                if (files.type.indexOf('image') < 0) {
+
+                }
+                $('#logoName').html(files.name)
+            }
+        });
+    </script>
+}
+
+
+
+

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<iFinco.DAL.Purchase>
+@using PagedList.Mvc;
+@using PagedList;
+
+    <table class="table">
+        <thead class="text-primary">
+            <tr>
+                <th>Party</th>
+                <th>Date</th>
+                <th>Total</th>
+                <th>Discount</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model == null || Model.Count() < 1)
+            {
+                <tr>
+                    <td colspan="5" class="text-center">No record found</td>
+                </tr>
+            }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @if (item.Party != null)
+                        {
+                            @item.Party.Title
+                        }
+                        else
+                        {
+                            @: Walkin Customer
+                                                            }
+                    </td>
+                    <td>@item.Date.ToString("dd/MM/yyyy")</td>
+                    <td>@item.Total</td>
+                    <td>@item.Discount</td>
+                    <td>
+                        @Ajax.ActionLink(" ", "Print", "Purchase", new { area = "CompanyManager", id = item.Id }, new AjaxOptions { HttpMethod = "GET", OnSuccess = "ShowPrint" }, new { data_toggle = "tooltip", title = "Print", @class = "fa fa-print" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="col-md-12 text-right">
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("EmployeePurchaseHistory", new { page }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "tblPurchase" }))
+    </div>
+

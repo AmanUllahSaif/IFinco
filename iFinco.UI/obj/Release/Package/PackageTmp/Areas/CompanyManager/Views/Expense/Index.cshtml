@@ -1,0 +1,160 @@
+﻿
+@model iFinco.UI.Models.ExpenseSearchModel
+
+@{
+    int @count = 1;
+}
+@{
+
+    bool isSearched = Model != null && ((Model.To != null) || (Model.From != null));
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <div class="col-md-9">
+                            <h4 class="title">Expense</h4>
+                            <p class="category">Company Expenses</p>
+                        </div>
+                        <div class="col-md-3 text-right">
+
+
+                            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#companyModal">add</button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="card-content table-responsive">
+                        @using (Html.BeginForm("Index", "Expense", FormMethod.Get))
+                        {
+                            <table class="table table-bordered" id="table">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th>Sr#</th>
+                                      
+                                        <th>Name</th>
+                                        <th>Discription</th>
+                                        <th>Dr</th>
+                                        <th>
+                                            Cr
+                                            <span class="pull-right">
+                                                <a href="#">
+                                                    <i class="material-icons" id="btnSearch">keyboard_arrow_down</i>
+                                                </a>
+                                            </span>
+                                        </th>
+                                    </tr>
+                                    <tr @(isSearched ? "" : "style=display:none") id="trSearch">
+                                        <td></td>
+                                        <td></td>
+                                        <td>@Html.TextBoxFor(x => x.To, "{0:dd/MM/yyyy}", new { @class = "form-control form_datetime", placeholder = "To" })</td>
+                                        <td>@Html.TextBoxFor(x => x.From, "{0:dd/MM/yyyy}", new { @class = "form-control form_datetime", placeholder = "From" })</td>
+
+                                        <td>
+                                            <button class="btn btn-info btn-sm " type="submit">
+                                                <i class="material-icons">search</i>
+                                                <div class="ripple-container"></div>
+                                            </button>
+                                            <a href="@Url.Action("Index","Expense")" class="btn btn-info btn-sm">
+                                                <i class="material-icons">refresh</i>
+                                            </a>
+                                        </td>
+                                         
+
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                    @if (Model == null || Model.transaction.Count()< 1)
+                                    {
+                                        <tr>
+                                            <td colspan="5" class="text-center">No record found</td>
+                                        </tr>
+                                    }
+
+                                    @foreach (var item in Model.transaction)
+                                    {
+                                        <tr>
+                                            <td>@count</td>
+                                           
+
+
+
+                                            <td>
+                                                @foreach (var det in item.AccountDetails)
+                                                {
+                                                    if (det.Cr != null)
+                                                    {
+                                                        <label> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</label>
+                                                    }
+                                                    @det.Account.Name <br />
+                                                }
+                                              
+
+                                            </td>
+
+                                            <td>
+                                            @item.Narration</td>
+
+                                            <td>
+                                                @foreach (var det in item.AccountDetails)
+                                                {
+
+                                                    @det.Dr <br />
+                                                }
+                                            </td>
+                                            <td>
+                                                @foreach (var det in item.AccountDetails)
+                                                {
+                                                    @det.Cr <br />
+                                                }
+                                            </td>
+
+                                        </tr>
+                                        count++;
+
+
+                                    }
+                                </tbody>
+                            </table>
+
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Action("CreatePartial", "Expense")
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript">
+        function ShowModal(data) {
+            $('#content').html(data);
+            $('#companyModal').modal();
+        }
+
+        $('#btnSearch').click(function () {
+            $('#trSearch').slideToggle('slow');
+        })
+
+
+    </script>
+
+}
+@*<script type="text/javascript">
+        $('.btn').click(function () {
+            var print = document.getElementById('table');
+            var cssFiles = $('link');
+            var w = window.open("", "", "width=900,height=700");
+            w.document.write(print.outerHTML);
+            w.document.close();
+            w.focus();
+            w.print();
+            w.close();
+        })
+    </script>*@

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<iFinco.DAL.InvoiceTemplate>
+@using iFinco.DAL.Enum
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <div class="col-md-9">
+                            <h4 class="title">Inovices</h4>
+                            <p class="category">Manage Inovice, you can add,edit or delete any Inovice.</p>
+                        </div>
+                        <div class="col-md-3 text-right">
+                            @Html.ActionLink("Add", "Create", "TemplateDesigner", new { @class = "btn btn-info btn-sm" })
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    @using (Html.BeginForm("index", "TemplateDesigner", FormMethod.Get))
+                    {
+                        <div class="card-content table-responsive">
+                            <table class="table">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @((TemplateType)item.TemplateType)
+                                            </td>
+                                            <td>
+                                                <a href="@Url.Action("Edit", "TemplateDesigner", new { area="CompanyManager", id = item.Id})" data-toggle="tooltip" title="Edit Template"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" class="active-nav" value="#InvoiceDesigner" />

@@ -1,0 +1,73 @@
+﻿@model iFinco.DAL.Party
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    @Html.LabelFor(x => x.Title, new { @class = "contor-label" })
+                    @Html.HiddenFor(x => x.Id)
+                    @Html.TextBoxFor(x => x.Title, new { @class = "form-control", disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.Title)
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    @Html.LabelFor(x => x.Email, new { @class = "contor-label" })
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.Email)
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    @Html.LabelFor(x => x.Contact, new { @class = "contor-label" })
+                    @Html.TextBoxFor(x => x.Contact, new { @class = "form-control", disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.Contact)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    @Html.LabelFor(x => x.CompanyEmail, new { @class = "contor-label" })
+                    @Html.TextBoxFor(x => x.CompanyEmail, new { @class = "form-control", disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.CompanyEmail)
+                </div>
+            </div>
+           
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    @Html.LabelFor(x => x.CompanyTitle, new { @class = "contor-label" })
+                    @Html.TextBoxFor(x => x.CompanyTitle, new { @class = "form-control", disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.CompanyTitle)
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    @Html.LabelFor(x => x.CompanyContact, new { @class = "contor-label" })
+                    @Html.TextBoxFor(x => x.CompanyContact, new { @class = "form-control", disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.CompanyContact)
+                </div>
+            </div>
+           
+        </div>
+        <div class="row">
+           
+            <div class="col-md-12">
+                <div class="form-group label-floating">
+                    @Html.LabelFor(x => x.Adress, new { @class = "contor-label" })
+                    @Html.TextBoxFor(x => x.Adress, new { @class = "form-control", disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.Adress)
+                </div>
+            </div>
+           
+
+        </div>
+
+    </div>
+    
+</div>
+
+
+
+

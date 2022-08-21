@@ -1,0 +1,74 @@
+﻿
+@model iFinco.UI.Models.ExpenseVM
+<div id="companyModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Create Expense</h4>
+
+            </div>
+            @using (Html.BeginForm("CreatePartial", "Expense", FormMethod.Post, new { id = "contact-for", enctype = "multipart/form-data" }))
+            {
+                <div class="modal-body" id="content">
+                    @Html.AntiForgeryToken()
+
+                    <div class="col-md-12">
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                <div class="form-group label-floating">
+                                    @Html.LabelFor(x => x.AccountId)
+                                    @Html.DropDownListFor(x => x.AccountId, new SelectList(ViewBag.Exp, "Id", "Name"),new { @class="form-control"})
+                                    @Html.ValidationMessageFor(x => x.AccountId)
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group label-floating">
+                                    @Html.LabelFor(x => x.Amount, new { @class = "contor-label" })
+                                    @Html.TextBoxFor(x => x.Amount, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(x => x.Amount)
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                 
+                                <div class="form-group label-floating">
+                                    @Html.LabelFor(x => x.date, new { @class = "contor-label" })
+                                    @Html.TextBoxFor(x => x.date, new { @class = "form-control form_datetime",placeholder = "mm/dd/yyyy" })
+                                    @Html.ValidationMessageFor(x => x.date)
+                                </div>
+                                    @*@Html.TextBoxFor(x => x.date, new { @class = "form_datetime form-control",placeholder ="dd/mm/yyyy" })*@
+                                 
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="form-group label-floating">
+                                @Html.LabelFor(x => x.Discription, new { @class = "contor-label" })
+                                @Html.TextBoxFor(x => x.Discription, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(x => x.Discription)
+
+                            </div>
+
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary pull-right" type="submit">save</button>
+                        <button type="button" class="btn btn-default" id="btnCncl" data-dismiss="modal">Cancel</button>
+                    </div>
+
+
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

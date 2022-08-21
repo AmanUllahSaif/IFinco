@@ -1,0 +1,147 @@
+﻿@using PagedList.Mvc;
+@using PagedList;
+
+@model iFinco.UI.Models.CategorySearchModel
+
+@{
+    ViewBag.Title = "Category Management";
+    bool isSearched = Model != null && (!string.IsNullOrEmpty(Model.Title) || !string.IsNullOrEmpty(Model.Discription) || Model.Type != 0);
+}
+@using iFinco.DAL.Enum
+@using iFinco.UI.Util
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <div class="col-md-9">
+                            <h4 class="title">Categories</h4>
+                            <p class="category">Manage categories, you can add,edit or delete any Category.</p>
+                        </div>
+                        <div class="col-md-3 text-right">
+                            @Html.ActionLink("Add", "Create", "Category", new { @class = "btn btn-info btn-sm" })
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    @using (Html.BeginForm("index", "Category", FormMethod.Get))
+                    {
+                        <div class="card-content table-responsive">
+                            <table class="table">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th>Logo</th>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>Type</th>
+                                        <th>
+                                            Action
+                                            <a href="#">
+                                                <i class="material-icons" id="btnSearch">keyboard_arrow_down</i>
+                                            </a>
+                                        </th>
+                                    </tr>
+                                    <tr @(isSearched ? "" : "style=display:none") id="trSearch">
+                                        <td></td>
+                                        <td>@Html.TextBoxFor(x => x.Title, new { @class = "form-control", placeholder = "Title" })</td>
+                                        <td>@Html.TextBoxFor(x => x.Discription, new { @class = "form-control", placeholder = "Discription" })</td>
+                                        <td>
+                                            @Html.DropDownListFor(x => x.Type, EnumHelper.GetSelectList(typeof(CategoryType)), "Select Category Type", new { @class = "form-control" })
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-info btn-sm " type="submit">
+                                                <i class="material-icons">search</i>
+                                                <div class="ripple-container"></div>
+                                            </button>
+                                            <a href="@Url.Action("Index","Category")" class="btn btn-info btn-sm">
+                                                <i class="material-icons">refresh</i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.Data == null || Model.Data.Count() < 1)
+                                    {
+                                        <tr>
+                                            <td colspan="5" class="text-center">No record found</td>
+                                        </tr>
+                                    }
+                                    @foreach (var item in Model.Data)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @if (@item.ImgUrl != null)
+                                                {
+                                                    <img src="@item.ImgUrl" style="width:50px;height:50px" />
+                                                }
+                                                else
+                                                {
+                                                    <img class="logo-preview" src="~/PanalAssets/img/noImage.png" style="width:50px;height:50px" />
+                                                }
+                                            </td>
+                                            <td>@item.Title</td>
+                                            <td>@item.Description</td>
+                                            <td>
+                                                @if (item.Type != null)
+                                                {
+                                                    @((CategoryType)item.Type)
+                                                }
+                                                else
+                                                {
+                                                    @item.Type
+                                                }
+                                            </td>
+                                            <td>
+                                                <a href="@Url.Action("Edit", "Category", new { area = "CompanyManager", id = item.Id })" data-toggle="tooltip" title="Edit Company"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                                <a href="@Url.Action("Delete", "Category", new { area = "CompanyManager", id = item.Id })" data-toggle="tooltip" title="Delete Company"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                                @Ajax.ActionLink(" ", "Detail", "Category", new { area = "CompanyManager", id = item.Id }, new AjaxOptions { HttpMethod = "GET", OnSuccess = "ShowModal" }, new { data_toggle = "tooltip", title = "View Detail", @class = "fa fa-info" })
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <div class="col-md-12 text-right">
+                                @Html.PagedListPager((IPagedList)Model.Data, page => Url.Action("Index", new { page, Title = Request.QueryString["Title"], Discription = Request.QueryString["Discription"], Type = Request.QueryString["Type"] }))
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="companyModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Category Info</h4>
+            </div>
+            <div class="modal-body" id="content">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="btnCncl" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" class="active-nav" value="#Category" />
+
+@section Scripts{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript">
+        function ShowModal(data) {
+            $('#content').html(data);
+            $('#companyModal').modal();
+        }
+
+        $('#btnSearch').click(function () {
+            $('#trSearch').slideToggle('slow');
+        })
+    </script>
+}
+

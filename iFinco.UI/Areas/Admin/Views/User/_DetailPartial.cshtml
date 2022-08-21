@@ -1,0 +1,52 @@
+﻿@model iFinco.UI.Models.RegisterViewModel
+@using iFinco.UI.Util
+<div class="row">
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group label-floating">
+                    @Html.LabelFor(x => x.Name, new { @class = "contor-label" })
+                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control", disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.Name)
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group label-floating">
+                    @Html.LabelFor(x => x.Email, new { @class = "contor-label" })
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.Email)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group label-floating">
+                    @Html.Label("Company Name", new { @class = "contor-label" })
+                    <input type="text" class="form-control" disabled="" value="@User.Identity.GetCompanyName()">
+                    @*@Html.ValidationMessageFor(x => x.CompanyId)*@
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group label-floating">
+                    @Html.LabelFor(x => x.Role, new { @class = "contor-label" })
+                    @Html.TextBoxFor(x => x.Role, new { @class = "form-control", disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.Role)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="text-center">
+            <h4 style="margin-bottom:30px">Logo</h4>
+            @if (ViewBag.ImgUrl != null)
+            {
+                <img class="logo-preview" src="@ViewBag.ImgUrl" style="height:100px;width:100px" />
+            }
+            else
+            {
+                <img class="logo-preview" src="~/PanalAssets/img/noImage.png" style="height:100px;width:100px" />
+            }
+
+        </div>
+    </div>
+</div>

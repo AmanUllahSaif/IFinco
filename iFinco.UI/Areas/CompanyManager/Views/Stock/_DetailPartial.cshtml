@@ -1,0 +1,37 @@
+﻿
+@model IEnumerable<iFinco.DAL.Stock>
+<table class="table">
+    <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Purchasing Price</th>
+        <th>Selling Price</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td><b>@item.Product.Title</b><br />
+                @if (item.ProductAttributeCombination != null)
+                {
+                    foreach (var pdetail in item.ProductAttributeCombination.PACDetails)
+                    {
+                        if (pdetail.IsActive)
+                        {
+                            <label>@pdetail.VariantValue.Title ,</label>
+                        }
+                    }
+                }
+            </td>
+            <td>@item.Quantity</td>
+            <td>@item.PurchasingPrice</td>
+            <td>@item.SellingPrice</td>
+        </tr>
+    }
+
+</table>
+
+
+
+
+

@@ -1,0 +1,35 @@
+﻿
+@model iFinco.DAL.Variant
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group label-floating">
+                    @Html.LabelFor(x => x.Title, new { @class = "contor-label" })
+                    @Html.HiddenFor(x => x.Title)
+                    @Html.TextBoxFor(x => x.Title, new { @class = "form-control", disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.Title)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="form-group label-floating">
+                    @Html.Label("Value", new { @class = "contor-label" })
+                    <br />
+                    @foreach (var val in Model.VariantValues)
+                    {
+                        @: @val.Title ,
+                    }
+
+
+                    @*@Html.LabelFor(x => x.Values[0].Title, new { @class = "contor-label" })
+                        @Html.TextBoxFor(x => x.Values[0].Title, new { @class = "form-control", disabled = "disabled" })
+                        @Html.ValidationMessageFor(x => x.Values[0].Title)*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,128 @@
+﻿@model IEnumerable<iFinco.DAL.Menu>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group label-floating">
+                    @Html.Label("Company", new { @class = "contor-label" })
+                    @Html.DropDownList("Company", new SelectList(ViewBag.Companies, "Id", "Title"), "Select Company", new { @class = "form-control companyId" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            @if (Model != null)
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="headingOne">
+                                            <div class="col-md-3">
+                                                <div class="col-md-6">
+                                                    <h4 class="panel-title">
+                                                        @item.Title
+                                                    </h4>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" data-id="@item.Id" class="Mdchk" id="mdchk-@item.Id">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div id="collapse-@item.Id" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                            <div class="panel-body">
+                                                @foreach (var menuitem in item.Menu1)
+                                                {
+                                                    <div class="col-md-3">
+                                                        <div class="col-md-6">
+                                                            @menuitem.Title
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" data-id="@menuitem.Id" class="MItemchk" id="mdchk-@menuitem.Id">
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/common/fileuploader.js"></script>
+    <script type="text/javascript">
+        $('.Mdchk').change(function () {
+            var compnyId = $('.companyId').val()
+            if (!compnyId) {
+                $(this).prop('checked', false);
+                return false;
+            }
+            var id = $(this).attr('data-id');
+            if ($(this).is(':checked')) {
+                if (id) {
+                    $.ajax({
+                        type: "GET",
+                        url: "/MenuAccess/SaveAccess/?id=" + id + "&companyId=" + $('.companyId').val(),
+                        success: function (data) {
+                        }
+                    });
+                }
+            }
+            else {
+                $.ajax({
+                    type: "GET",
+                    url: "/MenuAccess/RemoveAccess/?id=" + id + "&companyId=" + $('.companyId').val(),
+                    success: function (data) {
+                    }
+                });
+            }
+            $('#collapse-' + id).collapse('toggle');
+        });
+
+        //call event on dropdown_index_changed
+        $('.companyId').change(function () {
+            var id = $(this).val();
+            $('.Mdchk').prop("checked", false);
+            $('.panel-collapse').collapse('hide');
+            if (id) {
+                $.ajax({
+                    type: "GET",
+                    url: "/MenuAccess/Access/" + id,
+                    success: function (data) {
+                        if (data) {
+                            for (var i = 0; i < data.length; i++) {
+                                $('#mdchk-' + data[i]).prop('checked', true);
+                                //$('#collapse-' + data[i]).collapse('toggle');
+                                $('#collapse-' + data[i]).collapse('show');
+                            }
+                        }
+                    }
+                });
+            }
+        })
+    </script>
+}

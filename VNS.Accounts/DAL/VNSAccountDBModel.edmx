@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EcommerceDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsDefualt" Type="bit" Nullable="false" />
+          <Property Name="PartyId" Type="bigint" />
+          <Property Name="ParentId" Type="bigint" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CompanyId" Type="bigint" Nullable="false" />
+          <Property Name="BranchId" Type="bigint" />
+          <Property Name="ShowInTransaction" Type="bit" />
+        </EntityType>
+        <EntityType Name="AccountDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountId" Type="bigint" Nullable="false" />
+          <Property Name="TransactionId" Type="bigint" />
+          <Property Name="Cr" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Dr" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Narration" Type="nvarchar" MaxLength="250" />
+          <Property Name="ReceiptId" Type="bigint" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CompanyId" Type="bigint" Nullable="false" />
+          <Property Name="BranchId" Type="bigint" />
+        </EntityType>
+        <Association Name="FK_Account_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="Account1" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Account1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountDetail_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="AccountDetail" Type="Self.AccountDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountDetail">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountDetail_Transaction">
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="0..1" />
+          <End Role="AccountDetail" Type="Self.AccountDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transaction">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountDetail">
+              <PropertyRef Name="TransactionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EcommerceDBModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountDetail" EntityType="Self.AccountDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transaction" EntityType="Self.Transaction" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Account_Account" Association="Self.FK_Account_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Account1" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountDetail_Account" Association="Self.FK_AccountDetail_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="AccountDetail" EntitySet="AccountDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountDetail_Transaction" Association="Self.FK_AccountDetail_Transaction">
+            <End Role="Transaction" EntitySet="Transaction" />
+            <End Role="AccountDetail" EntitySet="AccountDetail" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EcommerceDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="VNSAccountsDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Transactions" EntityType="EcommerceDBModel.Transaction" />
+          <EntitySet Name="Accounts" EntityType="EcommerceDBModel.Account" />
+          <AssociationSet Name="FK_Account_Account" Association="EcommerceDBModel.FK_Account_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Account1" EntitySet="Accounts" />
+          </AssociationSet>
+          <EntitySet Name="AccountDetails" EntityType="EcommerceDBModel.AccountDetail" />
+          <AssociationSet Name="FK_AccountDetail_Account" Association="EcommerceDBModel.FK_AccountDetail_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="AccountDetail" EntitySet="AccountDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountDetail_Transaction" Association="EcommerceDBModel.FK_AccountDetail_Transaction">
+            <End Role="Transaction" EntitySet="Transactions" />
+            <End Role="AccountDetail" EntitySet="AccountDetails" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Narration" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ReceiptId" Type="Int64" Nullable="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CompanyId" Type="Int64" Nullable="false" />
+          <Property Name="BranchId" Type="Int64" />
+          <NavigationProperty Name="AccountDetails" Relationship="EcommerceDBModel.FK_AccountDetail_Transaction" FromRole="Transaction" ToRole="AccountDetail" />
+        </EntityType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsDefualt" Type="Boolean" Nullable="false" />
+          <Property Name="PartyId" Type="Int64" />
+          <Property Name="ParentId" Type="Int64" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CompanyId" Type="Int64" Nullable="false" />
+          <Property Name="BranchId" Type="Int64" />
+          <Property Name="ShowInTransaction" Type="Boolean" />
+          <NavigationProperty Name="Account1" Relationship="EcommerceDBModel.FK_Account_Account" FromRole="Account" ToRole="Account1" />
+          <NavigationProperty Name="Account2" Relationship="EcommerceDBModel.FK_Account_Account" FromRole="Account1" ToRole="Account" />
+          <NavigationProperty Name="AccountDetails" Relationship="EcommerceDBModel.FK_AccountDetail_Account" FromRole="Account" ToRole="AccountDetail" />
+        </EntityType>
+        <Association Name="FK_Account_Account">
+          <End Type="EcommerceDBModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="EcommerceDBModel.Account" Role="Account1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Account1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AccountDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountId" Type="Int64" Nullable="false" />
+          <Property Name="TransactionId" Type="Int64" />
+          <Property Name="Cr" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Dr" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="EcommerceDBModel.FK_AccountDetail_Account" FromRole="AccountDetail" ToRole="Account" />
+          <NavigationProperty Name="Transaction" Relationship="EcommerceDBModel.FK_AccountDetail_Transaction" FromRole="AccountDetail" ToRole="Transaction" />
+        </EntityType>
+        <Association Name="FK_AccountDetail_Account">
+          <End Type="EcommerceDBModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="EcommerceDBModel.AccountDetail" Role="AccountDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountDetail">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountDetail_Transaction">
+          <End Type="EcommerceDBModel.Transaction" Role="Transaction" Multiplicity="0..1" />
+          <End Type="EcommerceDBModel.AccountDetail" Role="AccountDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Transaction">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountDetail">
+              <PropertyRef Name="TransactionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EcommerceDBModelStoreContainer" CdmEntityContainer="VNSAccountsDBEntities">
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="EcommerceDBModel.Transaction">
+              <MappingFragment StoreEntitySet="Transaction">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ReceiptId" ColumnName="ReceiptId" />
+                <ScalarProperty Name="Narration" ColumnName="Narration" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="EcommerceDBModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="ShowInTransaction" ColumnName="ShowInTransaction" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="PartyId" ColumnName="PartyId" />
+                <ScalarProperty Name="IsDefualt" ColumnName="IsDefualt" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountDetails">
+            <EntityTypeMapping TypeName="EcommerceDBModel.AccountDetail">
+              <MappingFragment StoreEntitySet="AccountDetail">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Dr" ColumnName="Dr" />
+                <ScalarProperty Name="Cr" ColumnName="Cr" />
+                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

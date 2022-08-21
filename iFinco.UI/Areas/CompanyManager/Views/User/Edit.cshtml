@@ -1,0 +1,131 @@
+﻿@model iFinco.UI.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Employee Management";
+}
+
+@using iFinco.UI.Util
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Employee</h4>
+                        <p class="category">Edit Employee</p>
+                    </div>
+                    <div class="card-content">
+                        @using (Html.BeginForm("Edit", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating is-empty">
+                                        @Html.HiddenFor(x => x.CompanyId, new { Value = User.Identity.GetCompanyId() })
+                                        <input type="text" class="form-control" disabled="" value="@User.Identity.GetCompanyName()">
+                                        <span class="material-input"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating">
+                                        @Html.LabelFor(x => x.Email, new { @class = "control-label" })
+                                        <input type="text" class="form-control" disabled="" value="@Model.Email">
+                                        @Html.HiddenFor(x => x.Email)
+                                        @Html.ValidationMessageFor(x => x.Email)
+                                        <span class="material-input"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group label-floating">
+                                        @Html.LabelFor(x => x.BranchId, new { @class = "control-label", @for = "BranchId" })
+                                        @Html.DropDownListFor(x => x.BranchId, new SelectList(ViewBag.Branches, "Id", "Title"), "", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.BranchId)
+                                        <span class="material-input"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group label-floating">
+                                        @Html.LabelFor(x => x.Name, new { @class = "control-label" })
+                                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.Name)
+                                        <span class="material-input"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Roles</label>
+                                        @Html.LabelFor(x => x.Role, new { @class = "control-label", @for = "BranchId" })
+                                        @Html.DropDownListFor(x => x.Role, new SelectList(ViewBag.Roles, "Name", "Name"), "", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => x.Role)
+                                        <span class="material-input"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group label-floating">
+                                        @Html.LabelFor(x => x.Password, new { @class = "control-label" })
+                                        @Html.PasswordFor(x => x.Password, new { @class = "form-control", Value = "$$$$$$$$$$" })
+                                        @Html.ValidationMessageFor(x => x.Password)
+                                        <span class="material-input"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group label-floating">
+                                        @Html.LabelFor(x => x.ConfirmPassword, new { @class = "control-label" })
+                                        @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control", Value = "$$$$$$$$$$" })
+                                        @Html.ValidationMessageFor(x => x.ConfirmPassword)
+                                        <span class="material-input"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <input type="file" name="logo" style="display:none" data-btn=".btn-logo" data-preview=".img" class="vns-file" />
+                                <a href="@Url.Action("Index","User")" class="btn btn-default pull-right">Cancel</a>
+                                <button type="button" class="default-button submit-btn btn btn-logo">Upload Logo</button>
+                                <button type="submit" class="btn btn-primary pull-right">Update</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-profile">
+                    <div class="card-avatar">
+                        <a href="#pablo">
+                            @if (ViewBag.ImgUrl != null)
+                            {
+                                <img class="img" src="@ViewBag.ImgUrl">
+                            }
+                            else
+                            {
+                                <img class="img" src="~/PanalAssets/img/noImage.png">
+                            }
+                        </a>
+                    </div>
+                    @*<div class="content">
+                            <h6 class="category text-gray">CEO / Co-Founder</h6>
+                            <h4 class="card-title">Alec Thompson</h4>
+                            <p class="card-content">
+                                Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                            </p>
+                            <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
+                        </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/common/fileuploader.js"></script>
+    <script type="text/javascript">
+        $('.vns-file').VNSFileUploder();
+
+    </script>
+}

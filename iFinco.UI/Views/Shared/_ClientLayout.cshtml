@@ -1,0 +1,328 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title> E-Munchi @*@ViewBag.Title*@</title>
+    <meta charset="utf-8" />
+    @* @Styles.Render("~/Content/css")*@
+    @*@Scripts.Render("~/bundles/modernizr")*@
+
+    <!-- Favicon Icon -->
+    <link rel="shortcut icon" type="image/x-icon" href="@Url.Content("~/favicon.png")">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600" rel="stylesheet">
+
+    <!-- All css here -->
+    <link rel="stylesheet" href="@Url.Content("~/")ClientAssets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="@Url.Content("~/")ClientAssets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="@Url.Content("~/")ClientAssets/css/shortcode/shortcodes.css">
+    <link rel="stylesheet" href="@Url.Content("~/")ClientAssets/css/animate.css">
+    <link rel="stylesheet" href="@Url.Content("~/")ClientAssets/css/owl.carousel.css">
+    <link rel="stylesheet" href="@Url.Content("~/")ClientAssets/css/style.css">
+    <link href="~/ClientAssets/css/responsive.css" rel="stylesheet" />
+    <script src="~/ClientAssets/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <!-- Header Area Start -->
+    <header class="header-area">
+        <div class="header-main bg-green white">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="logo-wrapper">
+                            <div class="logo">
+                                <a href="@Url.Action("Index","Home")"><img src="~/ClientAssets/img/logo/logo.png" alt="FINANCO" /></a>
+                            </div>
+                        </div>
+                        <div class="header-main-content">
+                            <div class="header-info">
+                                <img src="~/ClientAssets/img/icons/phone.png" alt="">
+                                <div class="header-info-text">
+                                    <h4>055-3821473</h4>
+                                    <span>We are open 9 am - 10pm</span>
+                                </div>
+                            </div>
+                            <div class="header-info">
+                                <img src="~/ClientAssets/img/icons/message.png" alt="">
+                                <div class="header-info-text">
+                                    <h4>info@emunchi.com</h4>
+                                    <span>You can mail us</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main Menu Area Start -->
+        <div class="mainmenu-area fixed header-sticky hidden-xs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                        <div class="main-menu text-center">
+                            <nav>
+                                <ul>
+                                    <li>
+                                        <a href="@Url.Action("Index","Home")">HOME</a>
+                                    </li>
+                                    @if (Request.Url.AbsolutePath.ToLower().Equals("/") || Request.Url.AbsolutePath.ToLower().Equals("/home/index"))
+                                    {
+
+                                        <li>
+                                            <a href="#about">ABOUT US</a>
+                                            @*<ul class="submenu">
+                                                    <li><a href="about-2.html">About Us 2</a></li>
+                                                </ul>*@
+                                        </li>
+
+
+                                        <li><a href="#services">SERVICES</a></li>
+
+                                        <li><a href="#contact">CONTACT</a></li>
+                                        @*<li><a href="#team">TEAM</a></li>*@
+                                        <li><a href="#clients">CLIENTS</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <a href="@Url.Action("index", "home")#about">ABOUT US</a>
+                                            @*<ul class="submenu">
+                                                    <li><a href="about-2.html">About Us 2</a></li>
+                                                </ul>*@
+                                        </li>
+
+
+                                        <li><a href="@Url.Action("index", "home")#services">SERVICES</a></li>
+
+                                        <li><a href="@Url.Action("index", "home")#contact">CONTACT</a></li>
+                                        @*<li><a href="#team">TEAM</a></li>*@
+                                        <li><a href="@Url.Action("index", "home")#clients">CLIENTS</a></li>
+                                    }
+
+                                    <li>
+                                        <a href="@Url.Action("Register","Company")">Register Company</a>
+                                    </li>
+                                    <li><a href="@Url.Action("Login","Account")">Login</a></li>
+
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main Menu Area Start -->
+        <!-- Mobile Menu Area start -->
+        <div class="mobile-menu-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="mobile-menu">
+                            <nav id="dropdown">
+                                <ul>
+                                    <li>
+                                        <a href="@Url.Action("Index","Home")">HOME</a>
+                                        @*<ul class="submenu">
+                                                <li><a href="index-2.html">Home Style 2</a></li>
+                                                <li><a href="index-3.html">Home Style 3</a></li>
+                                                <li><a href="index-4.html">Home Style 4</a></li>
+                                            </ul>*@
+                                    </li>
+                                    <li>
+                                        <a href="#about">ABOUT US</a>
+                                        @*<ul class="submenu">
+                                                <li><a href="about-2.html">About Us 2</a></li>
+                                            </ul>*@
+                                    </li>
+                                    @*<li>
+                                            <a href="services.html">SERVICES</a>
+                                            <ul class="submenu">
+                                                <li><a href="services-2.html">Services 2</a></li>
+                                                <li><a href="single-service.html">Single Service</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="project.html">PROJECTS</a>
+                                            <ul class="submenu">
+                                                <li><a href="project-2.html">Projects 2</a></li>
+                                                <li><a href="project-3.html">Projects 3</a></li>
+                                                <li><a href="project-4.html">Projects 4</a></li>
+                                                <li><a href="project-details.html">Project Details</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="blog.html">BLOG</a>
+                                            <ul class="submenu">
+                                                <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
+                                                <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
+                                                <li><a href="blog-details.html">Blog Details</a></li>
+                                            </ul>
+                                        </li>*@
+                                    <li>
+                                        <a href="#services">SERVICES</a>
+                                    </li>
+
+                                    <li><a href="#contact">CONTACT</a></li>
+                                    <li><a href="#team">TEAM</a></li>
+                                    <li><a href="#clients">CLIENTS</a></li>
+                                    <li>
+                                        <a href="@Url.Action("Register","Company")">Register Company</a>
+                                    </li>
+                                    <li><a href="@Url.Action("Login","Account")">Login</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu Area end -->
+    </header>
+    @RenderBody()
+    <!-- Header Area End -->
+    <!-- Background Area Start -->
+    <!-- Background Area End -->
+    <!-- Question Ask Area Start -->
+    <div class="question-ask-area">
+        <button class="toggle"><img src="~/ClientAssets/img/icons/ques.png" alt=""></button>
+        <div class="question-popoup">
+            <h6>Need Any Help?</h6>
+            <p>Currently we are offline, you can leave a message and we will get back soon</p>
+            <div class="question-info">
+                <div class="q-image">
+                    <img src="~/ClientAssets/img/testi/2.png" width="45" height="45" alt="">
+                </div>
+                <div class="q-text">
+                    <h5>Maheen Shahid</h5>
+                    <span>Live Support</span>
+                </div>
+                <div class="q-btn">
+                    @if (Request.Url.AbsolutePath.ToLower().Equals("/") || Request.Url.AbsolutePath.ToLower().Equals("/home/index"))
+                    {
+                        <a href="#contact" class="default-button">contact</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Index","Home")#contact" class="default-button">contact</a>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Question Ask Area End -->
+    <!-- About Area Start -->
+    <!--End of Client area-->
+    <!--Start of Footer Widget-area-->
+    <div class="footer-widget-area bg-4 overlay-blue pt-110 pb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                    <div class="single-footer-widget">
+                        <div class="footer-logo">
+                            <a href="@Url.Content("~/")"><img src="~/ClientAssets/img/logo/logo.png" alt="FINANCO"></a>
+                        </div>
+                        <p>E-Munchi is a leading Financial Solution that provide financial assistance to our clients. We helps clients to make employee management, company management, product management, stock management, and different types of reports.</p>
+                        <form action="#" id="mc-form" class="mc-form fix">
+                            <div class="subscribe-form">
+                                <input id="mc-email" type="email" name="email" placeholder="Email for Newsletter">
+                                <a id="mc-submit" type="submit" href="#">Contact</a><i class="fa fa-send"></i>
+                            </div>
+                        </form>
+                        <!-- mailchimp-alerts Start -->
+                        <div class="mailchimp-alerts text-centre fix text-small">
+                            <div class="mailchimp-submitting"></div><!-- mailchimp-submitting end -->
+                            <div class="mailchimp-success"></div><!-- mailchimp-success end -->
+                            <div class="mailchimp-error"></div><!-- mailchimp-error end -->
+                        </div>
+                        <!-- mailchimp-alerts end -->
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                    <div class="single-footer-widget">
+                        <h3>POPULAR POST</h3>
+                        @*<div class="footer-widget-content">
+                                <h5>Duplex Villa Design</h5>
+                                <span>Lorem ipsum dolor sit amet, tur<br>acinglit sed do eius </span>
+                            </div>
+                            <div class="footer-widget-content">
+                                <h5>Real Estate Fest</h5>
+                                <span>Lorem ipsum dolor sit amet, tur<br>acinglit sed do eius </span>
+                            </div>*@
+                    </div>
+                </div>
+                <div class="col-lg-3 hidden-md hidden-sm col-xs-12">
+                    <div class="single-footer-widget">
+                        <h3>QUICK LINK</h3>
+                        <ul class="footer-list">
+                            <li><a href="#about">About us</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                            @*<li><a href="#team">Team</a></li>*@
+                            <li><a href="#clients">Clients</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                    <div class="single-footer-widget">
+                        <h3>CONTACT US</h3>
+                        <div class="footer-contact-info">
+                            <img src="~/ClientAssets/img/icons/f-map.png" alt="">
+                            <span class="block">
+                                404/B Satellite Town <br />
+                                Gujranwala,Pakistan
+                            </span>
+                        </div>
+                        <div class="footer-contact-info">
+                            <img src="~/ClientAssets/img/icons/f-phone.png" alt="">
+                            <span class="block">
+                                Telephone : 055-3821473<br>
+                                Mobile : +92-3117474084
+                            </span>
+                        </div>
+                        <div class="footer-contact-info">
+                            <img src="~/ClientAssets/img/icons/f-globe.png" alt="">
+                            <span class="block">
+                                Email : info@emunchi.com<br>
+                                Web : www.emunchi.com
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End of Footer Widget-area-->
+    <!-- Start of Footer area -->
+    <footer class="footer-area bg-blue text-center ptb-30">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="footer-text">
+                        <span class="block">Copyright&copy; @DateTime.Now.Year <a href="http://vnextsolution.com/" target="_blank">VNext Solution</a>. All rights reserved.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End of Footer area -->
+    <!-- All js here -->
+    <script src="@Url.Content("~/")ClientAssets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="@Url.Content("~/")ClientAssets/js/bootstrap.min.js"></script>
+    <script src="@Url.Content("~/")ClientAssets/js/owl.carousel.min.js"></script>
+    <script src="@Url.Content("~/")ClientAssets/js/ajax-mail.js"></script>
+    <script src="@Url.Content("~/")ClientAssets/js/jquery.ajaxchimp.min.js"></script>
+    <script src="@Url.Content("~/")ClientAssets/js/jquery.magnific-popup.js"></script>
+    <script src="@Url.Content("~/")ClientAssets/js/counterup.js"></script>
+    <script src="@Url.Content("~/")ClientAssets/js/plugins.js"></script>
+    <script src="@Url.Content("~/")ClientAssets/js/canvasjs.min.js"></script>
+    <script src="@Url.Content("~/")ClientAssets/js/canvas-active.js"></script>
+    <script src="@Url.Content("~/")ClientAssets/js/main.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
